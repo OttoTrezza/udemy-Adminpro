@@ -16,11 +16,11 @@ export class RxjsComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.subscription = this.regresaObservable()
-    .subscribe (
-      numero => console.log('subs', numero ),
-      error => console.error('error en el obs', error),
-      () => console.log('El Observador termino')
-    );
+      .subscribe (
+        numero => console.log('subs', numero ),
+        error => console.error('error en el obs', error),
+        () => console.log('El Observador termino')
+      );
   }
 
   ngOnInit() {
@@ -50,19 +50,18 @@ export class RxjsComponent implements OnInit, OnDestroy {
         //   clearInterval( intervalo );
         //   observer.error ('Auxilio!');
         // }
-    }, 1000);
-  }).pipe(
-    map( resp => resp.valor),
-    filter(  (valor, index) => {
-      // console.log('Filter', valor, index);
-
-      if ( (valor % 2) === 1 ) {
-        return true;
-      }else {
-        return false;
-      }
-     // return true;
-    } )
-  );
+      }, 1000);
+    }).pipe(
+        map( resp => resp.valor),
+        filter(  (valor, index) => {
+          // console.log('Filter', valor, index);
+          if ( (valor % 2) === 1 ) {
+            return true;
+          }else {
+            return false;
+          }
+          // return true;
+        } )
+      );
   }
 }

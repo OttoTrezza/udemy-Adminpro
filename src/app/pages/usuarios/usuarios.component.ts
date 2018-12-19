@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
-import { UsuarioService } from '../../services/service.index';
-import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
+import { UsuarioService, ModalUploadService } from '../../services/service.index';
 
 declare var swal: any;
 
@@ -31,36 +30,17 @@ export class UsuariosComponent implements OnInit {
           .subscribe( resp => this.cargarUsuarios() );
 
   }
-  mostrarModal( id: string) {
-    this._modalUploadService.mostrarModal( 'usuarios', id );
-  }
+
 
   cargarUsuarios() {
-  this._usuarioService.cargarUsuarios( this.desde )
-    .subscribe( (resp: any) => {
-
-      this.totalRegistros = resp.total;
-      this.usuarios = resp.usuarios;
-      this.cargando = false;
-
+    this._usuarioService.cargarUsuarios()
+          .subscribe( (resp: any) => {
+          this.totalRegistros = resp.total;
+          this.usuarios = resp.usuarios;
+          this.cargando = false;
     });
   }
 
-  cambiarDesde(valor: number ) {
-
-    let desde = this.desde + valor;
-    console.log( desde );
-
-    if ( desde >= this.totalRegistros) {
-      return;
-    }
-    if (desde < 0) {
-      return;
-    }
-
-    this.desde += valor;
-    this.cargarUsuarios();
-  }
 
   buscarUsuario( termino: string) {
     if ( termino.length <= 0 ) {
@@ -75,6 +55,14 @@ export class UsuariosComponent implements OnInit {
                 this.cargando = false;
               });
   }
+
+
+  guardarUsuario( usuario: Usuario) {
+      this._usuarioService.actualizarUsuario( usuario)
+            .subscribe();
+  }
+
+
   borrarUsuario( usuario: Usuario) {
     if ( usuario._id === this._usuarioService.usuario._id) {
       swal('No puede borrar usuario', 'No se puede borrar a si mismo', 'error');
@@ -98,8 +86,28 @@ export class UsuariosComponent implements OnInit {
       }
     });
   }
-  guardarUsuario( usuario: Usuario) {
-    this._usuarioService.actualizarUsuario( usuario)
-          .subscribe();
+
+
+
+  mostrarModal( id: string) {
+    this._modalUploadService.mostrarModal( 'usuarios', id );
   }
+
+
+
+  cambiarDesde(valor: number ) {
+
+    let desdeu = JSON.parse( localStorage.getItem('desdeu')) + valor;
+
+    if ( desdeu >= this.totalRegistros) {
+      return;
+    }
+    if (desdeu < 0) {
+      return;
+    }
+
+    this._usuarioService.guardardesdeStorage( desdeu );
+    this.cargarUsuarios();
+  }
+
 }
