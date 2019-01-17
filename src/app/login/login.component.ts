@@ -44,17 +44,17 @@ gapi.load('auth2', () => {
     cookiepolicy: 'single_host_origin',
     scope: 'profile email'
   });
-this.attachSignin(document.getElementById('btnGoogle'));
+  this.attachSignin(document.getElementById('btnGoogle'));
 });
 
 }
-attachSignin(element) {
+attachSignin( element ) {
 
   this.auth2.attachClickHandler( element, {}, (googleUser) => {
 
   // let profile = googleUser.getBasicProfile();
   let token = googleUser.getAuthResponse().id_token;
-
+  // console.log(this._usuarioService.loginGoogle( token ));
   this._usuarioService.loginGoogle( token )
               .subscribe( () => window.location.href = '#/dashboard' );
 
@@ -63,11 +63,12 @@ attachSignin(element) {
 
   ingresar(forma: NgForm) {
     if ( forma.invalid) {
+
       return;
     }
    let usuario = new Usuario(null, forma.value.email, forma.value.password);
    this._usuarioService.login(usuario, forma.value.recuerdame)
-                 .subscribe(correcto => this.router.navigate(['/dashboard']));
+                 .subscribe( correcto => this.router.navigate(['/dashboard']) );
 
   }
 
