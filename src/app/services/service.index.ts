@@ -1,6 +1,9 @@
 // GUARDS
 export { AdminGuard } from './guards/admin.guard';
 export { LoginGuardGuard } from './guards/login-guard.guard';
+export { VerificatokenGuard } from './guards/verificatoken.guard';
+
+
 //
 export { ModalUploadService } from '../components/modal-upload/modal-upload.service';
 

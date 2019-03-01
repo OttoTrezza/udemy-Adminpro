@@ -18,6 +18,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
 import { PromesasComponent } from './rxjs/promesas/promesas.component';
+import { PagesComponent } from './pages/pages.component';
+import { SharedModule } from './shared/shared.module';
 
 
 
@@ -29,15 +31,16 @@ import { PromesasComponent } from './rxjs/promesas/promesas.component';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    PromesasComponent
+    PromesasComponent,
+    PagesComponent
   ],
   imports: [
     BrowserModule,
     APP_ROUTES,
-    PagesModule,
     FormsModule,
     ReactiveFormsModule,
-    ServiceModule
+    ServiceModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
