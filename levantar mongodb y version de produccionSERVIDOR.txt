@@ -1,0 +1,29 @@
+"C:\Program Files\MongoDB\Server\4.0\bin\mongod.exe" --dbpath="d:\proyecto\data\db"
+
+frontend: ng serve -o
+backend: npm start
+
+credenciales GOOGLE-SIGNIN
+ID CLIENE: 584414601747-ve69u1oukn9kq53u3den4hm8f986jcsc.apps.googleusercontent.com
+Secreto de cliente: bTCYI-p9t-i8RrZcGc-ZAcue
+
+
+VERSION DE PRODUCCION/DISTRIBUCION
+
+En el bash de ng serve...control c(lo doy de baja...
+luego.. EJECUTO ng build --prod --aot
+Eso genera la carpeta dist en el directorio del proyecto de angular...(en /d/proyecto/Adminpro-Angular/admipro-udemy-1.2.0/dist )
+
+YA TENGO LA VERSION DE PRODUCCION!!! (es esa carpeta dist)
+OPCION -A(APACHE):
+copio todo el contenido de la carpeta dist..(contenida en este directorio /d/proyecto/Adminpro-Angular/admipro-udemy-1.2.0/dist)
+pego en mi carpeta adminpro ..(contenida en este directorio d/servidor_web/adminpro)
+y bien levanto el servidor desde el area de notificaciones de apache..btn derecho - start
+o bien desde la consola.. d: -**--averiguar como..**-
+
+OPCION -B(SERVIDOR NODE):
+luego.. navego hacia esa carpeta en el bash.. con cd /d/proyecto/Adminpro-Angular/admipro-udemy-1.2.0/dist 
+y ahora si, prendo el servidor con el comando http-server -o -p4200
+
+
+d:\apache24\bin>httpd.exe -k start
