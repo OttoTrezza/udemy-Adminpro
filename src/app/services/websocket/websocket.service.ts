@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Socket } from 'ngx-socket-io';
-import { Usuario } from '../classes/usuario';
+import { Usuario } from '../../classes/usuario';
 import { Router } from '@angular/router';
+import { Socket } from 'ngx-socket-io';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class WebsocketService {
 
   public socketStatus = false;

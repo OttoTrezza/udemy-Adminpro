@@ -16,6 +16,7 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
+import { MensajesComponent } from './mensajes/mensajes.component';
 
 // pipes
 import { PipesModule } from '../pipes/pipes.module';
@@ -32,8 +33,15 @@ import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { environment } from '../../environments/environment';
 
 
+// sockets
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = {
+  url: environment.wsUrl , options: {}
+};
 
 @NgModule({
     declarations: [
@@ -43,6 +51,7 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
         Graficas1Component,
         IncrementadorComponent,
         GraficoDonaComponent,
+        MensajesComponent,
         AccoutSettingsComponent,
         PromesasComponent,
         RxjsComponent,
@@ -58,7 +67,8 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     exports: [
         DashboardComponent,
         ProgressComponent,
-        Graficas1Component
+        Graficas1Component,
+        MensajesComponent
     ],
     imports: [
         CommonModule,
@@ -66,7 +76,9 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
         PAGES_ROUTES,
         FormsModule,
         ChartsModule,
-        PipesModule
+        PipesModule,
+        SocketIoModule.forRoot(config)
+
     ]
 })
 export class PagesModule { }

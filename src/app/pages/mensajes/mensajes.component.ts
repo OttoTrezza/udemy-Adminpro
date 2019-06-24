@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WebsocketService } from '../../services/websocket.service';
+import { WebsocketService } from '../../services/service.index';
 
 @Component({
   selector: 'app-mensajes',

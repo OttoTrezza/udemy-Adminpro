@@ -13,7 +13,9 @@ import {
   VerificatokenGuard,
   SubirArchivoService,
   HospitalService,
-  MedicoService
+  MedicoService,
+  ChatService,
+  WebsocketService
  } from './service.index';
 
 
@@ -33,7 +35,9 @@ import {
     SubirArchivoService,
     ModalUploadService,
     HospitalService,
-    MedicoService
+    MedicoService,
+    ChatService,
+    WebsocketService
   ],
   declarations: []
 })

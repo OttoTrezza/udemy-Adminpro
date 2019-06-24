@@ -17,6 +17,7 @@ import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { MensajesComponent } from './mensajes/mensajes.component';
 
 
 
@@ -27,6 +28,7 @@ const pagesRoutes: Routes = [
     { path: 'graficas1', component: Graficas1Component, data: { titulo: 'Graficas' } },
     { path: 'promesas', component: PromesasComponent, data: { titulo: 'Promesas' } },
     { path: 'rxjs', component: RxjsComponent, data: { titulo: 'RxJs' } },
+    { path: 'mensajes', component: MensajesComponent, data: { titulo: 'Mensajes' } },
     { path: 'account-settings', component: AccoutSettingsComponent, data: { titulo: 'Ajustes' } },
     { path: 'perfil', component: ProfileComponent, data: { titulo: 'Perfil de usuario' } },
     { path: 'busqueda/:termino', component: BusquedaComponent, data: { titulo: 'Buscador' } },

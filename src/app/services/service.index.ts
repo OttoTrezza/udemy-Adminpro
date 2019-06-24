@@ -16,3 +16,7 @@ export { UsuarioService } from './usuario/usuario.service';
 export { HospitalService } from './hospital/hospital.service';
 export { MedicoService } from './medico/medico.service';
 
+export { ChatService } from './chat/chat.service';
+export { WebsocketService } from './websocket/websocket.service';
+
+

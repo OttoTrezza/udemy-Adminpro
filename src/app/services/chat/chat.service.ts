@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { WebsocketService } from './websocket.service';
+import { WebsocketService } from '../service.index';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ChatService {
 
   constructor(

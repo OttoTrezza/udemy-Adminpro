@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
 import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component';
 import { LoginGuardGuard } from './services/guards/login-guard.guard';
-
+import { MensajesComponent } from './pages/mensajes/mensajes.component';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -16,6 +16,11 @@ const appRoutes: Routes = [
     canActivate: [LoginGuardGuard],
     loadChildren: './pages/pages.module#PagesModule'
     },
+    {
+        path: 'mensajes',
+        component: MensajesComponent,
+        canActivate: [ LoginGuardGuard ]
+      },
     { path: '**', component: NopagefoundComponent }
 ];
 

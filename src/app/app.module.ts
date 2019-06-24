@@ -13,6 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Servicios
 import { ServiceModule } from './services/service.module';
 
+
+
 // Componentes
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -20,6 +22,9 @@ import { RegisterComponent } from './login/register.component';
 import { PromesasComponent } from './rxjs/promesas/promesas.component';
 import { PagesComponent } from './pages/pages.component';
 import { SharedModule } from './shared/shared.module';
+import { FooterComponent } from './components/footer/footer.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
 
 
 
@@ -32,7 +37,10 @@ import { SharedModule } from './shared/shared.module';
     LoginComponent,
     RegisterComponent,
     PromesasComponent,
-    PagesComponent
+    PagesComponent,
+    FooterComponent,
+    ChatComponent,
+    ListaUsuariosComponent
   ],
   imports: [
     BrowserModule,

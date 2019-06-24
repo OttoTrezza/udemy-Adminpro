@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ChatService } from '../../services/chat.service';
+import { ChatService } from '../../services/chat/chat.service';
 import { Subscription } from 'rxjs';
 
 @Component({
