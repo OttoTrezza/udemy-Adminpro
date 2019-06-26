@@ -49,7 +49,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     }
 
    //  this.chatService.sendMessage( this.texto );
-  //   this.texto = '';
+     this.texto = '';
   }
 
 }

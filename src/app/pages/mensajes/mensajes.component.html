@@ -1,11 +1,23 @@
-<h1>
-    Usuario:
-    <small>  wsService.usuario.nombre </small>
-</h1>
-<h1>
-    Sala:
-    <small> wsService.usuario.sala </small>
-</h1>
+<div class="row">
+    <h1>
+        Usuario: {{nombre}}
+        <!-- <small>  wsService.usuario.nombre </small> -->
+    </h1>
+</div>
+<div class="row">
+
+    <h1>
+        Sala: {{sala}}
+        <select [(ngModel)]="sala" name="sala" class="form-control">
+            <option value="Juegos">JUEGOS</option>
+            <option value="Vacaciones">VACACIONES</option>
+            <option value="Idiomas">IDIOMAS</option>
+            <option value="Trabajo">TRABAJO</option>
+            <option value="Musica">MUSICA</option>
+        </select>
+        <!-- <small> wsService.usuario.sala </small> -->
+    </h1>
+</div>
 <button class="btn btn-danger" (click)="salir()">
   Salir
 </button>
@@ -14,14 +26,56 @@
 
 
 <div class="row">
-
     <div class="col-6">
-        <!-- <app-lista-usuarios></app-lista-usuarios> -->
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>usuario</th>
+                            <th>sala</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let usuario of usuarios">
+
+                            <td *ngIf="usuario.sala === sala">
+                                <img [src]="usuario.img | imagen:'usuario'" class="img-50 img-circle">
+                            </td>
+                            <td *ngIf="usuario.sala === sala">
+                                {{usuario.nombre}}
+                            </td>
+                            <td *ngIf="usuario.sala === sala">
+                                {{sala}}
+                            </td>
+
+                            <!-- <td>   ACA LA IDEA ES SELECCIONAR USUARIOS PARA ESCRIBILES, TAMBIEN MEDICOS Y HOSPITALES
+                            <button [routerLink]="['/medico', medico._id]" class="btn btn-primary">
+                            <i class="fa fa-edit"></i>
+                          </button>
+
+                            <button (click)="borrarMedico( medico )" class="btn btn-primary">
+                              <i class="fa fa-trash-o"></i>
+                            </button>
+                            </td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
-    <div class="col-6">
-        <app-chat></app-chat>
-    </div>
+    <!-- <app-lista-usuarios></app-lista-usuarios> -->
 
+
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <app-chat></app-chat>
+            </div>
+        </div>
+    </div>
 
 </div>
