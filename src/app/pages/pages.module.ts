@@ -32,7 +32,8 @@ import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
-
+import { MensajesComponent } from './mensajes/mensajes.component';
+import { ChatComponent } from '../components/chat/chat.component';
 
 
 @NgModule({
@@ -52,13 +53,16 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
         HospitalesComponent,
         MedicosComponent,
         MedicoComponent,
+        MensajesComponent,
+        ChatComponent,
         BusquedaComponent
 
     ],
     exports: [
         DashboardComponent,
         ProgressComponent,
-        Graficas1Component
+        Graficas1Component,
+        ChatComponent
     ],
     imports: [
         CommonModule,
