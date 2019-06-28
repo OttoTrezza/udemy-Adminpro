@@ -13,8 +13,11 @@ import {
   VerificatokenGuard,
   SubirArchivoService,
   HospitalService,
-  MedicoService
+  MedicoService,
+  WebsocketService,
+  ChatService
  } from './service.index';
+
 
 
 @NgModule({
@@ -33,7 +36,9 @@ import {
     SubirArchivoService,
     ModalUploadService,
     HospitalService,
-    MedicoService
+    MedicoService,
+    ChatService,
+    WebsocketService
   ],
   declarations: []
 })

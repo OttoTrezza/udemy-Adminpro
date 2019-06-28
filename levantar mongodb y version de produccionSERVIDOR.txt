@@ -1,6 +1,6 @@
 "C:\Program Files\MongoDB\Server\4.0\bin\mongod.exe" --dbpath="d:\proyecto\data\db"
 
-frontend: ng serve -o
+frontend: ng serve -o --port 4201
 backend: npm start
 
 credenciales GOOGLE-SIGNIN

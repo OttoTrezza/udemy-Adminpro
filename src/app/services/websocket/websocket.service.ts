@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { Usuario } from '../../models/usuario.model';
-import { Router } from '@angular/router';
+
 
 
 @Injectable()
@@ -11,11 +11,11 @@ export class WebsocketService {
   public usuario: Usuario = null;
 
   constructor(
-    private socket: Socket,
-    private router: Router
+    private socket: Socket
+    // private router: Router
   ) {
     // this.cargarStorage();
-    this.checkStatus();
+   this.checkStatus();
   }
 
 

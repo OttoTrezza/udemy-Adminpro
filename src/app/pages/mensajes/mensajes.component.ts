@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import { WebsocketService } from '../../services/websocket.service';
+import { ChatService } from '../../services/service.index';
 import { UsuarioService, ModalUploadService } from '../../services/service.index';
 import { Usuario } from '../../models/usuario.model';
 @Component({
@@ -14,7 +14,7 @@ sala: string;
 cargando: boolean = true;
 totalRegistros: number = 0;
   constructor(
-    // public wsService: WebsocketService
+    public chatService: ChatService,
     public _usuarioService: UsuarioService,
     public _modalUploadService: ModalUploadService
   ) { }
@@ -23,7 +23,12 @@ totalRegistros: number = 0;
     this.cargarUsuarios();
 
     this._modalUploadService.notificacion
-          .subscribe( resp => this.cargarUsuarios() );
+
+// ///////
+//     .subscribe( resp => this.cargarUsuarios() );
+// daba resp estaba pintado como que no se usaba, en ocuro)
+// ///////
+          .subscribe( () => this.cargarUsuarios() );
 
     this.nombre = this._usuarioService.usuario.nombre;
     this.sala = 'Juegos';
