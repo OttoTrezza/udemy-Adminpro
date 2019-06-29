@@ -22,7 +22,15 @@ import { PagesComponent } from './pages/pages.component';
 import { SharedModule } from './shared/shared.module';
 
 
+// AGREGADO INICIO **
 
+// sockets
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { environment } from '../environments/environment';
+// AGREGADO FIN *
+const config: SocketIoConfig = {
+  url: environment.wsUrl , options: {}
+};
 
 
 
@@ -40,7 +48,8 @@ import { SharedModule } from './shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     ServiceModule,
-    SharedModule
+    SharedModule,
+    SocketIoModule.forRoot(config)
   ],
   providers: [],
   bootstrap: [AppComponent]
