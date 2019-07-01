@@ -10,10 +10,11 @@ export class WebsocketService {
 
   public socketStatus = false;
   public usuario: Usuario = null;
-  router: any;
+  // router: any;
 
   constructor(
     private socket: Socket,
+    // private _usuario: Usuario
     // private router: Router
   ) {
     // this.cargarStorage();
@@ -26,6 +27,9 @@ export class WebsocketService {
       this.socket.on('connect', () => {
         console.log('Conectado al servidor');
         this.socketStatus = true;
+      });
+        this.emit('entrarChat', this.usuario, function(resp) {
+        console.log('Usuarios conectados', resp);
        // this.cargarStorage();
       });
 
@@ -48,53 +52,70 @@ export class WebsocketService {
       return this.socket.fromEvent( evento );
     }
 
-    // loginWS( nombre: string, sala: string ) {
-
-    //   return new Promise(  (resolve, reject) => {
-
-    //     this.emit( 'configurar-usuario', { nombre, sala }, resp => {
-
-    //       this.usuario = new Usuario( nombre, sala );
-    //       this.usuario.sala = sala;
-    //       this.guardarStorage();
-
-    //       resolve();
-
-    //     });
-
-    //   });
-
-    // }
-
-    logoutWS() {
-      this.usuario = null;
-      localStorage.removeItem('usuario');
+    loginWS( nombre: string, sala: string ) {
 
       const payload = {
-        nombre: 'sin-nombre'
+        nombre,
+        sala
       };
+      this.emit('conectarCliente', payload, (resp) => {
 
-      this.emit('configurar-usuario', payload, () => {} );
-      this.router.navigateByUrl('');
+        this.usuario = resp;
+        this.guardarStorage();
+
+      });
 
     }
 
+
+    logoutWS() {
+      this.emit('disconnect', () => {
+      this.usuario = null;
+      localStorage.removeItem('usuario');
+    });
+    const payload = {
+      nombre: 'sin-nombre'
+    };
+      this.emit('configurar-usuario', payload, () => {} );
+      // this.router.navigateByUrl('');
+
+    }
 
     getUsuario() {
       return this.usuario;
     }
 
-    // guardarStorage() {
-    //   localStorage.setItem( 'usuario', JSON.stringify( this.usuario ) );
-    // }
+    guardarStorage() {
+      localStorage.setItem( 'usuario', JSON.stringify( this.usuario ) );
+    }
 
-    // cargarStorage() {
+    cargarStorage() {
 
-    //   if ( localStorage.getItem('usuario') ) {
-    //     this.usuario = JSON.parse( localStorage.getItem('usuario') );
-    //     this.loginWS( this.usuario.nombre, this.usuario.sala );
-    //   }
+      if ( localStorage.getItem('usuario') ) {
+        this.usuario = JSON.parse( localStorage.getItem('usuario') );
+        this.loginWS( this.usuario.nombre, this.usuario.sala );
+      }
 
-    // }
+    }
 
 }
+
+
+
+// loginWS( nombre: string, sala: string ) {
+
+//   return new Promise(  (resolve, reject) => {
+
+//     this.emit( 'configurar-usuario', { nombre, sala }, resp => {
+
+//       this.usuario.nombre = nombre;
+//       this.usuario.sala = sala;
+//       this.guardarStorage();
+
+//       resolve();
+
+//     });
+
+//   });
+
+//   }

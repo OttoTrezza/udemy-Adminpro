@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../../services/service.index';
 import { UsuarioService, ModalUploadService } from '../../services/service.index';
 import { Usuario } from '../../models/usuario.model';
+// import { WebsocketService } from '../../services/service.index';
 @Component({
   selector: 'app-mensajes',
   templateUrl: './mensajes.component.html',
@@ -16,7 +17,8 @@ totalRegistros: number = 0;
   constructor(
     public chatService: ChatService,
     public _usuarioService: UsuarioService,
-    public _modalUploadService: ModalUploadService
+    public _modalUploadService: ModalUploadService,
+    // public _wsService: WebsocketService
   ) { }
 
   ngOnInit() {
@@ -24,28 +26,23 @@ totalRegistros: number = 0;
 
     this._modalUploadService.notificacion
 
-// ///////
+// /////////  conectar cliente!!!!!!!!!!
+
 //     .subscribe( resp => this.cargarUsuarios() );
 // daba resp estaba pintado como que no se usaba, en ocuro)
 // ///////
-          .subscribe( () => this.cargarUsuarios() );
+          .subscribe( resp => this.cargarUsuarios());
 
-    this.nombre = this._usuarioService.usuario.nombre;
-    this.sala = 'Juegos';
   }
   cargarUsuarios() {
-    this._usuarioService.cargarUsuarios()
-          .subscribe( (resp: any) => {
-          this.totalRegistros = resp.total;
-          this.usuarios = resp.usuarios;
-          this.cargando = false;
-    });
+     this.chatService.getUsuariosActivos();
+
   }
   mostrarModal( id: string) {
     this._modalUploadService.mostrarModal( 'usuarios', id );
   }
    salir() {
-  //   this.wsService.logoutWS();
+   this.chatService.logoutChatS();
    }
 
 }

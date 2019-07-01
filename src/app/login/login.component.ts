@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { UsuarioService } from '../services/service.index';
 import { Usuario } from '../models/usuario.model';
+import { WebsocketService } from '../services/websocket/websocket.service';
 
 
 declare function init_plugins();
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public router: Router,
-    public _usuarioService: UsuarioService
+    public _usuarioService: UsuarioService,
+    public wsService: WebsocketService
   ) { }
 
   ngOnInit() {
@@ -67,6 +69,8 @@ attachSignin( element ) {
       return;
     }
    let usuario = new Usuario(null, forma.value.email, forma.value.password);
+   usuario.sala = 'default';
+   this.wsService.loginWS(usuario.nombre, usuario.sala);
    this._usuarioService.login(usuario, forma.value.recuerdame)
                  .subscribe( correcto => this.router.navigate(['/dashboard']) );
 

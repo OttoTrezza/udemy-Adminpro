@@ -23,16 +23,22 @@ export class ChatService {
       return this.wsService.listen( 'mensaje-nuevo' );
     }
 
-    // getMessagesPrivate() {
-    //   return this.wsService.listen( 'mensaje-privado' );
-    // }
+    getMessagesPrivate() {
+      return this.wsService.listen( 'mensaje-privado' );
+    }
 
-    // getUsuariosActivos() {
-    //   return this.wsService.listen( 'usuarios-activos' );
-    // }
+    getUsuariosActivos() {
+      return this.wsService.listen( 'usuarios-activos' );
+    }
 
-    // emitirUsuariosActivos() {
-    //   this.wsService.emit( 'obtener-usuarios');
-    // }
+    emitirUsuariosActivos() {
+      this.wsService.emit( 'obtener-usuarios');
+    }
+    loginChatS(nombre: string, sala: string) {
+      this.wsService.loginWS(nombre, sala);
+    }
+    logoutChatS() {
+      this.wsService.logoutWS();
+    }
 
 }

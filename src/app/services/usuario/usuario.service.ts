@@ -9,6 +9,7 @@ import 'rxjs/add/operator/catch';
 import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 import { Observable } from 'rxjs/Observable';
 import swal from 'sweetalert';
+import { WebsocketService } from '../websocket/websocket.service';
 
 @Injectable()
 export class UsuarioService {
@@ -20,7 +21,8 @@ export class UsuarioService {
   constructor (
     public http: HttpClient,
     public router: Router,
-    public _subirArchivoService: SubirArchivoService
+    public _subirArchivoService: SubirArchivoService,
+    public wsService: WebsocketService
     ) {
     this.cargarStorage();
   }
@@ -112,7 +114,7 @@ export class UsuarioService {
 
     if (recordar) {
       localStorage.setItem('email', usuario.email);
-    }else {
+    } else {
       localStorage.removeItem('email');
     }
 
@@ -135,7 +137,10 @@ export class UsuarioService {
     let url = URL_SERVICIOS + '/usuario?desde=' + desde;
     return this.http.get( url );
   }
-
+  cargarUsuariosTodos() {
+    let url = URL_SERVICIOS + '/usuario?';
+    return this.http.get( url );
+  }
 
 
   crearUsuario( usuario: Usuario ) {
