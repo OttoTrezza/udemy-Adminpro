@@ -8,7 +8,8 @@ export class Usuario {
         public role?: string,
         public google?: boolean,
         public _id?: string,
-        public sala?: string
+        public sala?: string,
+        public Sid?: string
     ) {}
 }
 

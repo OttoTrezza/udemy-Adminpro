@@ -33,9 +33,9 @@ export class IncrementadorComponent implements OnInit {
 
     if ( newValue >= 100 ) {
       this.progreso = 100;
-    }else if ( newValue <= 0 ) {
+    } else if ( newValue <= 0 ) {
       this.progreso = 0;
-    }else {
+    } else {
       this.progreso = newValue;
     }
 

@@ -60,7 +60,7 @@ export class MedicoService {
             return resp.medico;
           });
 
-    }else {
+    } else {
       // creando
       url += '?token=' + this._usuarioService.token;
       return this.http.post( url, medico )

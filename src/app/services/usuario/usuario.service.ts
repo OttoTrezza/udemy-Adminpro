@@ -15,6 +15,7 @@ import { WebsocketService } from '../websocket/websocket.service';
 export class UsuarioService {
 
   usuario: Usuario;
+  usuarios: Usuario[] = [];
   token: string;
   menu: any = [];
   // public tipo: string = 'usuario';
@@ -112,6 +113,8 @@ export class UsuarioService {
 
   login( usuario: Usuario, recordar: boolean = false) {
 
+   // this.usuario.sala = 'JUEGOS';
+
     if (recordar) {
       localStorage.setItem('email', usuario.email);
     } else {
@@ -122,6 +125,10 @@ export class UsuarioService {
     return this.http.post( url, usuario )
                   .map( (resp: any) => {
                     this.guardarStorage( resp.id, resp.token, resp.usuario, resp.menu );
+                  //   this.wsService.loginWS( resp.usuario.nombre, resp.usuario.sala )
+                  //   .then( (respu) => {
+                  //      console.log('UsuarioService, login', respu);
+                  //  });
                     return true;
                   })
                   .catch( err => {

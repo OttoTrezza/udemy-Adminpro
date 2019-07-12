@@ -1,7 +1,7 @@
 <div class="row">
     <h1>
-        Usuario: {{nombre}}
-        <!-- <small>  wsService.usuario.nombre </small> -->
+
+        <small>  Usuario: {{nombre}} </small>
     </h1>
 </div>
 <div class="row">
@@ -12,8 +12,8 @@
             <option value="Juegos">JUEGOS</option>
             <option value="Vacaciones">VACACIONES</option>
             <option value="Idiomas">IDIOMAS</option>
-            <option value="Trabajo">TRABAJO</option>
-            <option value="Musica">MUSICA</option>
+            <!-- <option value="Trabajo">TRABAJO</option> -->
+            <!-- <option value="Musica">MUSICA</option> -->
         </select>
         <!-- <small> wsService.usuario.sala </small> -->
     </h1>
@@ -25,10 +25,13 @@
 <hr>
 
 
+
+
 <div class="row">
     <div class="col-6">
         <div class="card">
-            <div class="card-body">
+            <div id="chat-usuarios" class="card-body">
+
                 <table class="table table-hover">
                     <thead>
                         <tr>

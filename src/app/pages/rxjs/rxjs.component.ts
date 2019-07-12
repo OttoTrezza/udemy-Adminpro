@@ -56,7 +56,7 @@ export class RxjsComponent implements OnInit, OnDestroy {
           // console.log('Filter', valor, index);
           if ( (valor % 2) === 1 ) {
             return true;
-          }else {
+          } else {
             return false;
           }
           // return true;

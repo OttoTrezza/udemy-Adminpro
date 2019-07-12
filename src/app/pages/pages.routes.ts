@@ -1,13 +1,13 @@
 import { RouterModule, Routes, CanActivate } from '@angular/router';
 
-import { PagesComponent } from './pages.component';
+// import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
 import { AccoutSettingsComponent } from './accout-settings/accout-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
-import { LoginGuardGuard } from '../services/guards/login-guard.guard';
+// import { LoginGuardGuard } from '../services/guards/login-guard.guard';
 import { AdminGuard, VerificatokenGuard } from '../services/service.index';
 import { ProfileComponent } from './profile/profile.component';
 

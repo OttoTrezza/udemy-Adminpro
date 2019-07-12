@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ChatService } from '../../services/service.index';
+import { ChatService} from '../../services/service.index';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,29 +14,35 @@ export class ChatComponent implements OnInit, OnDestroy {
   elemento: HTMLElement;
 
   mensajes: any[] = [];
-
+  msg: any;
 
 
   constructor(
-    public chatService: ChatService
+    public _chatService: ChatService
   ) { }
 
-  ngOnInit() {
 
+  ngOnInit() {
+    // this.mensajes = [{cuerpo: 'Bienvenido', de: 'Administrador'}, {cuerpo: 'Hola', de: 'Administrador'}];
     this.elemento = document.getElementById('chat-mensajes');
 
-    this.mensajesSubscription = this.chatService.getMessages().subscribe( msg => {
+    this.mensajesSubscription = this._chatService.getMessages()
+     .subscribe( (msg: any) => {
+      let de: string = msg.de;
+      let cuerpo: string = msg.cuerpo;
+      this.msg = {
+        cuerpo,
+        de
+      };
 
-      this.mensajes.push( msg );
-
-      setTimeout(() => {
-        this.elemento.scrollTop = this.elemento.scrollHeight;
+    this.mensajes.push( this.msg );
+    console.log('mensaje', this.msg);
+    setTimeout(() => {
+      this.elemento.scrollTop = this.elemento.scrollHeight;
       }, 50);
-
     });
 
   }
-
   ngOnDestroy() {
    this.mensajesSubscription.unsubscribe();
   }
@@ -48,8 +54,9 @@ export class ChatComponent implements OnInit, OnDestroy {
       return;
     }
 
-     this.chatService.sendMessage( this.texto );
+     this._chatService.sendMessage( this.texto );
      this.texto = '';
+
   }
 
 }
