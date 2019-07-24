@@ -39,6 +39,9 @@ export class WebsocketService {
       this.socket.on('disconnect', () => {
         console.log('Desconectado del servidor');
         this.socketStatus = false;
+        this.emit('disconnect', () => {
+        console.log('Ahora si desconectado');
+        });
       });
     }
 
@@ -50,21 +53,20 @@ export class WebsocketService {
       this.socket.emit( evento, payload, callback );
 
     }
-    entrarChat( nombre: string, sala: string ) {
+    entrarChat( nombre: string, sala: string, img: string) {
 
       return new Promise(  (resolve, reject) => {
 
-        this.emit('entrarChat', { nombre, sala }, (usuarios) => {
-          this.usuarios = usuarios;
+        this.emit('entrarChat', { nombre, sala, img }, () => {
           // this.usuario = new Usuario( nombre, this._usuarioService.usuario.email, this._usuarioService.usuario.password, sala, );
           // this.usuario.sala = sala;
           // this.guardarStorage();
-       // this.socket.on('usuarios-activos', (usuarios) => {
-        console.log('usuarios', this.usuarios);
+        console.log('usuarios');
         });
           resolve();
       });
     }
+
     // loginWS(id: string, nombre: string, sala: string ) {
 
     //   return new Promise(  (resolve, reject) => {
@@ -94,12 +96,11 @@ export class WebsocketService {
       // });
     // }
 
-
     logoutWS() {
-      this.emit('disconnect', () => {
+      this.emit('disconnect', () => {});
       this.usuario = null;
       localStorage.removeItem('usuario');
-    });
+
     const payload = {
       nombre: 'sin-nombre'
     };
@@ -120,9 +121,8 @@ export class WebsocketService {
 
       if ( localStorage.getItem('usuario') ) {
         this.usuario = JSON.parse( localStorage.getItem('usuario') );
-       this.emit('entrarChat', this.usuario, () => {
+       this.entrarChat(this.usuario.nombre, this.usuario.sala, this.usuario.img);
 
-       } );
       }
 
     }

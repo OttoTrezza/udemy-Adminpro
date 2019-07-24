@@ -9,19 +9,27 @@ import { map } from 'rxjs-compat/operator/map';
 @Injectable()
 export class ChatService {
 name: string;
+img: string;
   constructor(
     public wsService: WebsocketService,
      public http: HttpClient,
   ) { }
 
-    sendMessage( mensaje: string ) {
+    sendMessage( mensaje: string, callback: any ) {
       this.name = this.wsService.getUsuario().nombre;
+      this.img = this.wsService.getUsuario().img;
       const payload = {
         de: this.name,
-        cuerpo: mensaje
+        cuerpo: mensaje,
+        img: this.img
         };
-      this.wsService.emit( 'mensaje' , payload );
+      this.wsService.emit( 'mensaje' , payload, (resp: any) => {
+        callback(resp);
+       // console.log(resp);
+      });
       console.log('Mensaje', payload );
+
+
       }
       // let url = 'http://localhost:3000' + '/mensajes/mensajes/';
       // return this.http.post( url, payload)
@@ -36,32 +44,34 @@ name: string;
       //                       });
 
     getMessages1() {
-      console.log('Recibido,getMes');
+     // console.log('Recibido,getMes');
      // console.log('mensaje-nuevo recibido');
        return this.wsService.listen( 'mensajeDeServidor' );
 
       }
       getMessages() {
-        console.log('Recibido,mens-nuevo');
+       //  console.log('Recibido,mens-nuevo');
        // console.log('mensaje-nuevo recibido');
          return this.wsService.listen( 'mensaje-nuevo' );
 
         }
     getMessagesPrivate() {
-      console.log('Recibido, GetPriv');
+     // console.log('Recibido, GetPriv');
       return this.wsService.listen( 'mensaje-privado' );
     }
 
     getUsuariosActivos() {
-      console.log('Recibido UsuActivos');
+      // console.log('Recibido UsuActivos');
       return this.wsService.listen( 'usuarios-activos' );
       }
-
+focusBuscar(nombre: string) {
+// focus en la lista de usuarios del mensajesComponent.html
+}
     emitirUsuariosActivos() {
       this.wsService.emit( 'obtener-usuarios');
     }
-    loginChatS(nombre: string, sala: string) {
-      this.wsService.entrarChat(nombre, sala);
+    loginChatS(nombre: string, sala: string, img: string) {
+      this.wsService.entrarChat(nombre, sala, img);
     }
     logoutChatS() {
       this.wsService.logoutWS();

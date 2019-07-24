@@ -21,14 +21,9 @@
 <button class="btn btn-danger" (click)="salir()">
   Salir
 </button>
-
 <hr>
-
-
-
-
 <div class="row">
-    <div class="col-6">
+    <div class="col-3">
         <div class="card">
             <div id="chat-usuarios" class="card-body">
 
@@ -42,16 +37,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let usuario of usuarios">
 
-                            <td *ngIf="usuario.sala === sala">
+                        <tr *ngFor="let usuario of usuarios">
+                            <td class="w70">
                                 <img [src]="usuario.img | imagen:'usuario'" class="img-50 img-circle">
                             </td>
-                            <td *ngIf="usuario.sala === sala">
+                            <td>
                                 {{usuario.nombre}}
                             </td>
-                            <td *ngIf="usuario.sala === sala">
-                                {{sala}}
+                            <td>
+                                {{usuario.sala}}
                             </td>
 
                             <!-- <td>   ACA LA IDEA ES SELECCIONAR USUARIOS PARA ESCRIBILES, TAMBIEN MEDICOS Y HOSPITALES
@@ -73,7 +68,7 @@
     <!-- <app-lista-usuarios></app-lista-usuarios> -->
 
 
-    <div class="col-6">
+    <div class="col-9">
         <div class="card">
             <div class="card-body">
                 <app-chat></app-chat>

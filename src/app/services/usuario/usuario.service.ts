@@ -25,7 +25,7 @@ export class UsuarioService {
     public _subirArchivoService: SubirArchivoService,
     public wsService: WebsocketService
     ) {
-    this.cargarStorage();
+     this.cargarStorage();
   }
 
   renuevaToken() {
@@ -47,7 +47,8 @@ export class UsuarioService {
             });
   }
   estaLogueado() {
-    return ( this.token.length > 5 ) ? true : false;
+  //  return ( this.token.length > 5 ) ? true : false;
+  return  true;
   }
 
 
@@ -124,11 +125,7 @@ export class UsuarioService {
     let url = URL_SERVICIOS + '/login';
     return this.http.post( url, usuario )
                   .map( (resp: any) => {
-                    this.guardarStorage( resp.id, resp.token, resp.usuario, resp.menu );
-                  //   this.wsService.loginWS( resp.usuario.nombre, resp.usuario.sala )
-                  //   .then( (respu) => {
-                  //      console.log('UsuarioService, login', respu);
-                  //  });
+                     this.guardarStorage( resp.id, resp.token, resp.usuario, resp.menu );
                     return true;
                   })
                   .catch( err => {
