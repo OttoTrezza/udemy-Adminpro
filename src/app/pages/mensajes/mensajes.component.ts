@@ -18,7 +18,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
   usuarios: any[] = [];
   usuario: Usuario ;
   nombre: string;
-  sala: string = 'default';
+  sala: string = this._usuarioService.usuario.sala;
 
   cargando: boolean = true;
   totalRegistros: number = 0;

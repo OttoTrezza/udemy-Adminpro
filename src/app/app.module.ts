@@ -41,15 +41,15 @@ import { SharedModule } from './shared/shared.module';
 
 // sockets
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-import { environment } from '../environments/environment';
+// import { environment } from '../environments/environment';
 
 // AGREGADO FIN *
 const config: SocketIoConfig = {
-  url: 'http://localhost:3000' , options: {}
+  url: 'https://mighty-depths-88183.herokuapp.com/public/' , options: {}
 };
 // export const environment = {
 //   production: false,
-//   wsUrl: 'http://localhost:5000'
+//   wsUrl: 'https://mighty-depths-88183.herokuapp.com/public/'
 // };
 
 
