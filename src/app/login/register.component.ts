@@ -70,7 +70,7 @@ let usuario = new Usuario (
   this.forma.value.password
 );
 this._usuarioService.crearUsuario(usuario)
-                .subscribe(resp => this.router.navigate(['/login']));
+                .subscribe(resp => this.router.navigate(['public/login']));
 
 
 
