@@ -1,2 +1,2 @@
 
-export const URL_SERVICIOS = 'https://mighty-depths-88183.herokuapp.com';
+export const URL_SERVICIOS = 'https://mighty-depths-88183.herokuapp.com/public/';
