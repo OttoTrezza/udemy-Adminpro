@@ -9,8 +9,8 @@ import { LoginGuardGuard } from './services/guards/login-guard.guard';
 
 
 const appRoutes: Routes = [
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
+    { path: 'public/login', component: LoginComponent },
+    { path: 'public/register', component: RegisterComponent },
     {path: '',
     component: PagesComponent,
     canActivate: [LoginGuardGuard],
