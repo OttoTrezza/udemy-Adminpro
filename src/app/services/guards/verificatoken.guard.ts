@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { UsuarioService } from '../usuario/usuario.service';
 
@@ -55,7 +55,7 @@ export class VerificatokenGuard implements CanActivate {
     let ahora = new Date().getTime() / 1000;
       if (fechaExp < ahora ) {
         return true;
-      }else {
+      } else {
         return false;
         }
   }

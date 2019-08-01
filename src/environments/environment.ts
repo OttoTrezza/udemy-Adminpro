@@ -6,6 +6,6 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: true,
-  wsUrl: 'https://mighty-depths-88183.herokuapp.com/public/'
+  production: false,
+  wsUrl: 'https://localhost:3000'
 };

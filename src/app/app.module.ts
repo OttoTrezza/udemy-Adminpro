@@ -47,10 +47,10 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 const config: SocketIoConfig = {
   url: 'https://mighty-depths-88183.herokuapp.com/public/' , options: {}
 };
-// export const environment = {
-//   production: false,
-//   wsUrl: 'https://mighty-depths-88183.herokuapp.com/public/'
-// };
+export const environment = {
+  production: true,
+  wsUrl: 'https://mighty-depths-88183.herokuapp.com/public/'
+};
 
 
 @NgModule({
