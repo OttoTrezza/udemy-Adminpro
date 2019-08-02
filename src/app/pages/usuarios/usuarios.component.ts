@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
 import { UsuarioService, ModalUploadService } from '../../services/service.index';
 
-declare var swal: any;
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-usuarios',
@@ -68,13 +68,13 @@ export class UsuariosComponent implements OnInit {
       swal('No puede borrar usuario', 'No se puede borrar a si mismo', 'error');
       return;
     }
-    swal({
-      title: '¿Esta seguro?',
-      text: 'Esta a punto de borrar a ' + usuario.nombre,
-      icon: 'warning',
-      buttons: true,
-      dangerMode: true
-    })
+     swal(
+     '¿Esta seguro?',
+    'Esta a punto de borrar a ' + usuario.nombre,
+    'warning'
+    // buttons: true,
+    //   dangerMode: true
+    )
     .then (borrar => {
       console.log( borrar );
       if ( borrar ) {

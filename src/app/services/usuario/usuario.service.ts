@@ -30,7 +30,7 @@ export class UsuarioService {
 
   renuevaToken() {
 
-    let url = URL_SERVICIOS + '/login/renuevatoken' ;
+    let url = URL_SERVICIOS + 'login/renuevatoken' ;
     url += '?token=' + this.token;
     return this.http.get( url )
             .map( (resp: any) => {
@@ -100,7 +100,7 @@ export class UsuarioService {
 
   loginGoogle( token: string ) {
 
-    let url = URL_SERVICIOS + '/login/google';
+    let url = URL_SERVICIOS + 'login/google';
 
     return this.http.post( url, { token } )
                 .map( (resp: any) => {
@@ -122,7 +122,7 @@ export class UsuarioService {
       localStorage.removeItem('email');
     }
 
-    let url = URL_SERVICIOS + '/login';
+    let url = URL_SERVICIOS + 'login';
     return this.http.post( url, usuario )
                   .map( (resp: any) => {
                      this.guardarStorage( resp.id, resp.token, resp.usuario, resp.menu );
@@ -142,14 +142,14 @@ export class UsuarioService {
     return this.http.get( url );
   }
   cargarUsuariosTodos() {
-    let url = URL_SERVICIOS + '/usuario?';
+    let url = URL_SERVICIOS + 'usuario?';
     return this.http.get( url );
   }
 
 
   crearUsuario( usuario: Usuario ) {
 
-    let url = URL_SERVICIOS + '/usuario';
+    let url = URL_SERVICIOS + 'usuario';
     return this.http.post( url, usuario)
                         .map((resp: any) => {
                           swal('Usuario creado', usuario.email, 'success');
@@ -164,7 +164,7 @@ export class UsuarioService {
 
   buscarUsuarios( termino: string ) {
 
-    let url = URL_SERVICIOS + '/busqueda/coleccion/usuarios/' + termino;
+    let url = URL_SERVICIOS + 'busqueda/coleccion/usuarios/' + termino;
     return this.http.get( url )
            .map((resp: any) => resp.usuarios );
   }
@@ -172,7 +172,7 @@ export class UsuarioService {
 
 
   actualizarUsuario( usuario: Usuario) {
-    let url = URL_SERVICIOS + '/usuario/' + usuario._id;
+    let url = URL_SERVICIOS + 'usuario/' + usuario._id;
     url += '?token=' + this.token;
 
     return this.http.put( url, usuario)
@@ -189,7 +189,7 @@ export class UsuarioService {
 
 
   borrarUsuario( id: string ) {
-    let url = URL_SERVICIOS + '/usuario/' + id;
+    let url = URL_SERVICIOS + 'usuario/' + id;
     url += '?token=' + this.token;
     return this.http.delete( url )
           .map( resp => {
@@ -213,7 +213,7 @@ export class UsuarioService {
           });
   }
   obtenerUsuario( id: string) {
-    let url = URL_SERVICIOS + '/usuario/' + id;
+    let url = URL_SERVICIOS + 'usuario/' + id;
     return this.http.get( url )
           .map((resp: any) => resp.usuario );
   }
