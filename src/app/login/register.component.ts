@@ -29,7 +29,7 @@ let pass2 = group.controls[campo2].value;
 
  if (pass1 === pass2) {
    return null;
- }else {
+ } else {
   return{
     sonIguales: true
   };
@@ -70,7 +70,7 @@ let usuario = new Usuario (
   this.forma.value.password
 );
 this._usuarioService.crearUsuario(usuario)
-                .subscribe(resp => this.router.navigate(['public/login']));
+                .subscribe(resp => this.router.navigate(['login']));
 
 
 
