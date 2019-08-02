@@ -41,7 +41,7 @@ export class UsuarioService {
               return true;
             })
             .catch( err => {
-              this.router.navigate(['/public/login']);
+              this.router.navigate(['login']);
                 swal( 'No se pudo renovar token', 'No fue posible renovar token', 'error');
                 return Observable.throw( err );
             });
@@ -95,7 +95,7 @@ export class UsuarioService {
     localStorage.removeItem('usuario');
     localStorage.removeItem('menu');
 
-    this.router.navigate(['/public/login']);
+    this.router.navigate(['login']);
   }
 
   loginGoogle( token: string ) {
@@ -138,7 +138,7 @@ export class UsuarioService {
 
   cargarUsuarios() {
     let desde = JSON.parse( localStorage.getItem('desdeu'));
-    let url = URL_SERVICIOS + '/usuario?desde=' + desde;
+    let url = URL_SERVICIOS + 'usuario?desde=' + desde;
     return this.http.get( url );
   }
   cargarUsuariosTodos() {

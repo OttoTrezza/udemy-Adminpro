@@ -56,14 +56,14 @@ export class HospitalService {
 
   cargarHospitales() {
     let desde = JSON.parse( localStorage.getItem('desdeh'));
-    let url = URL_SERVICIOS + '/hospital?desde=' + desde;
+    let url = URL_SERVICIOS + 'hospital?desde=' + desde;
     return this.http.get( url );
   }
 
 
 
   crearHospital(hospital: Hospital) {
-    let url = URL_SERVICIOS + '/hospital';
+    let url = URL_SERVICIOS + 'hospital';
     url += '/?token=' + this.token;
     return this.http.post( url, hospital)
                         .map((resp: any) => {
@@ -75,7 +75,7 @@ export class HospitalService {
 
 
   buscarHospitales( termino: string ) {
-    let url = URL_SERVICIOS + '/busqueda/coleccion/hospitales/' + termino;
+    let url = URL_SERVICIOS + 'busqueda/coleccion/hospitales/' + termino;
     return this.http.get( url )
           .map((resp: any) => resp.hospitales );
     }
@@ -84,7 +84,7 @@ export class HospitalService {
 
   actualizarHospital( hospital: Hospital) {
 
-      let url = URL_SERVICIOS + '/hospital/' + hospital._id;
+      let url = URL_SERVICIOS + 'hospital/' + hospital._id;
       url += '?token=' + this.token;
       return this.http.put( url, hospital)
                 .map((resp: any) => {
@@ -99,7 +99,7 @@ export class HospitalService {
 
 
   borrarHospital( id: string ) {
-      let url = URL_SERVICIOS + '/hospital/' + id;
+      let url = URL_SERVICIOS + 'hospital/' + id;
       url += '?token=' + this.token;
       return this.http.delete( url )
           .map( resp => {
@@ -123,7 +123,7 @@ export class HospitalService {
           });
   }
   obtenerHospital( id: string) {
-    let url = URL_SERVICIOS + '/hospital/' + id;
+    let url = URL_SERVICIOS + 'hospital/' + id;
     return this.http.get( url )
           .map((resp: any) => resp.hospital );
   }

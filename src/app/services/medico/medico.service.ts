@@ -22,7 +22,7 @@ export class MedicoService {
 
   cargarMedico() {
   let desde = JSON.parse( localStorage.getItem('desdem'));
-  let url = URL_SERVICIOS + '/medico?desde=' + desde;
+  let url = URL_SERVICIOS + 'medico?desde=' + desde;
 
   return this.http.get( url )
         .map((resp: any) => {
@@ -38,7 +38,7 @@ export class MedicoService {
   }
 
   borrarMedico( id: string ) {
-    let url = URL_SERVICIOS + '/medico/' + id;
+    let url = URL_SERVICIOS + 'medico/' + id;
     url += '?token=' + this._usuarioService.token;
     return this.http.delete( url )
           .map( resp => {
@@ -47,7 +47,7 @@ export class MedicoService {
           });
   }
   guardarMedico( medico: Medico) {
-  let url = URL_SERVICIOS + '/medico';
+  let url = URL_SERVICIOS + 'medico';
 
   if (medico._id) {
     // actualizando
@@ -71,12 +71,12 @@ export class MedicoService {
     }
   }
   cargarMedicoid( id: string) {
-    let url = URL_SERVICIOS + '/medico/' + id;
+    let url = URL_SERVICIOS + 'medico/' + id;
     return this.http.get( url )
           .map( (resp: any) => resp.medico);
   }
   buscarMedicos( termino: string ) {
-    let url = URL_SERVICIOS + '/busqueda/coleccion/medicos/' + termino;
+    let url = URL_SERVICIOS + 'busqueda/coleccion/medicos/' + termino;
     return this.http.get( url )
           .map((resp: any) => resp.medicos );
     }

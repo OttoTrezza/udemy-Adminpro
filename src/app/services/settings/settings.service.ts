@@ -5,7 +5,7 @@ import { DOCUMENT } from '@angular/common';
 export class SettingsService {
 
   ajustes: Ajustes = {
-    temaUrl: 'public/assets/css/colors/default.css',
+    temaUrl: 'assets/css/colors/default.css',
     tema: 'default'
   };
 
