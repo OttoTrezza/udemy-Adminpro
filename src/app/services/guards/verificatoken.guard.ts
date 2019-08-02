@@ -19,7 +19,7 @@ export class VerificatokenGuard implements CanActivate {
     let expirado = this.expirado( payload.exp);
 
     if ( expirado ) {
-      this.router.navigate(['/public/login']);
+      this.router.navigate(['login']);
     return false;
     }
 
@@ -43,7 +43,7 @@ export class VerificatokenGuard implements CanActivate {
                   resolve(true);
                 }, () => {
                   reject(false);
-                  this.router.navigate(['/public/login']);
+                  this.router.navigate(['login']);
 
                 });
         }
