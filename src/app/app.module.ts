@@ -5,8 +5,7 @@ import { NgModule } from '@angular/core';
 import { APP_ROUTES } from './app.routes';
 
 // Modulos
-import { PagesModule } from './pages/pages.module';
-
+// import { PagesModule } from './pages/pages.module';
 // import { PipesModule } from './pipes/pipes.module';
 
 // Servicios
@@ -14,8 +13,6 @@ import { ServiceModule } from './services/service.module';
 
 // temporal
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
 
 // Componentes
 import { AppComponent } from './app.component';
@@ -30,28 +27,20 @@ import { SharedModule } from './shared/shared.module';
 // import { HospitalesComponent } from './pages/hospitales/hospitales.component';
 // import { MedicoComponent } from './pages/medicos/medico.component';
 // import { MedicosComponent } from './pages/medicos/medicos.component';
-// import { ProfileComponent } from './pages/profile/profile.component';
-
-
-
-
-
+// import { ProfileComponent } from './pages/profile/profile.component'
 
 // AGREGADO INICIO **
 
 // sockets
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-// import { environment } from '../environments/environment';
-
-// AGREGADO FIN *
-const config: SocketIoConfig = {
-  url: 'https://mighty-depths-88183.herokuapp.com/public/' , options: {}
+ const config: SocketIoConfig = {
+  url: environment.wsUrl , options: {}
 };
-export const environment = {
-  production: true,
-  wsUrl: 'https://mighty-depths-88183.herokuapp.com/public/'
-};
-
+// export const environment = {
+//   production: true,
+//   wsUrl: 'https://mighty-depths-88183.herokuapp.com/public/'
+// };
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [

@@ -64,11 +64,19 @@ img: string;
       // console.log('Recibido UsuActivos');
       return this.wsService.listen( 'usuarios-activos' );
       }
-focusBuscar(nombre: string) {
-// focus en la lista de usuarios del mensajesComponent.html
-}
+    focusBuscar(nombre: string) {
+    // focus en la lista de usuarios del mensajesComponent.html
+    }
     emitirUsuariosActivos() {
-      this.wsService.emit( 'obtener-usuarios');
+
+      this.wsService.emit( 'obtener-usuarios', (entro: boolean) => {
+        if (entro === true) {
+          console.log('Server:petición recibida');
+          } else {
+            console.log('Sin respuesta del servidor');
+            }
+        }
+      );
     }
     loginChatS(nombre: string, sala: string, img: string) {
       this.wsService.entrarChat(nombre, sala, img);
