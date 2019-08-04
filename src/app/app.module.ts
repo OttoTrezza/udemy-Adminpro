@@ -36,7 +36,7 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
  const config: SocketIoConfig = {
   url: environment.wsUrl , options: {}
   };
-console.log('URL', this.url);
+// console.log('URL', this.url);
 // export const environment = {
 //   production: true,
 //   wsUrl: 'https://mighty-depths-88183.herokuapp.com/public/'
