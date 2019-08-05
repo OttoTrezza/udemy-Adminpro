@@ -14,12 +14,9 @@ import { Usuario } from '../../models/usuario.model';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit, OnDestroy {
-// //////
-// var divUsuarios = $('#divUsuarios');
-// var formEnviar = $('#formEnviar');
-// var txtMensaje = $('#txtMensaje');
-// var divChatbox = $('#divChatbox');
-// /////
+
+ divChatbox = $('#divChatbox');
+
   // adminClass = 'box bg-light-info';
   textoUser = '';
   texto = '';
@@ -66,6 +63,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     this.mensajes.push( this.msg );
     console.log('mensaje1', this.msg);
+    this.scrollBottom();
     // setTimeout(() => {
     //   this.elemento.scrollTop = this.elemento.scrollHeight;
     //   }, 50);
@@ -73,6 +71,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
      this._modalUploadService.notificacion
           .subscribe( resp => this._usuarioService.cargarUsuarios() );
+         // this.scrollBottom();
 
 
 }
@@ -81,31 +80,39 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
   mostrarModal( id: string) {
     this._modalUploadService.mostrarModal( 'usuarios', id );
+    this.scrollBottom();
   }
+ scrollBottom() {
 
+    // selectors
+     let newMessage = this.divChatbox.children('li:last-child');
+     // let heights;
+     let clientHeight = this.divChatbox.prop('clientHeight');
+     let scrollTop = this.divChatbox.prop('scrollTop');
+     let scrollHeight = this.divChatbox.prop('scrollHeight');
+     let newMessageHeight = newMessage.innerHeight();
+     let lastMessageHeight = newMessage.prev().innerHeight() || 0;
+
+    if (clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
+        this.divChatbox.scrollTop(scrollHeight);
+    }
+}
   enviar() {
 
     if ( this.texto.trim().length === 0 ) {
+      this.scrollBottom();
       return;
     }
 
      this._chatService.sendMessage( this.texto , (resp: any) => {
        this.msg = resp;
        console.log('this.msg = ', this.msg);
+       this.scrollBottom();
       });
      this.texto = '';
 
   }
-  buscar() {
 
-    if ( this.textoUser.trim().length === 0 ) {
-      return;
-    }
-
-     this._chatService.focusBuscar( this.textoUser );
-     this.textoUser = '';
-
-  }
 }
 // socket.emit('crearMensaje', {
   //       nombre: nombre,

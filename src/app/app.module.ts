@@ -21,6 +21,7 @@ import { RegisterComponent } from './login/register.component';
 import { PromesasComponent } from './rxjs/promesas/promesas.component';
 import { PagesComponent } from './pages/pages.component';
 import { SharedModule } from './shared/shared.module';
+import { FooterComponent } from './components/footer/footer.component';
 // import { BusquedaComponent } from './pages/busqueda/busqueda.component';
 // import { DashboardComponent } from './pages/dashboard/dashboard.component';
 // import { Graficas1Component } from './pages/graficas1/graficas1.component';
@@ -49,7 +50,8 @@ import { environment } from '../environments/environment';
     LoginComponent,
     RegisterComponent,
     PromesasComponent,
-    PagesComponent
+    PagesComponent,
+    FooterComponent
     // BusquedaComponent,
     // DashboardComponent,
     // Graficas1Component,

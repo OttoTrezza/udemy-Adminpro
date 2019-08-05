@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 })
 
 export class MensajesComponent implements OnInit, OnDestroy {
-
+  textoUser = '';
   usuariosSubscription: Subscription;
   elemento: HTMLElement;
   usuarios: any[] = [];
@@ -60,6 +60,16 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
   mostrarModal( id: string) {
     this._modalUploadService.mostrarModal( 'usuarios1', id );
+  }
+  buscar() {
+
+    if ( this.textoUser.trim().length === 0 ) {
+      return;
+    }
+
+     this._chatService.focusBuscar( this.textoUser );
+     this.textoUser = '';
+
   }
    salir() {
    this._chatService.logoutChatS();

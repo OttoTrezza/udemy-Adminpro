@@ -1,9 +1,31 @@
 <div class="row">
-    <h1>
+    <div class="col-6">
+        <div class="card-body">
+            <h1>
 
-        <small>  Usuario: {{nombre}} </small>
-    </h1>
+                <small>  Usuario: {{nombre}} </small>
+            </h1>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card-body">
+            <div class="chat-left-aside">
+                <div class="open-panel"><i class="ti-angle-right"></i></div>
+                <div class="chat-left-inner">
+                    <div class="form-material">
+                        <form (ngSubmit)="buscar()">
+                            <div class="row">
+                                <input type="text" [(ngModel)]="textoUser" autocomplete="off" name="textoUser" placeholder="Buscar" class="form-control b-0">
+                            </div>
+                        </form>
+                    </div>
+                    <ul class="chatonline style-none" id="divUsuarios"> </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 <div class="row">
 
     <h1>
