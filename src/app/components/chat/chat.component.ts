@@ -3,7 +3,7 @@ import { ChatService, ModalUploadService} from '../../services/service.index';
 import { Subscription } from 'rxjs';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { Usuario } from '../../models/usuario.model';
-
+import * as $ from 'jquery';
 // var params = new URLSearchParams(window.location.search);
 
 // var nombre = params.get('nombre');
