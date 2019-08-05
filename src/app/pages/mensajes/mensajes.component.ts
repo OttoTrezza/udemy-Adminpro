@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 })
 
 export class MensajesComponent implements OnInit, OnDestroy {
+  divUsuarios = $('#divUsuarios');
   textoUser = '';
   usuariosSubscription: Subscription;
   elemento: HTMLElement;
@@ -32,6 +33,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.elemento = document.getElementById('divUsuarios');
     this._chatService.emitirUsuariosActivos();
    this.usuariosSubscription = this._chatService.getUsuariosActivos()
           .subscribe( (respu: Usuario[]= []) => {
@@ -71,6 +73,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
      this.textoUser = '';
 
   }
+
    salir() {
    this._chatService.logoutChatS();
    }
