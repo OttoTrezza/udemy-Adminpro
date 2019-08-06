@@ -1,29 +1,13 @@
 <div class="row">
     <h1>
         Sala:{{sala}}
-        <select [(ngModel)]="sala" name="sala" class="form-control" autofocus="true" value="{{sala}}">{{sala}}
-
-        <div *ngIf="'sala1'; else elseBlock">
-            <option input type="string" class="form-control" (ngModelChange)="onChanges($event)" value1 selected>{{value1}}</option>
-        </div>
-        <ng-template #elseBlock>
-            <option input value2>{{value1}}</option>
-        </ng-template>
-
-        <div *ngIf="'sala2'; else elseBlock">
-            <option input type="string" class="form-control" (ngModelChange)="onChanges($event)" value2 selected>{{value2}}</option>
-        </div>
-        <ng-template #elseBlock>
-            <option input value2>{{value2}}</option>
-        </ng-template>
-
-        <div *ngIf="'sala3'; else elseBlock">
-            <option input type="string" class="form-control" (ngModelChange)="onChanges($event)" value3 selected>{{value3}}</option>
-        </div>
-        <ng-template #elseBlock>
-            <option input value3>{{value3}}</option>
-        </ng-template>
-
+        <select [(ngModel)]="sala" name="sala" class="form-control" autofocus="true" set value={{sala}} value=sala value="sala">
+            <option input type="string" (ngModelChange)="onChanges($event)" value1 selected>value1</option>
+            <!-- <option input value2>value1</option> -->
+            <option input type="string" class="form-control" (ngModelChange)="onChanges($event)" value2 selected>value2</option>
+            <!-- <option input value2>value2</option> -->
+            <option input type="string" class="form-control" (ngModelChange)="onChanges($event)" value3 selected>value3</option>      
+            <!-- <option input value3>value3</option> -->
         </select>
         <!-- <small> wsService.usuario.sala </small> -->
     </h1>
