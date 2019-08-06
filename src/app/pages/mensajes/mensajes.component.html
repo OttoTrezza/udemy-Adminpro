@@ -30,13 +30,29 @@
 
     <h1>
         Sala:
-        <select [(ngModel)]="sala" name="sala" class="form-control-chat-usuarios">
+        <select [(ngModel)]="sala" name="sala" class="form-control-chat-usuarios" autofocus=true autocomplete='sala'>
+        
+                <div *ngIf="'sala1'; else elseBlock">
+                        <option value1="Juegos" selected>JUEGOS</option>
+                    </div>
+                    <ng-template #elseBlock>
+                        <option value1="Juegos">JUEGOS</option>
+                </ng-template>
 
-            <option value1="Juegos" *ngIf=sala1 selected>JUEGOS</option>
-            <option value2="Vacaciones"*ngIf=sala2 selected>VACACIONES</option>
-            <option value3="Idiomas"*ngIf=sala3 selected>IDIOMAS</option>
-            <!-- <option value="Trabajo">TRABAJO</option> -->
-            <!-- <option value="Musica">MUSICA</option> -->
+                <div *ngIf="'sala2'; else elseBlock">
+                        <option value1="Vacaciones" selected>VACACIONES</option>
+                    </div>
+                    <ng-template #elseBlock>
+                        <option value2="Vacaciones">VACACIONES</option>
+                </ng-template>
+
+                <div *ngIf="'sala3'; else elseBlock">
+                        <option value1="Idiomas" selected>IDIOMAS</option>
+                    </div>
+                    <ng-template #elseBlock>
+                        <option value3="Idiomas">IDIOMAS</option>
+                </ng-template>
+
         </select>
         <!-- <small> wsService.usuario.sala </small> -->
     </h1>
