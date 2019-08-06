@@ -18,8 +18,15 @@ export class MensajesComponent implements OnInit, OnDestroy {
   elemento: HTMLElement;
   usuarios: any[] = [];
   usuario: Usuario ;
+  usuariosala: Usuario ;
   nombre: string;
   sala: string = this._usuarioService.usuario.sala;
+  value1: string;
+  value2: string;
+  value3: string;
+  sala1: boolean;
+  sala2: boolean;
+  sala3: boolean;
 
   cargando: boolean = true;
   totalRegistros: number = 0;
@@ -43,6 +50,28 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
     this.nombre = this._usuarioService.usuario.nombre;
     this.sala = this._usuarioService.usuario.sala;
+    this.usuariosala = this._usuarioService.usuario;
+    if (this.sala === this.value1) {
+      this.sala1 = true;
+      this.usuariosala.sala = this.value1;
+      this._usuarioService.actualizarSala(this.usuariosala);
+    } else {
+      this.sala1 = false;
+    }
+
+    if (this.sala === this.value2) {
+      this.sala2 = true;
+      this.usuariosala.sala = this.value2;
+    } else {
+      this.sala2 = false;
+    }
+
+    if (this.sala === this.value3) {
+      this.sala3 = true;
+      this.usuariosala.sala = this.value3;
+    } else {
+      this.sala3 = false;
+    }
     // this.usuarios.push(this._usuarioService.usuario);
 
    // this.elemento = document.getElementById('chat-usuarios');

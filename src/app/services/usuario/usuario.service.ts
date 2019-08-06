@@ -186,7 +186,21 @@ export class UsuarioService {
                 return true;
               });
   }
+  actualizarSala( usuario: Usuario) {
+    let url = URL_SERVICIOS + 'usuario/' + usuario._id;
+    url += '?token=' + this.token;
 
+    return this.http.put( url, usuario)
+              .map((resp: any) => {
+
+                if ( usuario._id === this.usuario._id) {
+                   let usuarioDB: Usuario = resp.usuario;
+                   this.guardarStorage( usuarioDB._id, this.token, usuarioDB, this.menu );
+                }
+                console.log('Usuario actualizado(sala)', usuario.sala);
+                return true;
+              });
+  }
 
   borrarUsuario( id: string ) {
     let url = URL_SERVICIOS + 'usuario/' + id;

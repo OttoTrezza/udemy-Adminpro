@@ -29,11 +29,12 @@
 <div class="row"> -->
 
     <h1>
-        Sala: {{sala}}
+        Sala:
         <select [(ngModel)]="sala" name="sala" class="form-control-chat-usuarios">
-            <option value="Juegos">JUEGOS</option>
-            <option value="Vacaciones">VACACIONES</option>
-            <option value="Idiomas">IDIOMAS</option>
+
+            <option value1="Juegos" *ngIf=sala1 selected>JUEGOS</option>
+            <option value2="Vacaciones"*ngIf=sala2 selected>VACACIONES</option>
+            <option value3="Idiomas"*ngIf=sala3 selected>IDIOMAS</option>
             <!-- <option value="Trabajo">TRABAJO</option> -->
             <!-- <option value="Musica">MUSICA</option> -->
         </select>
@@ -98,6 +99,6 @@
         </div>
     </div>
     <footer class="footer">
-        Super Chat - Fernando Herrera
+        Super Chat - Ignacio Trezza
     </footer>
 </div>
