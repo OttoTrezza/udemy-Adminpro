@@ -2,27 +2,27 @@
     <h1>
         Sala:
         <select [(ngModel)]="sala" name="sala" class="form-control" autofocus="true">
-                <input #salaSelected type="string" class="form-control" name="sala" [(ngModel)]="salaSelected" (ngModelChange)="onChanges($event)">
+                <input #salaSelected type="string" class="form-control" name="chupala" [(ngModel)]="salaSelected" (ngModelChange)="onChanges($event)">
 
                 <div *ngIf="'sala1'; else elseBlock">
-                        <option input value1 selected>{{value1}}</option>
+                        <option input #salaSelected type="string" class="form-control" name="chupala" [(ngModel)]="salaSelected" (ngModelChange)="onChanges($event)" value1 selected>{{value1}}</option>
                     </div>
                     <ng-template #elseBlock>
-                        <option value1>{{value1}}</option>
+                        <option input #salaSelected type="string" class="form-control" name="chupala" [(ngModel)]="salaSelected" (ngModelChange)="onChanges($event)" value1>{{value1}}</option>
                 </ng-template>
 
                 <div *ngIf="'sala2'; else elseBlock">
-                        <option value2 selected>{{value2}}</option>
+                        <option input #salaSelected type="string" class="form-control" name="chupala" [(ngModel)]="salaSelected" (ngModelChange)="onChanges($event)" value2 selected>{{value2}}</option>
                     </div>
                     <ng-template #elseBlock>
-                        <option value2>{{value2}}</option>
+                        <option input value2>{{value2}}</option>
                 </ng-template>
 
                 <div *ngIf="'sala3'; else elseBlock">
-                        <option value1 selected>{{value3}}</option>
+                        <option input #salaSelected type="string" class="form-control" name="chupala" [(ngModel)]="salaSelected" (ngModelChange)="onChanges($event)" value1 selected>{{value3}}</option>
                     </div>
                     <ng-template #elseBlock>
-                        <option value3>{{value3}}</option>
+                        <option input value3>{{value3}}</option>
                 </ng-template>
 
         </select>
