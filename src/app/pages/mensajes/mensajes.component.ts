@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
 
 export class MensajesComponent implements OnInit, OnDestroy {
  // @ViewChild('salaSelected', {static: false}) salaSelected: ElementRef;
+
  @Input('value1') value1: string = 'cargando sala';
  @Input('value2') value2: string = 'cargando sala';
  @Input('value3') value3: string = 'cargando sala';
@@ -25,9 +26,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
   usuariosala: Usuario ;
   nombre: string;
   sala: string = this._usuarioService.usuario.sala;
-  sala1: boolean;
-  sala2: boolean;
-  sala3: boolean;
+  salas: any;
 
   cargando: boolean = true;
   totalRegistros: number = 0;
@@ -41,6 +40,12 @@ export class MensajesComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    let salas = this._usuarioService.obtenerSalas('salas');
+    this.salas = salas;
+    this.value1 = this.salas[0];
+    this.value2 = this.salas[1];
+    this.value3 = this.salas[2];
+    console.log('salas', this.salas);
     this.elemento = document.getElementById('divUsuarios');
     this._chatService.emitirUsuariosActivos();
    this.usuariosSubscription = this._chatService.getUsuariosActivos()
@@ -62,30 +67,30 @@ export class MensajesComponent implements OnInit, OnDestroy {
 // CREA UNA SALA "PRIVADA", PERO TAMBIEN QUIERO CREAR SALAS "PUBLICAS".. Y NO HAY HTML PARA ESO TODAVIA!
 
 
-    if (this.sala === this.value1) {
-      this.sala1 = true;
-      this.usuariosala = this._usuarioService.usuario;
-      this.usuariosala.sala = this.value1;
-      this._usuarioService.actualizarSala(this.usuariosala);
-    } else {
-      this.sala1 = false;
-    }
+    // if (this.sala === this.value1) {
 
-    if (this.sala === this.value2) {
-      this.sala2 = true;
-      this.usuariosala = this._usuarioService.usuario;
-      this.usuariosala.sala = this.value2;
-    } else {
-      this.sala2 = false;
-    }
+    //   this.usuariosala = this._usuarioService.usuario;
+    //   this.usuariosala.sala = this.value1;
+    //   this._usuarioService.actualizarSala(this.usuariosala);
+    // } else {
+    //   this.sala1 = false;
+    // }
 
-    if (this.sala === this.value3) {
-      this.sala3 = true;
-      this.usuariosala = this._usuarioService.usuario;
-      this.usuariosala.sala = this.value3;
-    } else {
-      this.sala3 = false;
-    }
+    // if (this.sala === this.value2) {
+
+    //   this.usuariosala = this._usuarioService.usuario;
+    //   this.usuariosala.sala = this.value2;
+    // } else {
+    //   this.sala2 = false;
+    // }
+
+    // if (this.sala === this.value3) {
+
+    //   this.usuariosala = this._usuarioService.usuario;
+    //   this.usuariosala.sala = this.value3;
+    // } else {
+    //   this.sala3 = false;
+    // }
     // this.usuarios.push(this._usuarioService.usuario);
 
    // this.elemento = document.getElementById('chat-usuarios');
@@ -111,23 +116,18 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
     if ( newValue === this.value1 ) {
       this.sala = newValue;
-      this.sala2 = this.sala3 = false;
-      this.sala1 = true;
       this.usuariosala.sala = this.value1;
       this._usuarioService.actualizarSala(this.usuariosala);
+
     } else if ( newValue === this.value2 ) {
       this.sala = newValue;
-      this.sala1 = this.sala3 = false;
-      this.sala2 = true;
       this.usuariosala.sala = this.value2;
-      this._usuarioService.actualizarSala(this.usuariosala);
+
     } else if (newValue === this.value3 ) {
       this.sala = newValue;
-      this.sala1 = this.sala2 = false;
-      this.sala3 = true;
       this.usuariosala.sala = this.value3;
-      this._usuarioService.actualizarSala(this.usuariosala);
     }
+    this._usuarioService.actualizarSala(this.usuariosala);
 
     // elemHTML.value = this.progreso;
    // this.salaSelected.nativeElement.value = this.sala;
