@@ -2,11 +2,13 @@
     <h1>
         Sala:{{sala}}
         <select [(ngModel)]="sala" name="sala" class="form-control" autofocus="true" set value={{sala}} value=sala value="sala">
-            <option input type="string" (ngModelChange)="onChanges($event)" value1 selected>value1</option>
+
+
+            <option input #salaSelected type="string" name="value1" (ngModelChange)="onChanges($event)" selected>{{value1}}</option>
             <!-- <option input value2>value1</option> -->
-            <option input type="string" class="form-control" (ngModelChange)="onChanges($event)" value2 selected>value2</option>
+            <option input #salaSelected type="string" name="value2" (ngModelChange)="onChanges($event)" selected>{{value2}}</option>
             <!-- <option input value2>value2</option> -->
-            <option input type="string" class="form-control" (ngModelChange)="onChanges($event)" value3 selected>value3</option>      
+            <option input #salaSelected type="string" name="value3" (ngModelChange)="onChanges($event)" selected>{{value3}}</option>    
             <!-- <option input value3>value3</option> -->
         </select>
         <!-- <small> wsService.usuario.sala </small> -->

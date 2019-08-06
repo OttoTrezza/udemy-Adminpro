@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, EventEmitter, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, EventEmitter, ElementRef, Input } from '@angular/core';
 import { ChatService } from '../../services/service.index';
 import { UsuarioService, ModalUploadService } from '../../services/service.index';
 import { Usuario } from '../../models/usuario.model';
@@ -13,7 +13,9 @@ import { Subscription } from 'rxjs';
 
 export class MensajesComponent implements OnInit, OnDestroy {
  // @ViewChild('salaSelected', {static: false}) salaSelected: ElementRef;
-
+ @Input('value1') value1: string = 'cargando sala';
+ @Input('value2') value2: string = 'cargando sala';
+ @Input('value3') value3: string = 'cargando sala';
   divUsuarios = $('#divUsuarios');
   textoUser = '';
   usuariosSubscription: Subscription;
@@ -23,9 +25,6 @@ export class MensajesComponent implements OnInit, OnDestroy {
   usuariosala: Usuario ;
   nombre: string;
   sala: string = this._usuarioService.usuario.sala;
-  value1: string;
-  value2: string;
-  value3: string;
   sala1: boolean;
   sala2: boolean;
   sala3: boolean;
