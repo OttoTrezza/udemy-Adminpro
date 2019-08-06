@@ -1,7 +1,7 @@
 <div class="row">
     <h1>
         Sala:{{sala}}
-        <select [(ngModel)]="sala" name="sala" class="form-control" autofocus="true" placeholder="sala">
+        <select [(ngModel)]="sala" name="sala" class="form-control" autofocus="true" value="{{sala}}">{{sala}}
 
         <div *ngIf="'sala1'; else elseBlock">
             <option input type="string" class="form-control" (ngModelChange)="onChanges($event)" value1 selected>{{value1}}</option>
