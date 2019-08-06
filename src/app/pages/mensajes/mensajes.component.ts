@@ -65,6 +65,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
     if (this.sala === this.value1) {
       this.sala1 = true;
+      this.usuariosala = this._usuarioService.usuario;
       this.usuariosala.sala = this.value1;
       this._usuarioService.actualizarSala(this.usuariosala);
     } else {
