@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, EventEmitter, ElementRef } from '@angular/core';
 import { ChatService } from '../../services/service.index';
 import { UsuarioService, ModalUploadService } from '../../services/service.index';
 import { Usuario } from '../../models/usuario.model';
@@ -12,6 +12,8 @@ import { Subscription } from 'rxjs';
 })
 
 export class MensajesComponent implements OnInit, OnDestroy {
+  @ViewChild('salaSelected', {static: false}) salaSelected: ElementRef;
+
   divUsuarios = $('#divUsuarios');
   textoUser = '';
   usuariosSubscription: Subscription;
@@ -51,6 +53,16 @@ export class MensajesComponent implements OnInit, OnDestroy {
     this.nombre = this._usuarioService.usuario.nombre;
     this.sala = this._usuarioService.usuario.sala;
     this.usuariosala = this._usuarioService.usuario;
+// ** TO DO THING...
+// HACER UNA LISTA CON SALAS POSIBLES
+// ENCAPSULAR VALUE1/2/3 EN ESA LISTA
+// EXPORTAR LOS VALORES AL HTML
+
+// CREAR LAS POSIBILIDAD DE CREAR UNA SALA NUEVA
+// QUE DE HECHO SE HACE CUANDO SE SELECCIONA A UN CLIENTE EN PARTICULAR...
+// CREA UNA SALA "PRIVADA", PERO TAMBIEN QUIERO CREAR SALAS "PUBLICAS".. Y NO HAY HTML PARA ESO TODAVIA!
+
+
     if (this.sala === this.value1) {
       this.sala1 = true;
       this.usuariosala.sala = this.value1;
@@ -89,6 +101,35 @@ export class MensajesComponent implements OnInit, OnDestroy {
   //  this.usuariosSubscription.unsubscribe();
    }
 
+  onChanges( newValue: string ) {
+
+    // let elemHTML: any = document.getElementsByName('progreso')[0];
+
+    // console.log( this.txtProgress );
+
+    if ( newValue === this.value1 ) {
+      this.sala = newValue;
+      this.sala2 = this.sala3 = false;
+      this.sala1 = true;
+      this.usuariosala.sala = this.value1;
+      this._usuarioService.actualizarSala(this.usuariosala);
+    } else if ( newValue === this.value2 ) {
+      this.sala = newValue;
+      this.sala1 = this.sala3 = false;
+      this.sala2 = true;
+      this.usuariosala.sala = this.value2;
+      this._usuarioService.actualizarSala(this.usuariosala);
+    } else if (newValue === this.value3 ) {
+      this.sala = newValue;
+      this.sala1 = this.sala2 = false;
+      this.sala3 = true;
+      this.usuariosala.sala = this.value3;
+      this._usuarioService.actualizarSala(this.usuariosala);
+    }
+
+    // elemHTML.value = this.progreso;
+    this.salaSelected.nativeElement.value = this.sala;
+  }
   mostrarModal( id: string) {
     this._modalUploadService.mostrarModal( 'usuarios1', id );
   }

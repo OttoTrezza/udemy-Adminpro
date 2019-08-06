@@ -1,56 +1,28 @@
 <div class="row">
-    <!-- <div class="col-6">
-        <div class="card-body">
-            <h1>
-
-                <small>  Usuario: {{nombre}} </small>
-            </h1>
-        </div>
-    </div> -->
-    <!-- <div class="col-6">
-        <div class="card-body">
-            <div class="chat-left-aside">
-                <div class="open-panel"><i class="ti-angle-right"></i></div>
-                <div class="chat-left-inner">
-                    <div class="form-material">
-                        <form (ngSubmit)="buscar()">
-                            <div class="row-1">
-                                <input type="text" [(ngModel)]="textoUser" autocomplete="off" name="textoUser" placeholder="Buscar" class="form-control b-0">
-                            </div>
-                        </form>
-                    </div>
-                    <ul class="chatonline style-none" id="divUsuarios"> </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row"> -->
-
     <h1>
         Sala:
-        <select [(ngModel)]="sala" name="sala" class="form-control" autofocus=true>
-        
+        <select [(ngModel)]="sala" name="sala" class="form-control" autofocus="true">
+                <input #salaSelected type="string" class="form-control" name="sala" [(ngModel)]="salaSelected" (ngModelChange)="onChanges($event)">
+
                 <div *ngIf="'sala1'; else elseBlock">
-                        <option value1="Juegos" selected>JUEGOS</option>
+                        <option input value1 selected>{{value1}}</option>
                     </div>
                     <ng-template #elseBlock>
-                        <option value1="Juegos">JUEGOS</option>
+                        <option value1>{{value1}}</option>
                 </ng-template>
 
                 <div *ngIf="'sala2'; else elseBlock">
-                        <option value1="Vacaciones" selected>VACACIONES</option>
+                        <option value2 selected>{{value2}}</option>
                     </div>
                     <ng-template #elseBlock>
-                        <option value2="Vacaciones">VACACIONES</option>
+                        <option value2>{{value2}}</option>
                 </ng-template>
 
                 <div *ngIf="'sala3'; else elseBlock">
-                        <option value1="Idiomas" selected>IDIOMAS</option>
+                        <option value1 selected>{{value3}}</option>
                     </div>
                     <ng-template #elseBlock>
-                        <option value3="Idiomas">IDIOMAS</option>
+                        <option value3>{{value3}}</option>
                 </ng-template>
 
         </select>
