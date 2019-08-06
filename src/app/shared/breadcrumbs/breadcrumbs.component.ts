@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivationEnd } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { Title, Meta, MetaDefinition } from '@angular/platform-browser';
+import { UsuarioService } from 'src/app/services/service.index';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -9,12 +10,13 @@ import { Title, Meta, MetaDefinition } from '@angular/platform-browser';
   styles: []
 })
 export class BreadcrumbsComponent implements OnInit {
-
+nombre: string;
 titulo: string;
 
   constructor( private router: Router,
               private title: Title,
-              private meta: Meta) {
+              private meta: Meta,
+              public _usuarioService: UsuarioService) {
 
     this.getDataRoute()
     .subscribe( data => {
@@ -30,6 +32,7 @@ titulo: string;
   }
 
   ngOnInit() {
+    this.nombre = this._usuarioService.usuario.nombre;
   }
 getDataRoute() {
   return this.router.events.pipe(
