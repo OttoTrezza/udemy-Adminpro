@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 })
 
 export class MensajesComponent implements OnInit, OnDestroy {
-  @ViewChild('salaSelected', {static: false}) salaSelected: ElementRef;
+ // @ViewChild('salaSelected', {static: false}) salaSelected: ElementRef;
 
   divUsuarios = $('#divUsuarios');
   textoUser = '';
@@ -74,6 +74,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
     if (this.sala === this.value2) {
       this.sala2 = true;
+      this.usuariosala = this._usuarioService.usuario;
       this.usuariosala.sala = this.value2;
     } else {
       this.sala2 = false;
@@ -81,6 +82,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
     if (this.sala === this.value3) {
       this.sala3 = true;
+      this.usuariosala = this._usuarioService.usuario;
       this.usuariosala.sala = this.value3;
     } else {
       this.sala3 = false;
@@ -129,7 +131,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
     }
 
     // elemHTML.value = this.progreso;
-    this.salaSelected.nativeElement.value = this.sala;
+   // this.salaSelected.nativeElement.value = this.sala;
   }
   mostrarModal( id: string) {
     this._modalUploadService.mostrarModal( 'usuarios1', id );
