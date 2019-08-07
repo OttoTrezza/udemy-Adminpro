@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 })
 
 export class MensajesComponent implements OnInit, OnDestroy {
- // @ViewChild('salaSelected', {static: false}) salaSelected: ElementRef;
+ @ViewChild('salaSelected', {static: false}) salaSelected: ElementRef;
 
  @Input('value1') value1: string = 'cargando sala';
  @Input('value2') value2: string = 'cargando sala';
@@ -40,13 +40,13 @@ export class MensajesComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    let salas = this._usuarioService.obtenerSalas('salas');
-    this.salas = salas;
+    let salasf = this._usuarioService.obtenerSalas('salas');
+    this.salas = salasf;
     console.log('this.salas', this.salas);
-    this.value1 = this.salas[0];
-    this.value2 = this.salas[1];
-    this.value3 = this.salas[2];
-    console.log('salas', this.salas);
+    this.value1 = 'Juegos';
+    this.value2 = 'Vacaciones';
+    this.value3 = 'dispersa';
+    console.log('salasf', salasf);
     this.elemento = document.getElementById('divUsuarios');
     this._chatService.emitirUsuariosActivos();
    this.usuariosSubscription = this._chatService.getUsuariosActivos()
