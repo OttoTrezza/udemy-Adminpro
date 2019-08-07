@@ -55,15 +55,21 @@ img: string;
          return this.wsService.listen( 'mensaje-nuevo' );
 
         }
-    getMessagesPrivate() {
-     // console.log('Recibido, GetPriv');
-      return this.wsService.listen( 'mensaje-privado' );
-    }
+   
 
     getUsuariosActivos() {
       // console.log('Recibido UsuActivos');
       return this.wsService.listen( 'usuarios-activos' );
       }
+      getSalasActivas() {
+        // console.log('Recibido UsuActivos');
+        return this.wsService.listen( 'salas-activas' );
+        }
+        getFalasActivas() {
+          // console.log('Recibido UsuActivos');
+          return this.wsService.listen( 'Falas-activas' );
+          }
+
     focusBuscar(nombre: string) {
     // focus en la lista de usuarios del mensajesComponent.html
     }
