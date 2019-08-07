@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 })
 
 export class MensajesComponent implements OnInit, OnDestroy {
- @ViewChild('salaSelected', {static: false}) salaSelected: ElementRef;
+//  @ViewChild('salaSelected', {static: false}) salaSelected: ElementRef;
 
  @Input('value1') value1: string = 'cargando sala';
  @Input('value2') value2: string = 'cargando sala';

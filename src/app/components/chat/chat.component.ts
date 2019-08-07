@@ -3,7 +3,7 @@ import { ChatService, ModalUploadService} from '../../services/service.index';
 import { Subscription } from 'rxjs';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { Usuario } from '../../models/usuario.model';
-import * as $ from 'jquery';
+// import * as $ from 'jquery';
 // var params = new URLSearchParams(window.location.search);
 
 // var nombre = params.get('nombre');
@@ -15,7 +15,7 @@ import * as $ from 'jquery';
 })
 export class ChatComponent implements OnInit, OnDestroy {
 
-  divChatbox = $('#divChatbox');
+  // divChatbox = $('#divChatbox');
 
   // adminClass = 'box bg-light-info';
   textoUser = '';
@@ -63,7 +63,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     this.mensajes.push( this.msg );
     console.log('mensaje1', this.msg);
-    this.scrollBottom();
+    // this.scrollBottom();
     // setTimeout(() => {
     //   this.elemento.scrollTop = this.elemento.scrollHeight;
     //   }, 50);
@@ -80,34 +80,34 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
   mostrarModal( id: string) {
     this._modalUploadService.mostrarModal( 'usuarios', id );
-    this.scrollBottom();
+    // this.scrollBottom();
   }
- scrollBottom() {
+//  scrollBottom() {
 
-    // selectors
-     let newMessage = this.divChatbox.children('li:last-child');
-     // let heights;
-     let clientHeight = this.divChatbox.prop('clientHeight');
-     let scrollTop = this.divChatbox.prop('scrollTop');
-     let scrollHeight = this.divChatbox.prop('scrollHeight');
-     let newMessageHeight = newMessage.innerHeight();
-     let lastMessageHeight = newMessage.prev().innerHeight() || 0;
+//     // selectors
+//      let newMessage = this.divChatbox.children('li:last-child');
+//      // let heights;
+//      let clientHeight = this.divChatbox.prop('clientHeight');
+//      let scrollTop = this.divChatbox.prop('scrollTop');
+//      let scrollHeight = this.divChatbox.prop('scrollHeight');
+//      let newMessageHeight = newMessage.innerHeight();
+//      let lastMessageHeight = newMessage.prev().innerHeight() || 0;
 
-    if (clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
-        this.divChatbox.scrollTop(scrollHeight);
-    }
-}
+//     if (clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
+//         this.divChatbox.scrollTop(scrollHeight);
+//     }
+// }
   enviar() {
 
     if ( this.texto.trim().length === 0 ) {
-      this.scrollBottom();
+   //   this.scrollBottom();
       return;
     }
 
      this._chatService.sendMessage( this.texto , (resp: any) => {
        this.msg = resp;
        console.log('this.msg = ', this.msg);
-       this.scrollBottom();
+   //    this.scrollBottom();
       });
      this.texto = '';
 

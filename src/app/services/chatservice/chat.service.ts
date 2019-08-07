@@ -55,7 +55,7 @@ img: string;
          return this.wsService.listen( 'mensaje-nuevo' );
 
         }
-   
+
 
     getUsuariosActivos() {
       // console.log('Recibido UsuActivos');
