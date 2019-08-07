@@ -17,7 +17,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
  @Input('value1') value1: string = 'cargando sala';
  @Input('value2') value2: string = 'cargando sala';
  @Input('value3') value3: string = 'cargando sala';
-  divUsuarios = $('#divUsuarios');
+  // divUsuarios = $('#divUsuarios');
   textoUser = '';
   usuariosSubscription: Subscription;
   elemento: HTMLElement;
