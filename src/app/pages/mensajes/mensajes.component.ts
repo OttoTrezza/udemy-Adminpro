@@ -14,9 +14,9 @@ import { Subscription } from 'rxjs';
 export class MensajesComponent implements OnInit, OnDestroy {
 //  @ViewChild('salaSelected', {static: false}) salaSelected: ElementRef;
 
- @Input('value1') value1: string = 'cargando sala';
- @Input('value2') value2: string = 'cargando sala';
- @Input('value3') value3: string = 'cargando sala';
+//  @Input('value1') value1: string = 'cargando sala';
+//  @Input('value2') value2: string = 'cargando sala';
+//  @Input('value3') value3: string = 'cargando sala';
   // divUsuarios = $('#divUsuarios');
   textoUser = '';
   usuariosSubscription: Subscription;
@@ -27,7 +27,9 @@ export class MensajesComponent implements OnInit, OnDestroy {
   nombre: string;
   sala: string = this._usuarioService.usuario.sala;
   salas: any;
-
+  value2: string;
+  value1: string;
+  value3: string;
   cargando: boolean = true;
   totalRegistros: number = 0;
 
