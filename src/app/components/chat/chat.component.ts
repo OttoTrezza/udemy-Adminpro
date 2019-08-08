@@ -15,9 +15,6 @@ import { Usuario } from '../../models/usuario.model';
 })
 export class ChatComponent implements OnInit, OnDestroy {
 
-  // divChatbox = $('#divChatbox');
-
-  // adminClass = 'box bg-light-info';
   textoUser = '';
   texto = '';
   mensajesSubscription: Subscription;
