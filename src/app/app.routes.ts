@@ -17,7 +17,6 @@ const appRoutes: Routes = [
     loadChildren: './pages/pages.module#PagesModule'
     },
     { path: '**', component: NopagefoundComponent },
-    { path: '', redirectTo: '/login', pathMatch: 'full' }
 
 ];
 
