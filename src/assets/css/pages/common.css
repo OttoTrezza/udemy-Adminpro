@@ -320,11 +320,11 @@ Notify
     z-index: 10;
     border: 5px solid #ef5350;
     border-radius: 70px;
-    -moz-animation: heartbit 1s ease-out;
+    /* -moz-animation: heartbit 1s ease-out; */
     -moz-animation-iteration-count: infinite;
-    -o-animation: heartbit 1s ease-out;
+    /* -o-animation: heartbit 1s ease-out; */
     -o-animation-iteration-count: infinite;
-    -webkit-animation: heartbit 1s ease-out;
+    /* -webkit-animation: heartbit 1s ease-out; */
     -webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
 }
@@ -341,8 +341,11 @@ Notify
     top: -10px;
 }
 
-@-moz-keyframes heartbit {
-    0% {
+
+/* @-moz-keyframes heartbit { */
+
+
+/* 0% {
         -moz-transform: scale(0);
         opacity: 0.0;
     }
@@ -362,9 +365,10 @@ Notify
         -moz-transform: scale(1);
         opacity: 0.0;
     }
-}
+} */
 
-@-webkit-keyframes heartbit {
+
+/* @-webkit-keyframes heartbit {
     0% {
         -webkit-transform: scale(0);
         opacity: 0.0;
@@ -385,7 +389,7 @@ Notify
         -webkit-transform: scale(1);
         opacity: 0.0;
     }
-}
+} */
 
 
 /*******************
@@ -975,7 +979,7 @@ html body .waves-notransition {
     height: 2.5em;
     line-height: 2.5em;
     border-radius: 50%;
-    -webkit-mask-image: none;
+    /* -webkit-mask-image: none; */
 }
 
 .waves-input-wrapper {
