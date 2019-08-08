@@ -55,7 +55,7 @@ export class MedicoComponent implements OnInit {
     this._medicoService.guardarMedico( this.medico )
           .subscribe( medico => {
             this.medico._id = medico._id;
-            this.router.navigate(['/medico', medico._id]);
+            this.router.navigate(['/*/medico', medico._id]);
           });
 
   }
