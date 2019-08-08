@@ -806,6 +806,17 @@ ul#themecolors li a.working:before {
     background: #ffffff;
 }
 
+.footerInput {
+    position: absolute;
+    height: 100px;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    color: #67757c;
+    border-top: 1px solid rgba(120, 130, 140, 0.13);
+    background: #ffffff;
+}
+
 
 /*******************
  scrollbar
