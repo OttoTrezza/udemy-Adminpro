@@ -10,14 +10,14 @@ import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 import { Observable } from 'rxjs/Observable';
 import swal from 'sweetalert';
 import { WebsocketService } from '../websocket/websocket.service';
-import { Sala } from '../../models/sala.model';
+
 
 @Injectable()
 export class UsuarioService {
 
   usuario: Usuario;
   usuarios: Usuario[] = [];
-  salas: Sala[] = [];
+  // salas: Sala[] = [];
   token: string;
   menu: any = [];
   // public tipo: string = 'usuario';
