@@ -43,6 +43,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     let salasf = this._usuarioService.obtenerSalas('salas');
+    console.log('salasf', salasf);
     this.salas = salasf;
     console.log('this.salas', this.salas);
     this.value1 = 'Juegos';
