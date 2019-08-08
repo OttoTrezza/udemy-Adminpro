@@ -111,30 +111,8 @@ export class MensajesComponent implements OnInit, OnDestroy {
   //  this.usuariosSubscription.unsubscribe();
    }
 
-  onChanges( newValue: string ) {
 
-    // let elemHTML: any = document.getElementsByName('progreso')[0];
-
-    // console.log( this.txtProgress );
-
-    if ( newValue === this.value1 ) {
-      this.sala = newValue;
-      this.usuariosala.sala = this.value1;
-      this._usuarioService.actualizarSala(this.usuariosala);
-
-    } else if ( newValue === this.value2 ) {
-      this.sala = newValue;
-      this.usuariosala.sala = this.value2;
-
-    } else if (newValue === this.value3 ) {
-      this.sala = newValue;
-      this.usuariosala.sala = this.value3;
-    }
-    this._usuarioService.actualizarSala(this.usuariosala);
-
-    // elemHTML.value = this.progreso;
-   // this.salaSelected.nativeElement.value = this.sala;
-  }
+      // this._usuarioService.actualizarSala(this.usuariosala);
   mostrarModal( id: string) {
     this._modalUploadService.mostrarModal( 'usuarios1', id );
   }
