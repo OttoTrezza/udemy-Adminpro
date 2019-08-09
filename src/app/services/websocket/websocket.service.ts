@@ -101,10 +101,7 @@ export class WebsocketService {
       this.usuario = null;
       localStorage.removeItem('usuario');
 
-    const payload = {
-      nombre: 'sin-nombre'
-    };
-      this.emit('configurar-usuario', payload, () => {} );
+      this.checkStatus();
       // this.router.navigateByUrl('');
 
     }

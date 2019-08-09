@@ -1,15 +1,15 @@
 <div class="row">
     <h1>
         Sala:{{sala}}
-        <select [(ngModel)]="sala" name="sala" input (change)="seleccionSala( $event.target.selected )" type="string" autofocus="true">
+        <select [(ngModel)]="sala" name="sala" onchange="seleccionSala( $event.option.selected.values )" type="string" autofocus="true">
                 <!-- <input (change)="seleccionImage( $event.target.files[0] )" type="file"> -->
 
             <!-- <option input #salaSelected type="string" name="value1" (ngModelChange)="onChanges($event)" selected>{{value1}}</option> -->
-            <option  $event.target = value1>{{value1}}</option>
+            <option value1>{{value1}}</option>
             <!-- <option input #salaSelected type="string" name="value2" (ngModelChange)="onChanges($event)" selected>{{value2}}</option> -->
-            <option $event.target = value2>{{value2}}</option>
+            <option value2>{{value2}}</option>
             <!-- <option input #salaSelected type="string" name="value3" (ngModelChange)="onChanges($event)" selected>{{value3}}</option>     -->
-            <option $event.target = value3>{{value3}}</option>
+            <option value3>{{value3}}</option>
         </select>
         <!-- <small> wsService.usuario.sala </small> -->
     </h1>
