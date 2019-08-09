@@ -1,7 +1,7 @@
 <div class="row">
     <h1>
         Sala:{{sala}}
-        <select [(ngModel)]="sala" name="sala" (onchange)="seleccionSala( $event.option.selected.values )" type="string" autofocus="true">
+        <select [(ngModel)]="sala" name="sala" onclick=($event.sala) autofocus="true">
                 <!-- <input (change)="seleccionImage( $event.target.files[0] )" type="file"> -->
 
             <!-- <option input #salaSelected type="string" name="value1" (ngModelChange)="onChanges($event)" selected>{{value1}}</option> -->

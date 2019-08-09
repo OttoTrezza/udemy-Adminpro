@@ -103,7 +103,7 @@ export class WebsocketService {
       localStorage.removeItem('usuario');
 
       this.checkStatus();
-      this.router.navigateByUrl('/public/#/*/dashbord');
+      this.router.navigate(['/*/dashboard']);
 
     }
 
