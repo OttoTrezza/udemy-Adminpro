@@ -89,23 +89,18 @@ export class MensajesComponent implements OnInit, OnDestroy {
       if ( !f.value ) {
         return;
       }
-      this._usuarioService.seleccionSala(this.usuario, this.sala)
+      this._usuarioService.seleccionSala( this.usuariosala, f.value.sala)
             .subscribe( (sala: any) => {
               this.sala = sala;
+              console.log('sañla:', this.sala);
             });
 
-
-
-
-  console.log('sala',  this.sala );
   }
   cambioSala( sala: string ) {
-    this._usuarioService.seleccionSala( this.usuario, sala )
-    .subscribe( (usuario: any) => {
-      this.usuario.sala = usuario.sala;
-      this.router.navigate(['/*/mensajes']);
-     });
+      this.sala = sala;
   }
+
+
 obtenerUsuario( id: string ) {
   this._usuarioService.obtenerUsuario( id )
         .subscribe( usuario => {
