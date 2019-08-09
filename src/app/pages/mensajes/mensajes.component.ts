@@ -127,7 +127,16 @@ export class MensajesComponent implements OnInit, OnDestroy {
      this.textoUser = '';
 
   }
-
+  seleccionSala( sala: string ) {
+    if ( !sala ) {
+      this.sala = null;
+      return;
+    }
+  this.sala = sala;
+  this._usuarioService.actualizarSala(this.usuariosala, sala)
+  .subscribe( (pala: any) => this.sala = pala );
+  console.log('usuariosala y sala', this.usuariosala,  sala );
+  }
    salir() {
    this._chatService.logoutChatS();
    }
