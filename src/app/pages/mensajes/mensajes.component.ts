@@ -5,7 +5,8 @@ import { Usuario } from '../../models/usuario.model';
 import { WebsocketService } from '../../services/service.index';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
   selector: 'app-mensajes',
   templateUrl: './mensajes.component.html',
@@ -32,6 +33,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
     public _usuarioService: UsuarioService,
     public _modalUploadService: ModalUploadService,
     public _wsService: WebsocketService,
+    public router: Router,
     public activatedRoute: ActivatedRoute
   ) {
     activatedRoute.params.subscribe( params => {
@@ -97,11 +99,13 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
   console.log('sala',  this.sala );
   }
-  cambioSala( id: string ) {
-    this._usuarioService.obtenerUsuario( id )
-    .subscribe( (usuario: any) => this.usuario.sala = usuario.sala );
+  cambioSala( sala: string ) {
+    this._usuarioService.seleccionSala( this.usuario, sala )
+    .subscribe( (usuario: any) => {
+      this.usuario.sala = usuario.sala;
+      this.router.navigate(['/*/mensajes']);
+     });
   }
-
 obtenerUsuario( id: string ) {
   this._usuarioService.obtenerUsuario( id )
         .subscribe( usuario => {
