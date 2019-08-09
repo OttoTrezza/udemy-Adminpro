@@ -188,7 +188,7 @@ export class UsuarioService {
                 return true;
               });
   }
-  actualizarSala( usuario: Usuario, sala: string) {
+  seleccionSala( usuario: Usuario, sala: string) {
     let url = URL_SERVICIOS + 'usuario/' + usuario._id;
     url += '?token=' + this.token;
     usuario.sala = sala;

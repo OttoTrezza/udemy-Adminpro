@@ -18,7 +18,7 @@
                 <h3 class="card-title">Medicos registrados ( <small>{{ this._medicoService.totalMedicos }}</small> )</h3>
 
                 <div class="text-right">
-                    <button [routerLink]="['/medico','nuevo']" class="btn waves-effect waves-light btn-rounded btn-primary">
+                    <button [routerLink]="['/*/medico','nuevo']" class="btn waves-effect waves-light btn-rounded btn-primary">
                   <i class="fa fa-plus"></i>
                   Crear Medico
               </button>
@@ -42,10 +42,10 @@
                                 {{medico.nombre}}
                             </td>
                             <td>
-                                {{medico.hospital.nombre}}
+                                {{medico.hospital}}
                             </td>
                             <td>
-                                <button [routerLink]="['/medico', medico._id]" class="btn btn-primary">
+                                <button [routerLink]="['/*/medico', medico._id]" class="btn btn-primary">
                                 <i class="fa fa-edit"></i>
                               </button>
 
