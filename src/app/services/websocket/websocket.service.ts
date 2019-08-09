@@ -4,13 +4,14 @@ import { Usuario } from '../../models/usuario.model';
 
 // import { Router } from '@angular/router';
 import { UsuarioService } from '../usuario/usuario.service';
+import { Router } from '@angular/router';
 
 
 
 
 @Injectable()
 export class WebsocketService {
-
+  public router: Router;
   public socketStatus = false;
   public usuario: Usuario = null;
   public usuarios: Usuario[] = null;
@@ -102,7 +103,7 @@ export class WebsocketService {
       localStorage.removeItem('usuario');
 
       this.checkStatus();
-      // this.router.navigateByUrl('');
+      this.router.navigateByUrl('/public/#/*/dashbord');
 
     }
 
