@@ -44,12 +44,13 @@ export class MensajesComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit() {
-    // this.salas = this._chatService.getSalasActivas();
-    // this.nombre = this._usuarioService.usuario.nombre;
-    // this.sala = this._usuarioService.usuario.sala;
-    // this.img = this._usuarioService.usuario.img;
+    this.salas = this._chatService.getSalasActivas();
+    this.nombre = this._usuarioService.usuario.nombre;
+    this.sala = this._usuarioService.usuario.sala;
+    this.img = this._usuarioService.usuario.img;
+    this.usuariosala = this._usuarioService.usuario;
 
-    // this._wsService.entrarChat(this.nombre, this.sala, this.img);
+    this._wsService.entrarChat(this.nombre, this.sala, this.img);
 
     this.elemento = document.getElementById('divUsuarios');
 
@@ -93,6 +94,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
       if ( !f.value ) {
         return;
       }
+      console.log('this.usuariosala', this.usuariosala);
       this._usuarioService.seleccionSala( this.usuariosala, f.value.sala)
             .subscribe( (sala: any) => {
               this.sala = sala;
