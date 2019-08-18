@@ -12,8 +12,8 @@ name: string;
 img: string;
   constructor(
     public wsService: WebsocketService,
-     public http: HttpClient,
-  ) { }
+    public http: HttpClient,
+    ) { }
 
     sendMessage( mensaje: string, callback: any ) {
       this.name = this.wsService.getUsuario().nombre;
@@ -28,61 +28,45 @@ img: string;
        // console.log(resp);
       });
       console.log('Mensaje', payload );
-
-
       }
-      // let url = 'http://localhost:3000' + '/mensajes/mensajes/';
-      // return this.http.post( url, payload)
-      //                     .map((resp: any) => {
-      //                       swal('Mensaje enviado', payload.cuerpo, 'success');
-      //                       console.log('mensajeenviado', resp.payload);
-      //                     return resp.payload;
-      //                     })
-      //                     .catch( err => {
-      //                       swal( 'Error', err.error.mensaje, err.error.errors.message, 'error');
-      //                       return Observable.throw( err );
-      //                       });
 
     getMessages1() {
-     // console.log('Recibido,getMes');
-     // console.log('mensaje-nuevo recibido');
        return this.wsService.listen( 'mensajeDeServidor' );
-
       }
-      getMessages() {
-       //  console.log('Recibido,mens-nuevo');
-       // console.log('mensaje-nuevo recibido');
-         return this.wsService.listen( 'mensaje-nuevo' );
 
-        }
-
+    getMessages() {
+        return this.wsService.listen( 'mensaje-nuevo' );
+    }
 
     getUsuariosActivos() {
-      // console.log('Recibido UsuActivos');
-      return this.wsService.listen( 'usuarios-activos' );
-      }
-      getSalasActivas() {
-        // console.log('Recibido UsuActivos');
+        return this.wsService.listen( 'usuarios-activos' );
+    }
+
+    getSalasActivas() {
         return this.wsService.listen( 'salas-activas' );
-        }
-        getFalasActivas() {
-          // console.log('Recibido UsuActivos');
-          return this.wsService.listen( 'Falas-activas' );
-          }
+    }
 
     focusBuscar(nombre: string) {
     // focus en la lista de usuarios del mensajesComponent.html
     }
-    emitirUsuariosActivos() {
 
-      this.wsService.emit( 'obtener-usuarios', (entro: boolean) => {
+    emitirUsuariosActivos(sala: string) {
+      this.wsService.emit( 'obtener-usuarios', sala, (entro: boolean) => {
         if (entro === true) {
           console.log('Server:petición recibida');
-          } else {
+        } else {
             console.log('Sin respuesta del servidor');
-            }
+          }
+        });
+    }
+    emitirSalasActivas() {
+      this.wsService.emit( 'obtener-salas', (entro: boolean) => {
+        if (entro === true) {
+          console.log('Server:petición recibida');
+        } else {
+            console.log('Sin respuesta del servidor');
         }
-      );
+      });
     }
     loginChatS(nombre: string, sala: string, img: string) {
       this.wsService.entrarChat(nombre, sala, img);

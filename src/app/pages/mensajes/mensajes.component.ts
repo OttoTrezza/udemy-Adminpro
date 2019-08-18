@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, EventEmitter, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChatService } from '../../services/service.index';
 import { UsuarioService, ModalUploadService } from '../../services/service.index';
 import { Usuario } from '../../models/usuario.model';
@@ -17,6 +17,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
   textoUser = '';
   usuariosSubscription: Subscription;
+  salasSubscription: Subscription;
   elemento: HTMLElement;
   usuarios: any[] = [];
   usuario: Usuario ;
@@ -24,6 +25,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
   nombre: string;
   sala: string = this._usuarioService.usuario.sala;
   salas: any;
+  img: string;
   cargando: boolean = true;
   totalRegistros: number = 0;
 
@@ -42,25 +44,27 @@ export class MensajesComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit() {
+    // this.salas = this._chatService.getSalasActivas();
+    // this.nombre = this._usuarioService.usuario.nombre;
+    // this.sala = this._usuarioService.usuario.sala;
+    // this.img = this._usuarioService.usuario.img;
 
-    // let salasf = this._usuarioService.obtenerSalas('salas');
-    // console.log('salasf', salasf);
-    // this.salas = salasf;
-    // console.log('this.salas', this.salas);
+    // this._wsService.entrarChat(this.nombre, this.sala, this.img);
 
-    // console.log('salasf', salasf);
     this.elemento = document.getElementById('divUsuarios');
-    this._chatService.emitirUsuariosActivos();
-   this.usuariosSubscription = this._chatService.getUsuariosActivos()
+
+    // this._chatService.emitirSalasActivas();
+    // this.salasSubscription = this._chatService.getSalasActivas()
+    //       .subscribe((respu: []) => {
+    //       this.salas = respu;
+    //       });
+
+    this._chatService.emitirUsuariosActivos(this.sala);
+    this.usuariosSubscription = this._chatService.getUsuariosActivos()
           .subscribe( (respu: Usuario[]= []) => {
             this.usuarios = respu;
             console.log('usuarios', this.usuarios);
           } );
-
-    this.nombre = this._usuarioService.usuario.nombre;
-    this.sala = this._usuarioService.usuario.sala;
-    this.usuariosala = this._usuarioService.usuario;
-
   }
 
   ngOnDestroy() {
@@ -97,19 +101,26 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
   }
   cambioSala( sala: string ) {
-      this.sala = sala;
+    console.log('Usuarios de sala:', sala );
+    this._chatService.emitirUsuariosActivos(sala);
+    this.usuariosSubscription = this._chatService.getUsuariosActivos()
+          .subscribe( (respu: Usuario[]= []) => {
+            this.usuarios = respu;
+            console.log('usuarios', this.usuarios);
+          } );
+
   }
 
 
-obtenerUsuario( id: string ) {
-  this._usuarioService.obtenerUsuario( id )
-        .subscribe( usuario => {
-          console.log(usuario);
-          this.usuario = usuario;
-          this.usuario.sala = usuario._id;
-          this.cambioSala( this.usuario.sala);
-        });
-  }
+// obtenerUsuario( id: string ) {
+//   this._usuarioService.obtenerUsuario( id )
+//         .subscribe( (usuario: Usuario) => {
+//           console.log('obtUsu:', usuario);
+//        //   this.usuario = usuario;
+//        //  this.usuario.sala = usuario.sala;
+//           // this.cambioSala( this.usuario.sala);
+//         });
+//   }
    salir() {
    this._chatService.logoutChatS();
    }
