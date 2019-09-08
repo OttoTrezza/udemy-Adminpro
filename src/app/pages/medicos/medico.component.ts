@@ -79,4 +79,3 @@ export class MedicoComponent implements OnInit {
 this._modalUploadService.mostrarModal('medicos', this.medico._id);
   }
 }
-
