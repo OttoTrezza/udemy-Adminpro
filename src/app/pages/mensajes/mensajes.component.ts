@@ -23,7 +23,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
   usuario: Usuario ;
   usuariosala: Usuario ;
   nombre: string;
-  sala: string = this._usuarioService.usuario.sala;
+  sala: string;
   salas: any;
   img: string;
   cargando: boolean = true;
@@ -95,7 +95,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
         return;
       }
       console.log('this.usuariosala', this.usuariosala);
-      this._usuarioService.seleccionSala( this.usuariosala, f.value.sala)
+      this._usuarioService.seleccionSala({ usuario: this.usuariosala, sala: f.value.sala })
             .subscribe( (sala: any) => {
               this.sala = sala;
               console.log('sañla:', this.sala);

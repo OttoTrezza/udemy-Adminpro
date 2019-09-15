@@ -195,10 +195,11 @@ export class UsuarioService {
                 return true;
               });
   }
-  seleccionSala( usuario: Usuario, sala: string) {
+  seleccionSala({ usuario, sala }: { usuario: Usuario; sala: string; }) {
+
     let url = URL_SERVICIOS + 'usuario/' + usuario._id;
     url += '?token=' + this.token;
-
+usuario.sala = sala;
     return this.http.put( url, usuario)
               .map((resp: any) => {
 
@@ -208,7 +209,7 @@ export class UsuarioService {
                    this.guardarStorage( usuarioDB._id, this.token, usuarioDB, this.menu, this.sala );
                 }
                 console.log('Usuario actualizado(sala)', this.usuario.sala);
-                return true;
+                return sala;
               });
   }
 
