@@ -50,14 +50,8 @@ img: string;
     // focus en la lista de usuarios del mensajesComponent.html
     }
 
-    emitirUsuariosActivos(sala: string) {
-      this.wsService.emit( 'obtener-usuarios', sala, (entro: boolean) => {
-        if (entro === true) {
-          console.log('Server:petición recibida');
-        } else {
-            console.log('Sin respuesta del servidor');
-          }
-        });
+    emitirUsuariosActivos() {
+      this.wsService.emit('obtener-usuarios');
     }
     emitirSalasActivas() {
       this.wsService.emit( 'obtener-salas', (entro: boolean) => {
