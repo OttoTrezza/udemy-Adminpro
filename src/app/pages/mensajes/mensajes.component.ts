@@ -55,7 +55,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
     this.elemento = document.getElementById('divUsuarios');
 
-    this._chatService.emitirUsuariosActivos(this.sala);
+    this._chatService.emitirUsuariosActivos();
     this.usuariosSubscription = this._chatService.getUsuariosActivos()
           .subscribe( (respu: Usuario[]= []) => {
             this.usuarios = respu;
@@ -108,7 +108,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
   }
   cambioSala( sala: string ) {
     console.log('Usuarios de sala:', sala );
-    this._chatService.emitirUsuariosActivos(sala);
+    this._chatService.emitirUsuariosActivos();
     this.usuariosSubscription = this._chatService.getUsuariosActivos()
           .subscribe( (respu: Usuario[]= []) => {
             this.usuarios = respu;
