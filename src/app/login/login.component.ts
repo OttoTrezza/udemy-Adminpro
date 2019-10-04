@@ -60,7 +60,7 @@ attachSignin( element ) {
   let token = googleUser.getAuthResponse().id_token;
   // console.log(this._usuarioService.loginGoogle( token ));
   this._usuarioService.loginGoogle( token )
-              .subscribe( () => window.location.href = '#/*/dashboard' );
+              .subscribe( () => window.location.href = '/*/dashboard' );
 
  });
 }

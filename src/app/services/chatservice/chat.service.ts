@@ -45,6 +45,9 @@ img: string;
     getSalasActivas() {
         return this.wsService.listen( 'salas-activas' );
     }
+    getCliente() {
+      return this.wsService.listen('cliente');
+    }
 
     focusBuscar(nombre: string) {
     // focus en la lista de usuarios del mensajesComponent.html

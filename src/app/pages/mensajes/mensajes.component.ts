@@ -67,7 +67,8 @@ export class MensajesComponent implements OnInit, OnDestroy {
     //       .subscribe((respu: []) => {
     //       this.salas = respu;
     //       });
-
+    let cliente = this._chatService.getCliente();
+console.log('cliente..', cliente );
 
   }
 
