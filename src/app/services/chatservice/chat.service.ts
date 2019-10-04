@@ -10,6 +10,7 @@ import { map } from 'rxjs-compat/operator/map';
 export class ChatService {
 name: string;
 img: string;
+sala: string;
   constructor(
     public wsService: WebsocketService,
     public http: HttpClient,
@@ -18,10 +19,12 @@ img: string;
     sendMessage( mensaje: string, callback: any ) {
       this.name = this.wsService.getUsuario().nombre;
       this.img = this.wsService.getUsuario().img;
+      this.sala = this.wsService.getUsuario().sala;
       const payload = {
         de: this.name,
         cuerpo: mensaje,
-        img: this.img
+        img: this.img,
+        sala: this.sala
         };
       this.wsService.emit( 'mensaje' , payload, (resp: any) => {
         callback(resp);
