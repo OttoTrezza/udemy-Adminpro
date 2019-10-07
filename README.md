@@ -16,7 +16,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ng build --prod --aot false --build-optimizer false --deploy-url="https://mighty-depths-88183.herokuapp.com/public/"
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io)..
 
 ## Running end-to-end tests
 
