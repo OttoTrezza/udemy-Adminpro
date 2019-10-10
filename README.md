@@ -31,6 +31,5 @@ ng serve -o --port 4201
 
 *****/////////
 LIST TO DO THINGS....
+
 Make the list user visualization on mensajes.html, be showed by sala! 
-PARA PRODUCCION INDEX.HTML, SON 11 LUGARES DONDE DEBO AGREGAR PUBLIC/
-HREF:FAVICON.ICO VENIA DE ASSETS/IMAGE/FAVICO.PNG

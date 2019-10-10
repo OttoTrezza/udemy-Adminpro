@@ -10,7 +10,6 @@ import { map } from 'rxjs-compat/operator/map';
 export class ChatService {
 name: string;
 img: string;
-sala: string;
   constructor(
     public wsService: WebsocketService,
     public http: HttpClient,
@@ -19,12 +18,10 @@ sala: string;
     sendMessage( mensaje: string, callback: any ) {
       this.name = this.wsService.getUsuario().nombre;
       this.img = this.wsService.getUsuario().img;
-      // this.sala = this.wsService.getUsuario().sala;
       const payload = {
         de: this.name,
         cuerpo: mensaje,
-        img: this.img,
-        // sala: this.sala
+        img: this.img
         };
       this.wsService.emit( 'mensaje' , payload, (resp: any) => {
         callback(resp);
@@ -48,9 +45,6 @@ sala: string;
     getSalasActivas() {
         return this.wsService.listen( 'salas-activas' );
     }
-    // getCliente() {
-    //   return this.wsService.listen('cliente');
-    // }
 
     focusBuscar(nombre: string) {
     // focus en la lista de usuarios del mensajesComponent.html

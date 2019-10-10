@@ -17,13 +17,13 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
   textoUser = '';
   usuariosSubscription: Subscription;
-  // salasSubscription: Subscription;
+  salasSubscription: Subscription;
   elemento: HTMLElement;
   usuarios: any[] = [];
   usuario: Usuario ;
   usuariosala: Usuario ;
   nombre: string;
-  sala: string;
+  sala: string = this._usuarioService.usuario.sala;
   salas: any;
   img: string;
   cargando: boolean = true;
@@ -44,39 +44,32 @@ export class MensajesComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit() {
-    // this.salas = this._chatService.getSalasActivas();
-    // console.log('salas ng on init', this.salas);
+    this.salas = this._chatService.getSalasActivas();
     this.nombre = this._usuarioService.usuario.nombre;
-    console.log('this.nombre. mens.comp', this.nombre);
     this.sala = this._usuarioService.usuario.sala;
     this.img = this._usuarioService.usuario.img;
     this.usuariosala = this._usuarioService.usuario;
-    console.log('usuarioenMensComp', this.usuariosala);
 
     this._wsService.entrarChat(this.nombre, this.sala, this.img);
 
     this.elemento = document.getElementById('divUsuarios');
-
-    this._chatService.emitirUsuariosActivos(this.sala);
-    this.usuariosSubscription = this._chatService.getUsuariosActivos()
-          .subscribe( (respu: Usuario[]= []) => {
-            this.usuarios = respu;
-            console.log('usuarios en mens.comp', this.usuarios);
-          } );
 
     // this._chatService.emitirSalasActivas();
     // this.salasSubscription = this._chatService.getSalasActivas()
     //       .subscribe((respu: []) => {
     //       this.salas = respu;
     //       });
-   //  let cliente = this._chatService.getCliente();
-// console.log('cliente..', cliente );
 
+    this._chatService.emitirUsuariosActivos(this.sala);
+    this.usuariosSubscription = this._chatService.getUsuariosActivos()
+          .subscribe( (respu: Usuario[]= []) => {
+            this.usuarios = respu;
+            console.log('usuarios', this.usuarios);
+          } );
   }
 
   ngOnDestroy() {
-   this.usuariosSubscription.unsubscribe();
-   // this.salasSubscription.unsubscribe();
+  //  this.usuariosSubscription.unsubscribe();
    }
 
 
@@ -102,7 +95,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
         return;
       }
       console.log('this.usuariosala', this.usuariosala);
-      this._usuarioService.seleccionSala({ usuario: this.usuariosala, sala: f.value.sala })
+      this._usuarioService.seleccionSala( this.usuariosala, f.value.sala)
             .subscribe( (sala: any) => {
               this.sala = sala;
               console.log('sañla:', this.sala);
