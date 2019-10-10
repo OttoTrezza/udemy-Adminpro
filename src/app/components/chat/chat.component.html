@@ -6,7 +6,8 @@
                 <div class="chat-main-box">
 
                     <div class="chat-right-aside">
-                        <div class="chat-rbox">
+
+                        <div class="chat-rbox" width="850" height="700" scrolling="auto">
                             <div *ngFor="let msg of mensajes">
                                 <ul class="chat-list p-20" id="divChatbox">
 
@@ -54,7 +55,7 @@
 
     </div>
 </div>
-<div class="row-3">
+<div class="footerInput">
     <div class="card">
         <div class="card-body-InputChat">
             <form (ngSubmit)="enviar()">

@@ -68,6 +68,7 @@ chat application Page
         .chat-rbox {
             height: auto;
             position: relative;
+            overflow: scroll;
         }
         .chat-list {
             max-height: none;

@@ -1,17 +1,22 @@
 <div class="row">
     <h1>
-        Sala:{{sala}}
-        <select [(ngModel)]="sala" name="sala" class="form-control" autofocus="true">
+        Nombre: {{nombre}} || Sala:{{sala}}
+        <form #f="ngForm" (ngSubmit)="seleccionSala(f)">
 
+            <div class="form-group">
+                <label>Sala</label>
+                <select (change)="cambioSala( $event.target.value )" [(ngModel)]="sala" name="sala" class="form-control" required>
+                      <option value="">Selecione la sala</option>
+                      <option *ngFor="let usuario of usuarios" [value]="sala">{{usuario.sala}}</option>
+                    </select>
+            </div>
 
-            <!-- <option input #salaSelected type="string" name="value1" (ngModelChange)="onChanges($event)" selected>{{value1}}</option> -->
-            <option value1>value1</option>
-            <!-- <option input #salaSelected type="string" name="value2" (ngModelChange)="onChanges($event)" selected>{{value2}}</option> -->
-            <option value2>value2</option>
-            <!-- <option input #salaSelected type="string" name="value3" (ngModelChange)="onChanges($event)" selected>{{value3}}</option>     -->
-            <option value3>value3</option>
-        </select>
-        <!-- <small> wsService.usuario.sala </small> -->
+            <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+                  Guardar
+                <i class="fa fa-save"></i>
+                </button>
+            <!-- <a routerLink="/medicos" class="btn btn-inverse waves-effect waves-light">Cancelar</a> -->
+        </form>
     </h1>
 </div>
 <button class="btn btn-danger" (click)="salir()">   
@@ -71,7 +76,7 @@
             </div>
         </div>
     </div>
-    <footer class="footer">
+    <div class="footerInput">
         Super Chat - Ignacio Trezza
-    </footer>
+    </div>
 </div>

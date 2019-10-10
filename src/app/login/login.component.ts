@@ -60,7 +60,7 @@ attachSignin( element ) {
   let token = googleUser.getAuthResponse().id_token;
   // console.log(this._usuarioService.loginGoogle( token ));
   this._usuarioService.loginGoogle( token )
-              .subscribe( () => window.location.href = '#/dashboard' );
+              .subscribe( () => window.location.href = '#/*/dashboard' );
 
  });
 }
@@ -71,7 +71,7 @@ attachSignin( element ) {
     }
    let usuario = new Usuario(null, forma.value.email, forma.value.password);
     this._usuarioService.login(usuario, forma.value.recuerdame)
-    .subscribe( correcto => this.router.navigate(['/dashboard']) );
+    .subscribe( correcto => this.router.navigate(['/*/dashboard']) );
   }
 
 }

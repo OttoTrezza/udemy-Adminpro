@@ -4,13 +4,15 @@ import { Usuario } from '../../models/usuario.model';
 
 // import { Router } from '@angular/router';
 import { UsuarioService } from '../usuario/usuario.service';
+import { Router } from '@angular/router';
+import { stringify } from 'querystring';
 
 
 
 
 @Injectable()
 export class WebsocketService {
-
+  public router: Router;
   public socketStatus = false;
   public usuario: Usuario = null;
   public usuarios: Usuario[] = null;
@@ -19,11 +21,14 @@ export class WebsocketService {
 
   constructor(
     private socket: Socket
-    // private _usuario: Usuario
-    // private router: Router
   ) {
      this.checkStatus();
      // this.cargarStorage();
+    //  const paylo = {
+    //   nombre: this._usuarioService.usuario.nombre,
+    //   sala: this._usuarioService.usuario.sala,
+    //   img: this._usuarioService.usuario.img
+    // };
     }
 
 
@@ -33,8 +38,10 @@ export class WebsocketService {
         console.log('Conectado al servidor');
         this.socketStatus = true;
         this.cargarStorage();
+//         this.socket.emit('connect', this.usuario, () => {
+// console.log('Conected');
+//         });
       });
-      // this.entrarChat( this.usuario._id, this.usuario.nombre, this.usuario.sala );
 
       this.socket.on('disconnect', () => {
         console.log('Desconectado del servidor');
@@ -44,20 +51,22 @@ export class WebsocketService {
         //  });
       });
     }
-
-
     emit( evento: string, payload?: any, callback?: Function ) {
 
       console.log('Emitiendo', evento);
-      // emit('EVENTO', payload, callback?)
+
       this.socket.emit( evento, payload, callback );
 
     }
     entrarChat( nombre: string, sala: string, img: string) {
 
       return new Promise(  (resolve, reject) => {
-
-        this.emit('entrarChat', { nombre, sala, img }, () => {
+        const payl = {
+          nombre: nombre,
+          sala: sala,
+          img: img
+        };
+        this.emit('entrarChat', payl, () => {
           // this.usuario = new Usuario( nombre, this._usuarioService.usuario.email, this._usuarioService.usuario.password, sala, );
           // this.usuario.sala = sala;
           // this.guardarStorage();
@@ -67,45 +76,14 @@ export class WebsocketService {
       });
     }
 
-    // loginWS(id: string, nombre: string, sala: string ) {
-
-    //   return new Promise(  (resolve, reject) => {
-
-    //     this.emit( 'connect', { id, nombre, sala }, resp => {
-
-    //       // this.usuario = new Usuario( nombre, this._usuarioService.usuario.email, this._usuarioService.usuario.password, sala, );
-    //       this.usuario.sala = sala;
-    //       this.guardarStorage();
-
-    //       resolve();
-
-    //     });
-
-    //   });
-
-      // const payload = {
-      //   nombre,
-      //   sala
-      // };
-      // this.socket.emit('connect', payload, (resp: any) => {
-
-      //   this.usuarios = resp;
-      //   console.log('this.usuarios', this.usuarios);
-      //   this.guardarStorage();
-
-      // });
-    // }
 
     logoutWS() {
       this.emit('disconnect', () => {});
       this.usuario = null;
       localStorage.removeItem('usuario');
 
-    const payload = {
-      nombre: 'sin-nombre'
-    };
-      this.emit('configurar-usuario', payload, () => {} );
-      // this.router.navigateByUrl('');
+      this.checkStatus();
+      this.router.navigate(['/*/dashboard']);
 
     }
 
@@ -121,8 +99,8 @@ export class WebsocketService {
 
       if ( localStorage.getItem('usuario') ) {
         this.usuario = JSON.parse( localStorage.getItem('usuario') );
+        console.log('Conectado.. entrando al chat..WSservice');
        this.entrarChat(this.usuario.nombre, this.usuario.sala, this.usuario.img);
-
       }
 
     }

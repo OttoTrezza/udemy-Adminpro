@@ -4,8 +4,8 @@
 $(function() {
 
     "use strict";
-
-    $('.chat-left-inner > .chatonline, .chat-rbox').perfectScrollbar();
+    // $('.chat-left-inner > .chatonline, .chat-rbox').perfectScrollbar();
+    $('.chat-left-inner > .chatonline').perfectScrollbar();
 
     var cht = function() {
         var topOffset = 450;

@@ -1,9 +1,11 @@
-import { Component, OnInit, OnDestroy, ViewChild, EventEmitter, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChatService } from '../../services/service.index';
 import { UsuarioService, ModalUploadService } from '../../services/service.index';
 import { Usuario } from '../../models/usuario.model';
 import { WebsocketService } from '../../services/service.index';
 import { Subscription } from 'rxjs';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-mensajes',
@@ -12,24 +14,18 @@ import { Subscription } from 'rxjs';
 })
 
 export class MensajesComponent implements OnInit, OnDestroy {
-//  @ViewChild('salaSelected', {static: false}) salaSelected: ElementRef;
 
-//  @Input('value1') value1: string = 'cargando sala';
-//  @Input('value2') value2: string = 'cargando sala';
-//  @Input('value3') value3: string = 'cargando sala';
-  // divUsuarios = $('#divUsuarios');
   textoUser = '';
   usuariosSubscription: Subscription;
+  salasSubscription: Subscription;
   elemento: HTMLElement;
   usuarios: any[] = [];
   usuario: Usuario ;
   usuariosala: Usuario ;
   nombre: string;
-  sala: string = this._usuarioService.usuario.sala;
+  sala: string;
   salas: any;
-  value2: string;
-  value1: string;
-  value3: string;
+  img: string;
   cargando: boolean = true;
   totalRegistros: number = 0;
 
@@ -38,103 +34,55 @@ export class MensajesComponent implements OnInit, OnDestroy {
     public _chatService: ChatService,
     public _usuarioService: UsuarioService,
     public _modalUploadService: ModalUploadService,
-    public _wsService: WebsocketService
-  ) { }
+    public _wsService: WebsocketService,
+    public router: Router,
+    public activatedRoute: ActivatedRoute
+  ) {
+    activatedRoute.params.subscribe( params => {
+    let id = params['id'];
+    });
+   }
 
   ngOnInit() {
-    let salasf = this._usuarioService.obtenerSalas('salas');
-    this.salas = salasf;
-    console.log('this.salas', this.salas);
-    this.value1 = 'Juegos';
-    this.value2 = 'Vacaciones';
-    this.value3 = 'dispersa';
-    console.log('salasf', salasf);
-    this.elemento = document.getElementById('divUsuarios');
-    this._chatService.emitirUsuariosActivos();
-   this.usuariosSubscription = this._chatService.getUsuariosActivos()
-          .subscribe( (respu: Usuario[]= []) => {
-            this.usuarios = respu;
-            console.log('usuarios', this.usuarios);
-          } );
-
+    this._chatService.getSalasActivas();
+    this.salasSubscription = this._chatService.getSalasActivas()
+    .subscribe( (respu: any ) => {
+      this.salas = respu;
+      console.log('salasNGONINIT', this.salas);
+    } );
     this.nombre = this._usuarioService.usuario.nombre;
     this.sala = this._usuarioService.usuario.sala;
+    this.img = this._usuarioService.usuario.img;
     this.usuariosala = this._usuarioService.usuario;
-// ** TO DO THING...
-// HACER UNA LISTA CON SALAS POSIBLES
-// ENCAPSULAR VALUE1/2/3 EN ESA LISTA
-// EXPORTAR LOS VALORES AL HTML
 
-// CREAR LAS POSIBILIDAD DE CREAR UNA SALA NUEVA
-// QUE DE HECHO SE HACE CUANDO SE SELECCIONA A UN CLIENTE EN PARTICULAR...
-// CREA UNA SALA "PRIVADA", PERO TAMBIEN QUIERO CREAR SALAS "PUBLICAS".. Y NO HAY HTML PARA ESO TODAVIA!
+    this._wsService.entrarChat(this.nombre, this.sala, this.img);
 
+    this.elemento = document.getElementById('divUsuarios');
 
-    // if (this.sala === this.value1) {
+    this._chatService.emitirUsuariosActivos(this.sala);
+    this.usuariosSubscription = this._chatService.getUsuariosActivos()
+          .subscribe( (respu: Usuario[]= []) => {
+            this.usuarios = respu;
+            console.log('usuarios en mens.comp', this.usuarios);
+          } );
 
-    //   this.usuariosala = this._usuarioService.usuario;
-    //   this.usuariosala.sala = this.value1;
-    //   this._usuarioService.actualizarSala(this.usuariosala);
-    // } else {
-    //   this.sala1 = false;
-    // }
+    // this._chatService.emitirSalasActivas();
+    // this.salasSubscription = this._chatService.getSalasActivas()
+    //       .subscribe((respu: []) => {
+    //       this.salas = respu;
+    //       });
+    // let cliente = this._chatService.getCliente();
+// console.log('cliente..', cliente );
 
-    // if (this.sala === this.value2) {
-
-    //   this.usuariosala = this._usuarioService.usuario;
-    //   this.usuariosala.sala = this.value2;
-    // } else {
-    //   this.sala2 = false;
-    // }
-
-    // if (this.sala === this.value3) {
-
-    //   this.usuariosala = this._usuarioService.usuario;
-    //   this.usuariosala.sala = this.value3;
-    // } else {
-    //   this.sala3 = false;
-    // }
-    // this.usuarios.push(this._usuarioService.usuario);
-
-   // this.elemento = document.getElementById('chat-usuarios');
-    // this.usuariosSubscription = this._chatService.getUsuariosActivos()
-    //  .subscribe( (usuarios1: Usuario[]) => {
-    //    this.usuarios = usuarios1;
-    //    console.log('cargarusuarios', usuarios1);
-    //  });
-
-    //  this._modalUploadService.notificacion
-    //       .subscribe( () => this._chatService.getUsuariosActivos() );
   }
 
   ngOnDestroy() {
-  //  this.usuariosSubscription.unsubscribe();
+   this.usuariosSubscription.unsubscribe();
+   this.salasSubscription.unsubscribe();
    }
 
-  onChanges( newValue: string ) {
 
-    // let elemHTML: any = document.getElementsByName('progreso')[0];
-
-    // console.log( this.txtProgress );
-
-    if ( newValue === this.value1 ) {
-      this.sala = newValue;
-      this.usuariosala.sala = this.value1;
-      this._usuarioService.actualizarSala(this.usuariosala);
-
-    } else if ( newValue === this.value2 ) {
-      this.sala = newValue;
-      this.usuariosala.sala = this.value2;
-
-    } else if (newValue === this.value3 ) {
-      this.sala = newValue;
-      this.usuariosala.sala = this.value3;
-    }
-    this._usuarioService.actualizarSala(this.usuariosala);
-
-    // elemHTML.value = this.progreso;
-   // this.salaSelected.nativeElement.value = this.sala;
-  }
+      // this._usuarioService.actualizarSala(this.usuariosala);
   mostrarModal( id: string) {
     this._modalUploadService.mostrarModal( 'usuarios1', id );
   }
@@ -149,6 +97,41 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
   }
 
+    seleccionSala(f: NgForm) {
+      console.log( f.value );
+
+      if ( !f.value ) {
+        return;
+      }
+      console.log('this.usuariosala', this.usuariosala);
+      this._usuarioService.seleccionSala( this.usuariosala, f.value)
+            .subscribe( (sala: any) => {
+              this.sala = sala;
+              console.log('sañla:', this.sala);
+            });
+
+  }
+  cambioSala( sala: string ) {
+    console.log('Usuarios de sala:', sala );
+    this._chatService.emitirUsuariosActivos(sala);
+    this.usuariosSubscription = this._chatService.getUsuariosActivos()
+          .subscribe( (respu: Usuario[]= []) => {
+            this.usuarios = respu;
+            console.log('usuarios', this.usuarios);
+          } );
+
+  }
+
+
+// obtenerUsuario( id: string ) {
+//   this._usuarioService.obtenerUsuario( id )
+//         .subscribe( (usuario: Usuario) => {
+//           console.log('obtUsu:', usuario);
+//        //   this.usuario = usuario;
+//        //  this.usuario.sala = usuario.sala;
+//           // this.cambioSala( this.usuario.sala);
+//         });
+//   }
    salir() {
    this._chatService.logoutChatS();
    }
@@ -156,3 +139,11 @@ export class MensajesComponent implements OnInit, OnDestroy {
 }
 
 
+// ** TO DO THING...
+// HACER UNA LISTA CON SALAS POSIBLES
+// ENCAPSULAR VALUE1/2/3 EN ESA LISTA
+// EXPORTAR LOS VALORES AL HTML
+
+// CREAR LAS POSIBILIDAD DE CREAR UNA SALA NUEVA
+// QUE DE HECHO SE HACE CUANDO SE SELECCIONA A UN CLIENTE EN PARTICULAR...
+// CREA UNA SALA "PRIVADA", PERO TAMBIEN QUIERO CREAR SALAS "PUBLICAS".. Y NO HAY HTML PARA ESO TODAVIA!
