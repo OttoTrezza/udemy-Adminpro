@@ -29,7 +29,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 para levantarlo...
 ng serve -o --port 4201
 
-*****/////////
+*****////////
 LIST TO DO THINGS....
 
 Make the list user visualization on mensajes.html, be showed by sala! 
