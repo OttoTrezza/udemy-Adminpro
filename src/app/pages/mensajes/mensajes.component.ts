@@ -44,7 +44,12 @@ export class MensajesComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit() {
-    this.salas = this._chatService.getSalasActivas();
+    this._chatService.getSalasActivas();
+    this.salasSubscription = this._chatService.getSalasActivas()
+    .subscribe( (respu: any) => {
+      this.salas = respu;
+      console.log('salas', this.salas);
+    } );
     this.nombre = this._usuarioService.usuario.nombre;
     this.sala = this._usuarioService.usuario.sala;
     this.img = this._usuarioService.usuario.img;
