@@ -17,7 +17,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
   textoUser = '';
   usuariosSubscription: Subscription;
-  salasSubscription: Subscription;
+  // salasSubscription: Subscription;
   elemento: HTMLElement;
   usuarios: any[] = [];
   usuario: Usuario ;
@@ -47,9 +47,11 @@ export class MensajesComponent implements OnInit, OnDestroy {
     // this.salas = this._chatService.getSalasActivas();
     // console.log('salas ng on init', this.salas);
     this.nombre = this._usuarioService.usuario.nombre;
+    console.log('this.nombre. mens.comp', this.nombre);
     this.sala = this._usuarioService.usuario.sala;
     this.img = this._usuarioService.usuario.img;
     this.usuariosala = this._usuarioService.usuario;
+    console.log('usuarioenMensComp', this.usuariosala);
 
     this._wsService.entrarChat(this.nombre, this.sala, this.img);
 

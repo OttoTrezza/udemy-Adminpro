@@ -19,12 +19,12 @@ sala: string;
     sendMessage( mensaje: string, callback: any ) {
       this.name = this.wsService.getUsuario().nombre;
       this.img = this.wsService.getUsuario().img;
-      this.sala = this.wsService.getUsuario().sala;
+      // this.sala = this.wsService.getUsuario().sala;
       const payload = {
         de: this.name,
         cuerpo: mensaje,
         img: this.img,
-        sala: this.sala
+        // sala: this.sala
         };
       this.wsService.emit( 'mensaje' , payload, (resp: any) => {
         callback(resp);
