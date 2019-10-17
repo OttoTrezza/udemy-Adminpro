@@ -32,4 +32,4 @@ ng serve -o --port 4201
 *****/////////
 LIST TO DO THINGS....
 
-Make the list user visualization on mensajes.html, be showed by sala ! 
+Make the list user visualization on mensajes.html, be showed by sala! 
