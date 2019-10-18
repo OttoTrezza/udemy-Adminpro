@@ -23,7 +23,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
   usuario: Usuario ;
   usuariosala: Usuario ;
   nombre: string;
-  sala: string = this._usuarioService.usuario.sala;
+  sala: string;
   salas: any;
   img: string;
   cargando: boolean = true;
@@ -44,7 +44,12 @@ export class MensajesComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit() {
-    this.salas = this._chatService.getSalasActivas();
+    this._chatService.getSalasActivas();
+    this.salasSubscription = this._chatService.getSalasActivas()
+    .subscribe( (respu: any ) => {
+      this.salas = respu;
+      console.log('salasNGONINIT', this.salas);
+    } );
     this.nombre = this._usuarioService.usuario.nombre;
     this.sala = this._usuarioService.usuario.sala;
     this.img = this._usuarioService.usuario.img;
@@ -54,22 +59,26 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
     this.elemento = document.getElementById('divUsuarios');
 
+    this._chatService.emitirUsuariosActivos(this.sala);
+    this.usuariosSubscription = this._chatService.getUsuariosActivos()
+          .subscribe( (respu: Usuario[]= []) => {
+            this.usuarios = respu;
+            console.log('usuarios en mens.comp', this.usuarios);
+          } );
+
     // this._chatService.emitirSalasActivas();
     // this.salasSubscription = this._chatService.getSalasActivas()
     //       .subscribe((respu: []) => {
     //       this.salas = respu;
     //       });
+    // let cliente = this._chatService.getCliente();
+// console.log('cliente..', cliente );
 
-    this._chatService.emitirUsuariosActivos(this.sala);
-    this.usuariosSubscription = this._chatService.getUsuariosActivos()
-          .subscribe( (respu: Usuario[]= []) => {
-            this.usuarios = respu;
-            console.log('usuarios', this.usuarios);
-          } );
   }
 
   ngOnDestroy() {
-  //  this.usuariosSubscription.unsubscribe();
+   this.usuariosSubscription.unsubscribe();
+   this.salasSubscription.unsubscribe();
    }
 
 
@@ -95,7 +104,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
         return;
       }
       console.log('this.usuariosala', this.usuariosala);
-      this._usuarioService.seleccionSala( this.usuariosala, f.value.sala)
+      this._usuarioService.seleccionSala( this.usuariosala, f.value)
             .subscribe( (sala: any) => {
               this.sala = sala;
               console.log('sañla:', this.sala);
