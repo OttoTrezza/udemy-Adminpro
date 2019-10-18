@@ -45,13 +45,13 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._chatService.getSalasActivas();
-    this.salasSubscription = this._chatService.getSalasActivas()
-    .subscribe( (respu: any ) => {
-      this.salas = respu;
-      console.log('salasNGONINIT', this.salas);
-    } );
-    this.nombre = this._usuarioService.usuario.nombre;
-    this.sala = this._usuarioService.usuario.sala;
+    // this.salasSubscription = this._chatService.getSalasActivas()
+    // .subscribe( (respu: any ) => {
+    //   this.salas = respu;
+    //   console.log('salasNGONINIT', this.salas);
+    // } );
+    this.nombre = 'juan'; // this._usuarioService.usuario.nombre;
+    this.sala = 'juegos'; // this._usuarioService.usuario.sala;
     this.img = this._usuarioService.usuario.img;
     this.usuariosala = this._usuarioService.usuario;
 
@@ -60,11 +60,11 @@ export class MensajesComponent implements OnInit, OnDestroy {
     this.elemento = document.getElementById('divUsuarios');
 
     this._chatService.emitirUsuariosActivos(this.sala);
-    this.usuariosSubscription = this._chatService.getUsuariosActivos()
-          .subscribe( (respu: Usuario[]= []) => {
-            this.usuarios = respu;
-            console.log('usuarios en mens.comp', this.usuarios);
-          } );
+    // this.usuariosSubscription = this._chatService.getUsuariosActivos()
+    //       .subscribe( (respu: Usuario[]= []) => {
+    //         this.usuarios = respu;
+    //         console.log('usuarios en mens.comp', this.usuarios);
+    //       } );
 
     // this._chatService.emitirSalasActivas();
     // this.salasSubscription = this._chatService.getSalasActivas()
@@ -114,11 +114,11 @@ export class MensajesComponent implements OnInit, OnDestroy {
   cambioSala( sala: string ) {
     console.log('Usuarios de sala:', sala );
     this._chatService.emitirUsuariosActivos(sala);
-    this.usuariosSubscription = this._chatService.getUsuariosActivos()
-          .subscribe( (respu: Usuario[]= []) => {
-            this.usuarios = respu;
-            console.log('usuarios', this.usuarios);
-          } );
+    // this.usuariosSubscription = this._chatService.getUsuariosActivos()
+    //       .subscribe( (respu: Usuario[]= []) => {
+    //         this.usuarios = respu;
+    //         console.log('usuarios', this.usuarios);
+    //       } );
 
   }
 
