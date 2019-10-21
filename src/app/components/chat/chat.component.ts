@@ -3,7 +3,7 @@ import { ChatService, ModalUploadService} from '../../services/service.index';
 
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { Usuario } from '../../models/usuario.model';
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 // import * as $ from 'jquery';
 // var params = new URLSearchParams(window.location.search);
 
@@ -37,8 +37,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     this.elemento = document.getElementById('divChatbox');
 
-    this.mensajesSubscription = this._chatService.getMessages()
-     .subscribe( (msg: any) => {
+    this._chatService.getMessages().subscribe( (msg: any) => {
        console.log('En Subscribe');
        let de: string = msg.de; // let de: string = msg.de;
        let cuerpo: string = msg.cuerpo;

@@ -47,7 +47,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._chatService.getSalasActivas();
-    this.salasSubscription = this._chatService.getSalasActivas()
+    this._chatService.getSalasActivas()
     .subscribe( (respu: any ) => {
       this.salas = respu;
       console.log('salasNGONINIT', this.salas);
@@ -62,14 +62,14 @@ export class MensajesComponent implements OnInit, OnDestroy {
     this.elemento = document.getElementById('divUsuarios');
 
     this._chatService.emitirUsuariosActivos(this.sala);
-    this.usuariosSubscription = this._chatService.getUsuariosActivos()
+    this._chatService.getUsuariosActivos()
           .subscribe( (respu: Usuario[]= []) => {
             this.usuarios = respu;
             console.log('usuarios en mens.comp', this.usuarios);
           } );
 
     this._chatService.emitirSalasActivas();
-    this.salasSubscription = this._chatService.getSalasActivas()
+    this._chatService.getSalasActivas()
           .subscribe((respu: []) => {
           this.salas = respu;
           });
@@ -116,7 +116,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
   cambioSala( sala: string ) {
     console.log('Usuarios de sala:', sala );
     this._chatService.emitirUsuariosActivos(sala);
-    this.usuariosSubscription = this._chatService.getUsuariosActivos()
+    this._chatService.getUsuariosActivos()
           .subscribe( (respu: Usuario[]= []) => {
             this.usuarios = respu;
             console.log('usuarios', this.usuarios);

@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { WebsocketService } from '../websocket/websocket.service';
 import { HttpClient } from '@angular/common/http';
-// import { URL_SERVICIOS } from '../../config/config';
-import swal from 'sweetalert';
-import { Observable } from 'rxjs/Observable';
-import { map } from 'rxjs-compat/operator/map';
 
 @Injectable()
 export class ChatService {
@@ -46,7 +42,7 @@ img: string;
         return this.wsService.listen( 'salas-activas' );
     }
 
-    focusBuscar(nombre: string) {
+    focusBuscar() {
     // focus en la lista de usuarios del mensajesComponent.html
     }
 
@@ -68,7 +64,7 @@ img: string;
         }
       });
     }
-    loginChatS(nombre: string, sala: string, img: string) {
+    loginChatS() {
      // this.wsService.entrarChat(nombre, sala, img);
     }
     logoutChatS() {
