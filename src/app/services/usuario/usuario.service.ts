@@ -62,12 +62,12 @@ export class UsuarioService {
       this.token = localStorage.getItem('token');
       this.usuario = JSON.parse( localStorage.getItem('usuario'));
       this.menu = JSON.parse( localStorage.getItem('menu'));
-      this.sala = JSON.parse( localStorage.getItem('sala'));
+     //  this.sala = JSON.parse( localStorage.getItem('sala'));
     } else {
         this.token = '';
         this.usuario = null;
         this.menu = [];
-        this.sala = '';
+      //  this.sala = '';
       }
   }
 
