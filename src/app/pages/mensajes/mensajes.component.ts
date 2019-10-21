@@ -3,9 +3,11 @@ import { ChatService } from '../../services/service.index';
 import { UsuarioService, ModalUploadService } from '../../services/service.index';
 import { Usuario } from '../../models/usuario.model';
 import { WebsocketService } from '../../services/service.index';
-import { Subscription } from 'rxjs';
+
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import {Subscription} from 'rxjs';
+
 
 @Component({
   selector: 'app-mensajes',
@@ -16,8 +18,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class MensajesComponent implements OnInit, OnDestroy {
 
   textoUser = '';
-  usuariosSubscription: Subscription;
-  salasSubscription: Subscription;
+ // usuariosSubscription: Subscription;
+//  salasSubscription: Subscription;
   elemento: HTMLElement;
   usuarios: any[] = [];
   usuario: Usuario ;
@@ -60,11 +62,11 @@ export class MensajesComponent implements OnInit, OnDestroy {
     this.elemento = document.getElementById('divUsuarios');
 
     this._chatService.emitirUsuariosActivos(this.sala);
-    // this.usuariosSubscription = this._chatService.getUsuariosActivos()
-    //       .subscribe( (respu: Usuario[]= []) => {
-    //         this.usuarios = respu;
-    //         console.log('usuarios en mens.comp', this.usuarios);
-    //       } );
+   // this.usuariosSubscription = this._chatService.getUsuariosActivos()
+     //     .subscribe( (respu: Usuario[]= []) => {
+           // this.usuarios = this.usuariosala;
+            console.log('usuarios en mens.comp', this.usuarios);
+         // } );
 
     // this._chatService.emitirSalasActivas();
     // this.salasSubscription = this._chatService.getSalasActivas()
@@ -77,8 +79,8 @@ export class MensajesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-   this.usuariosSubscription.unsubscribe();
-   this.salasSubscription.unsubscribe();
+ //  this.usuariosSubscription.unsubscribe();
+ //  this.salasSubscription.unsubscribe();
    }
 
 

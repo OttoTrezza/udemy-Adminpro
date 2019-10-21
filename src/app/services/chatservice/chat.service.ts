@@ -69,7 +69,7 @@ img: string;
       });
     }
     loginChatS(nombre: string, sala: string, img: string) {
-      this.wsService.entrarChat(nombre, sala, img);
+     // this.wsService.entrarChat(nombre, sala, img);
     }
     logoutChatS() {
       this.wsService.logoutWS();
