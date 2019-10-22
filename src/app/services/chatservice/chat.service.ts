@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { WebsocketService } from '../websocket/websocket.service';
 import { HttpClient } from '@angular/common/http';
 // import { URL_SERVICIOS } from '../../config/config';
-import swal from 'sweetalert';
-import { Observable } from 'rxjs/Observable';
+// import swal from 'sweetalert';
+// import { Observable } from 'rxjs';
 import { map } from 'rxjs-compat/operator/map';
 
 @Injectable()

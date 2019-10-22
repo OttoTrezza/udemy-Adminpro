@@ -3,11 +3,14 @@ import { Usuario } from '../../models/usuario.model';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../../config/config';
 import { Router } from '@angular/router';
+
+
+
+import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
+import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
-import { Observable } from 'rxjs/Observable';
 import swal from 'sweetalert';
 import { WebsocketService } from '../websocket/websocket.service';
 
@@ -62,12 +65,12 @@ export class UsuarioService {
       this.token = localStorage.getItem('token');
       this.usuario = JSON.parse( localStorage.getItem('usuario'));
       this.menu = JSON.parse( localStorage.getItem('menu'));
-      this.sala = JSON.parse( localStorage.getItem('sala'));
+     //  this.sala = JSON.parse( localStorage.getItem('sala'));
     } else {
         this.token = '';
         this.usuario = null;
         this.menu = [];
-        this.sala = '';
+      //  this.sala = '';
       }
   }
 

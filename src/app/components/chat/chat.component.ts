@@ -3,7 +3,7 @@ import { ChatService, ModalUploadService} from '../../services/service.index';
 
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { Usuario } from '../../models/usuario.model';
-import {Subscription} from 'rxjs';
+// import { Subscription } from 'rxjs';
 // import * as $ from 'jquery';
 // var params = new URLSearchParams(window.location.search);
 
@@ -18,7 +18,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   textoUser = '';
   texto = '';
-  mensajesSubscription: Subscription;
+  // mensajesSubscription: Subscription;
   elemento: HTMLElement;
   usuario: Usuario;
   mensajes: any[] = [];
@@ -37,27 +37,26 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     this.elemento = document.getElementById('divChatbox');
 
-    // this.mensajesSubscription = this._chatService.getMessages()
-    //  .subscribe( (msg: any) => {
+    this._chatService.getMessages().subscribe( (msg: any) => {
        console.log('En Subscribe');
-       let de: string = 'msg.de'; // let de: string = msg.de;
-       let cuerpo: string = 'msg.cuerpo';
-       let fecha = 'new Date(msg.fecha)';
-       let img: string = 'msg.img';
-     //  if ( msg.de === this._usuarioService.usuario.nombre) {
-     //   de = 'yo';
-    //   }
+       let de: string = msg.de; // let de: string = msg.de;
+       let cuerpo: string = msg.cuerpo;
+       let fecha = new Date(msg.fecha);
+       let img: string = msg.img;
+      if ( msg.de === this._usuarioService.usuario.nombre) {
+       de = 'yo';
+      }
       //  if ( msg.de === 'Administrador') {
       //   this.adminClass = 'box bg-light-danger';
       //  }
 
-      //  let hora = fecha.getHours() + ':' + fecha.getMinutes();
-      //  this.msg = {
-      //    de,
-      //    cuerpo,
-      //    hora,
-      //    img
-      //  };
+       let hora = fecha.getHours() + ':' + fecha.getMinutes();
+       this.msg = {
+         de,
+         cuerpo,
+         hora,
+         img
+       };
 
     this.mensajes.push( this.msg );
     console.log('mensaje1', this.msg);
@@ -65,7 +64,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     // setTimeout(() => {
     //   this.elemento.scrollTop = this.elemento.scrollHeight;
     //   }, 50);
-    // });
+   });
 
      this._modalUploadService.notificacion
           .subscribe( resp => this._usuarioService.cargarUsuarios() );
@@ -74,7 +73,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
 }
   ngOnDestroy() {
-  // this.mensajesSubscription.unsubscribe();
+   // this.mensajesSubscription.unsubscribe();
   }
   mostrarModal( id: string) {
     this._modalUploadService.mostrarModal( 'usuarios', id );
