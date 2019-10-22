@@ -65,12 +65,12 @@ export class UsuarioService {
       this.token = localStorage.getItem('token');
       this.usuario = JSON.parse( localStorage.getItem('usuario'));
       this.menu = JSON.parse( localStorage.getItem('menu'));
-     //  this.sala = JSON.parse( localStorage.getItem('sala'));
+      this.sala = JSON.parse( localStorage.getItem('sala'));
     } else {
         this.token = '';
         this.usuario = null;
         this.menu = [];
-      //  this.sala = '';
+        this.sala = '';
       }
   }
 
@@ -195,13 +195,13 @@ export class UsuarioService {
                    this.guardarStorage( usuarioDB._id, this.token, usuarioDB, this.menu, this.sala );
                 }
                 swal('Usuario actualizado', usuario.nombre, 'success');
-                return true;
+                return this.sala;
               });
   }
   seleccionSala( usuario: Usuario, sala: string) {
     let url = URL_SERVICIOS + 'usuario/' + usuario._id;
     url += '?token=' + this.token;
-
+usuario.sala = sala;
     return this.http.put( url, usuario)
               .map((resp: any) => {
 
