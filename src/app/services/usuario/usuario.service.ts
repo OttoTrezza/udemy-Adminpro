@@ -82,18 +82,18 @@ export class UsuarioService {
 
 
 
-  guardarStorage( id: string, token: string, usuario: Usuario, menu: any, sala: string) {
+  guardarStorage( id: string, token: string, usuario: Usuario, menu: any) {
 
     localStorage.setItem('id', id );
     localStorage.setItem('token', token );
     localStorage.setItem('usuario', JSON.stringify(usuario) );
     localStorage.setItem('menu', JSON.stringify(menu) );
-    localStorage.setItem('sala', JSON.stringify(sala) );
+    // localStorage.setItem('sala', JSON.stringify(sala) );
 
     this.usuario = usuario;
     this.token = token;
     this.menu = menu;
-    this.sala = sala;
+    // this.sala = sala;
   }
 
   logout() {
@@ -101,11 +101,11 @@ export class UsuarioService {
     this.usuario = null;
     this.token = '';
     this.menu = [];
-    this.sala = '';
+    // this.sala = '';
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
     localStorage.removeItem('menu');
-    localStorage.removeItem('sala');
+    // localStorage.removeItem('sala');
 
     this.router.navigate(['login']);
   }
@@ -116,7 +116,7 @@ export class UsuarioService {
 
     return this.http.post( url, { token } )
                 .map( (resp: any) => {
-                  this.guardarStorage( resp.id, resp.token, resp.usuario, resp.menu, resp.sala );
+                  this.guardarStorage( resp.id, resp.token, resp.usuario, resp.menu );
                   // console.log(resp);
 
                   return true;
@@ -137,7 +137,7 @@ export class UsuarioService {
     let url = URL_SERVICIOS + 'login';
     return this.http.post( url, usuario )
                   .map( (resp: any) => {
-                     this.guardarStorage( resp.id, resp.token, resp.usuario, resp.menu, resp.sala );
+                     this.guardarStorage( resp.id, resp.token, resp.usuario, resp.menu );
                     return true;
                   })
                   .catch( err => {
@@ -192,7 +192,7 @@ export class UsuarioService {
 
                 if ( usuario._id === this.usuario._id) {
                    let usuarioDB: Usuario = resp.usuario;
-                   this.guardarStorage( usuarioDB._id, this.token, usuarioDB, this.menu, this.sala );
+                   this.guardarStorage( usuarioDB._id, this.token, usuarioDB, this.menu );
                 }
                 swal('Usuario actualizado', usuario.nombre, 'success');
                 return true;
@@ -208,7 +208,7 @@ usuario.sala = sala;
                 if ( usuario._id === this.usuario._id) {
                    let usuarioDB: Usuario = resp.usuario;
                    usuarioDB.sala = sala;
-                   this.guardarStorage( usuarioDB._id, this.token, usuarioDB, this.menu, this.sala );
+                   this.guardarStorage( usuarioDB._id, this.token, usuarioDB, this.menu );
                 }
                 console.log('Usuario actualizado(sala)', this.usuario.sala);
                 return sala;
@@ -233,7 +233,7 @@ usuario.sala = sala;
           .then( (resp: any ) => {
             this.usuario.img = resp.usuario.img;
             swal('Imagen Actualizada', this.usuario.nombre, 'success');
-            this.guardarStorage( id, this.token, this.usuario, this.menu, this.sala);
+            this.guardarStorage( id, this.token, this.usuario, this.menu);
           })
           .catch( resp => {
             console.log( resp );
