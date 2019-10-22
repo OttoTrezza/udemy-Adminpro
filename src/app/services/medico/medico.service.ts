@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../../config/config';
 import { UsuarioService } from '../usuario/usuario.service';
 import { Medico } from '../../models/medico.model';
+import 'rxjs/add/operator/map';
+
 // import { ImagenPipe } from '../../pipes/imagen.pipe';
 import swal from 'sweetalert';
 

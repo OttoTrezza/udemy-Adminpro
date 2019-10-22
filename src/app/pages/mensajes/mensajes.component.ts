@@ -6,7 +6,7 @@ import { WebsocketService } from '../../services/service.index';
 
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import {Subscription} from 'rxjs';
+// import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -18,8 +18,8 @@ import {Subscription} from 'rxjs';
 export class MensajesComponent implements OnInit, OnDestroy {
 
   textoUser = '';
-  usuariosSubscription: Subscription;
-  salasSubscription: Subscription;
+  // usuariosSubscription: Subscription;
+  // salasSubscription: Subscription;
   elemento: HTMLElement;
   usuarios: any[] = [];
   usuario: Usuario ;
@@ -79,8 +79,8 @@ export class MensajesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-   this.usuariosSubscription.unsubscribe();
-   this.salasSubscription.unsubscribe();
+   // this.usuariosSubscription.unsubscribe();
+   // this.salasSubscription.unsubscribe();
    }
 
 

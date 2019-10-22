@@ -3,7 +3,7 @@ import { ChatService, ModalUploadService} from '../../services/service.index';
 
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { Usuario } from '../../models/usuario.model';
-import { Subscription } from 'rxjs';
+// import { Subscription } from 'rxjs';
 // import * as $ from 'jquery';
 // var params = new URLSearchParams(window.location.search);
 
@@ -18,7 +18,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   textoUser = '';
   texto = '';
-  mensajesSubscription: Subscription;
+  // mensajesSubscription: Subscription;
   elemento: HTMLElement;
   usuario: Usuario;
   mensajes: any[] = [];
@@ -73,7 +73,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
 }
   ngOnDestroy() {
-   this.mensajesSubscription.unsubscribe();
+   // this.mensajesSubscription.unsubscribe();
   }
   mostrarModal( id: string) {
     this._modalUploadService.mostrarModal( 'usuarios', id );

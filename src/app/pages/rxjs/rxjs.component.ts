@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+
 import { map, filter } from 'rxjs/operators';
-import { Subscriber } from 'rxjs/Subscriber';
 import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+import { Subscriber } from 'rxjs/Subscriber';
 @Component({
   selector: 'app-rxjs',
   templateUrl: './rxjs.component.html',
@@ -15,9 +16,8 @@ export class RxjsComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.subscription = this.regresaObservable()
-      .subscribe (
-        numero => console.log('subs', numero ),
-        error => console.error('error en el obs', error),
+      .subscribe ( (numero: any) => console.log('subs', numero ),
+        (error: any) => console.error('error en el obs', error),
         () => console.log('El Observador termino')
       );
   }
