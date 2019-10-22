@@ -56,6 +56,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
     this.sala = this._usuarioService.usuario.sala;
     this.img = this._usuarioService.usuario.img;
     this.usuariosala = this._usuarioService.usuario;
+    console.log('mens.comp.', this.nombre, this.sala, this.img );
 
     this._wsService.entrarChat(this.nombre, this.sala, this.img);
 
