@@ -29,7 +29,7 @@
         "https-proxy-agent": "^3.0.0",
         "jquery": "^3.4.1",
         "ng2-charts": "^2.3.0",
-        "ngx-socket-io": "^2.1.1",
+        "ngx-socket-io": "^3.0.1",
         "rxjs": "^6.4.0",
         "rxjs-compat": "^6.3.2",
         "sweetalert": "^2.1.2",
