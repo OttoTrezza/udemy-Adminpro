@@ -195,7 +195,7 @@ export class UsuarioService {
                    this.guardarStorage( usuarioDB._id, this.token, usuarioDB, this.menu, this.sala );
                 }
                 swal('Usuario actualizado', usuario.nombre, 'success');
-                return this.sala;
+                return true;
               });
   }
   seleccionSala( usuario: Usuario, sala: string) {
@@ -211,7 +211,7 @@ usuario.sala = sala;
                    this.guardarStorage( usuarioDB._id, this.token, usuarioDB, this.menu, this.sala );
                 }
                 console.log('Usuario actualizado(sala)', this.usuario.sala);
-                return true;
+                return sala;
               });
   }
 

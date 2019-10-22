@@ -6,7 +6,7 @@ import { WebsocketService } from '../../services/service.index';
 
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
- import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 
 
 @Component({

@@ -3,7 +3,7 @@ import { WebsocketService } from '../websocket/websocket.service';
 import { HttpClient } from '@angular/common/http';
 // import { URL_SERVICIOS } from '../../config/config';
 // import swal from 'sweetalert';
-// import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs-compat/operator/map';
 
 @Injectable()
@@ -69,7 +69,7 @@ img: string;
       });
     }
     loginChatS(nombre: string, sala: string, img: string) {
-     // this.wsService.entrarChat(nombre, sala, img);
+     this.wsService.entrarChat(nombre, sala, img);
     }
     logoutChatS() {
       this.wsService.logoutWS();
