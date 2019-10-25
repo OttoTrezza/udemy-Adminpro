@@ -100,20 +100,20 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
   }
 
-    seleccionSala(f: NgForm) {
-      console.log( f.value );
+  seleccionSala(f: NgForm) {
+    console.log( 'fvalue', f.value );
 
-      if ( !f.value ) {
-        return;
-      }
-      console.log('this.usuariosala', this.usuariosala);
-      this._usuarioService.seleccionSala( this.usuariosala, f.value)
-            .subscribe( (sala: any) => {
-              this.sala = sala;
-              console.log('sañla:', this.sala);
-            });
+    if ( !f.value ) {
+      return;
+    }
+    console.log('this.usuariosala', this.usuariosala);
+    this._usuarioService.seleccionSala( this.usuariosala, f.value)
+          .subscribe( (sala: any) => {
+            this.sala = sala;
+            console.log('sañla:', this.sala);
+          });
 
-  }
+}
   cambioSala( sala: string ) {
     console.log('Usuarios de sala:', sala );
     this._chatService.emitirUsuariosActivos(sala);
