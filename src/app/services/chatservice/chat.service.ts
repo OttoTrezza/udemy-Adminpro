@@ -16,13 +16,13 @@ img: string;
 
     ) { }
 
-    sendMessage( mensaje: string, callback: any ) {
-      this.name = this.wsService.getUsuario().nombre;
-      this.img = this.wsService.getUsuario().img;
+    sendMessage( payl: any, callback: any ) {
+      this.name = payl.nombre;
+      this.img = payl.img;
       console.log('chatS.sendmessage name,img', this.name, this.img);
       const payload = {
         de: this.name,
-        cuerpo: mensaje,
+        cuerpo: payl.mensaje,
         img: this.img
         };
       this.wsService.emit( 'mensaje' , payload, (resp: any) => {

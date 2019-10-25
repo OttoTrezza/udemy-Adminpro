@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChatService, ModalUploadService} from '../../services/service.index';
-
+import { Subscription } from 'rxjs';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { Usuario } from '../../models/usuario.model';
-import { Subscription } from 'rxjs';
+
 // import * as $ from 'jquery';
 // var params = new URLSearchParams(window.location.search);
 
@@ -95,14 +95,18 @@ export class ChatComponent implements OnInit, OnDestroy {
 //         this.divChatbox.scrollTop(scrollHeight);
 //     }
 // }
-  enviar() {
+  enviar( usua: Usuario ) {
 
     if ( this.texto.trim().length === 0 ) {
    //   this.scrollBottom();
       return;
     }
-
-     this._chatService.sendMessage( this.texto , (resp: any) => {
+      const paylo = {
+        nombre: usua.nombre,
+        mensaje: this.texto,
+        img: usua.img
+      };
+     this._chatService.sendMessage( paylo , (resp: any) => {
        this.msg = resp;
        console.log('this.msg = ', this.msg);
    //    this.scrollBottom();
