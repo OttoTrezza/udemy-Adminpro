@@ -22,7 +22,7 @@ export class WebsocketService {
   constructor(
     private socket: Socket
   ) {
-     this.checkStatus();
+     // this.checkStatus();
      // this.cargarStorage();
     //  const paylo = {
     //   nombre: this._usuarioService.usuario.nombre,
@@ -38,9 +38,6 @@ export class WebsocketService {
         console.log('Conectado al servidor');
         this.socketStatus = true;
         this.cargarStorage();
-//         this.socket.emit('connect', this.usuario, () => {
-// console.log('Conected');
-//         });
       });
 
       this.socket.on('disconnect', () => {
@@ -69,7 +66,7 @@ export class WebsocketService {
         this.emit('entrarChat', payl, () => {
           // this.usuario = new Usuario( nombre, this._usuarioService.usuario.email, this._usuarioService.usuario.password, sala, );
           // this.usuario.sala = sala;
-          // this.guardarStorage();
+           this.guardarStorage();
         console.log('usuarios');
         });
           resolve();

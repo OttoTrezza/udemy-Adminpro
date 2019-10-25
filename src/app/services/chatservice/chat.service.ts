@@ -13,6 +13,7 @@ img: string;
   constructor(
     public wsService: WebsocketService,
     public http: HttpClient,
+
     ) { }
 
     sendMessage( mensaje: string, callback: any ) {
@@ -69,8 +70,8 @@ img: string;
         }
       });
      }
-    loginChatS(nombre: string, sala: string, img: string) {
-      this.wsService.entrarChat(nombre, sala, img);
+    loginChatS() {
+      this.wsService.checkStatus();
     }
     logoutChatS() {
       this.wsService.logoutWS();
