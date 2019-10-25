@@ -81,7 +81,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
    this.usuariosSubscription.unsubscribe();
-   // this.salasSubscription.unsubscribe();
+   this.salasSubscription.unsubscribe();
    }
 
 
