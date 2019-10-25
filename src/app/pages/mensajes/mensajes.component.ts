@@ -69,11 +69,11 @@ export class MensajesComponent implements OnInit, OnDestroy {
             console.log('usuarios en mens.comp', this.usuarios);
           } );
 
-    // this._chatService.emitirSalasActivas();  /*/*/* AGREGAR Y PROBAR
-    // this._chatService.getSalasActivas()
-    //       .subscribe((respu: []) => {
-    //       this.salas = respu;
-    //       });
+    this._chatService.emitirSalasActivas();
+    this.salasSubscription = this._chatService.getSalasActivas()
+          .subscribe((respu: []) => {
+          this.salas = respu;
+          });
     // let cliente = this._chatService.getCliente();
 // console.log('cliente..', cliente );
 
