@@ -18,7 +18,7 @@ img: string;
     sendMessage( mensaje: string, callback: any ) {
       this.name = this.wsService.getUsuario().nombre;
       this.img = this.wsService.getUsuario().img;
-      console.log('chatServ.sendMsg=name e img', this.name, this.img );
+      console.log('chatS.sendmessage name,img', this.name, this.img);
       const payload = {
         de: this.name,
         cuerpo: mensaje,
@@ -26,7 +26,7 @@ img: string;
         };
       this.wsService.emit( 'mensaje' , payload, (resp: any) => {
         callback(resp);
-       console.log('chatServ.emitMens=callback', resp);
+       // console.log(resp);
       });
       console.log('Mensaje', payload );
       }
@@ -68,9 +68,9 @@ img: string;
             console.log('Sin respuesta del servidor');
         }
       });
-    }
+     }
     loginChatS(nombre: string, sala: string, img: string) {
-     this.wsService.entrarChat(nombre, sala, img);
+      this.wsService.entrarChat(nombre, sala, img);
     }
     logoutChatS() {
       this.wsService.logoutWS();
