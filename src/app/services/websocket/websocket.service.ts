@@ -66,7 +66,7 @@ export class WebsocketService {
         this.emit('entrarChat', payl, () => {
           // this.usuario = new Usuario( nombre, this._usuarioService.usuario.email, this._usuarioService.usuario.password, sala, );
           // this.usuario.sala = sala;
-           this.guardarStorage();
+           // this.guardarStorage();
         console.log('usuarios');
         });
           resolve();
@@ -98,8 +98,11 @@ export class WebsocketService {
         this.usuario = JSON.parse( localStorage.getItem('usuario') );
         console.log('Conectado.. entrando al chat..WSservice');
        this.entrarChat(this.usuario.nombre, this.usuario.sala, this.usuario.img);
+      } else {
+        this.guardarStorage();
+        console.log('por guardar usuario');
+        this.entrarChat(this.usuario.nombre, this.usuario.sala, this.usuario.img);
       }
-
     }
 
     listen( evento: string ) {
