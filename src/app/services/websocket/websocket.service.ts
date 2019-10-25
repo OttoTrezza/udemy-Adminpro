@@ -80,7 +80,7 @@ export class WebsocketService {
       localStorage.removeItem('usuario');
 
       this.checkStatus();
-      this.router.navigate(['/*/dashboard']);
+      this.router.navigate(['/#/dashboard']);
 
     }
 
