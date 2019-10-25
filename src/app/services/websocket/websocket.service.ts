@@ -22,8 +22,8 @@ export class WebsocketService {
   constructor(
     private socket: Socket
   ) {
-     // this.checkStatus();
-     // this.cargarStorage();
+    this.checkStatus();
+    // this.cargarStorage();
     //  const paylo = {
     //   nombre: this._usuarioService.usuario.nombre,
     //   sala: this._usuarioService.usuario.sala,
@@ -98,11 +98,11 @@ export class WebsocketService {
         this.usuario = JSON.parse( localStorage.getItem('usuario') );
         console.log('Conectado.. entrando al chat..WSservice');
        this.entrarChat(this.usuario.nombre, this.usuario.sala, this.usuario.img);
-      } else {
-        this.guardarStorage();
-        console.log('por guardar usuario');
-        this.entrarChat(this.usuario.nombre, this.usuario.sala, this.usuario.img);
-      }
+       } // else {
+      //   this.guardarStorage();
+      //   console.log('por guardar usuario');
+      //   this.entrarChat(this.usuario.nombre, this.usuario.sala, this.usuario.img);
+      // }
     }
 
     listen( evento: string ) {
