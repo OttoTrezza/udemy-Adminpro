@@ -15,3 +15,14 @@ pages.routes.ts from here, the app routes to pages and components who call servi
 app/services: this is the folder who contains all my ENDpoint to back-end(ask´s) and STARTpoint from back-end(answer´s).
 
 app.module.ts line 36: STARTpoint socekts
+
+
+usuario.services no lo cambie
+webSocket.services PROBLEMAS EN PAYLO: 
+this._chatService.sendMessage( paylo , (resp: any) => {
+       this.msg = resp;
+       console.log('this.msg = ', this.msg);
+   //    this.scrollBottom();
+      });
+     this.texto = '';
+

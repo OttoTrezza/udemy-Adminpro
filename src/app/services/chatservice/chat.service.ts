@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { WebsocketService } from '../websocket/websocket.service';
 import { HttpClient } from '@angular/common/http';
 // import { URL_SERVICIOS } from '../../config/config';
-// import swal from 'sweetalert';
+import swal from 'sweetalert';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs-compat/operator/map';
 
@@ -13,16 +13,14 @@ img: string;
   constructor(
     public wsService: WebsocketService,
     public http: HttpClient,
-
     ) { }
 
-    sendMessage( payl: any, callback: any ) {
-      this.name = payl.nombre;
-      this.img = payl.img;
-      console.log('chatS.sendmessage name,img', this.name, this.img);
+    sendMessage( mensaje: string, callback: any ) {
+      this.name = this.wsService.getUsuario().nombre;
+      this.img = this.wsService.getUsuario().img;
       const payload = {
         de: this.name,
-        cuerpo: payl.mensaje,
+        cuerpo: mensaje,
         img: this.img
         };
       this.wsService.emit( 'mensaje' , payload, (resp: any) => {
@@ -69,10 +67,9 @@ img: string;
             console.log('Sin respuesta del servidor');
         }
       });
-     }
+    }
     loginChatS(nombre: string, sala: string, img: string) {
       this.wsService.entrarChat(nombre, sala, img);
-
     }
     logoutChatS() {
       this.wsService.logoutWS();

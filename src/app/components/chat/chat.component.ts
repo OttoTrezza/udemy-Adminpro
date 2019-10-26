@@ -3,7 +3,6 @@ import { ChatService, ModalUploadService} from '../../services/service.index';
 import { Subscription } from 'rxjs';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { Usuario } from '../../models/usuario.model';
-
 // import * as $ from 'jquery';
 // var params = new URLSearchParams(window.location.search);
 
@@ -38,15 +37,15 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.elemento = document.getElementById('divChatbox');
 
     this.mensajesSubscription = this._chatService.getMessages()
-      .subscribe( (msg: any) => {
+     .subscribe( (msg: any) => {
        console.log('En Subscribe');
-       let de: string = msg.de; // let de: string = msg.de;
+       let de: string = msg.de;
        let cuerpo: string = msg.cuerpo;
        let fecha = new Date(msg.fecha);
        let img: string = msg.img;
-      if ( msg.de === this._usuarioService.usuario.nombre) {
-       de = 'yo';
-      }
+       if ( msg.de === this._usuarioService.usuario.nombre) {
+        de = 'yo';
+       }
       //  if ( msg.de === 'Administrador') {
       //   this.adminClass = 'box bg-light-danger';
       //  }
@@ -65,7 +64,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     // setTimeout(() => {
     //   this.elemento.scrollTop = this.elemento.scrollHeight;
     //   }, 50);
-   });
+     });
 
      this._modalUploadService.notificacion
           .subscribe( resp => this._usuarioService.cargarUsuarios() );
@@ -95,18 +94,14 @@ export class ChatComponent implements OnInit, OnDestroy {
 //         this.divChatbox.scrollTop(scrollHeight);
 //     }
 // }
-  enviar( usua: Usuario ) {
+  enviar() {
 
     if ( this.texto.trim().length === 0 ) {
    //   this.scrollBottom();
       return;
     }
-      const paylo = {
-        nombre: usua.nombre,
-        mensaje: this.texto,
-        img: usua.img
-      };
-     this._chatService.sendMessage( paylo , (resp: any) => {
+
+     this._chatService.sendMessage( this.texto , (resp: any) => {
        this.msg = resp;
        console.log('this.msg = ', this.msg);
    //    this.scrollBottom();

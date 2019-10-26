@@ -3,11 +3,9 @@ import { ChatService } from '../../services/service.index';
 import { UsuarioService, ModalUploadService } from '../../services/service.index';
 import { Usuario } from '../../models/usuario.model';
 import { WebsocketService } from '../../services/service.index';
-
+import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-
 
 @Component({
   selector: 'app-mensajes',
@@ -46,21 +44,14 @@ export class MensajesComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit() {
-    // this._chatService.getSalasActivas(); /*/*/*/AGREGAR Y PROBAR
-    // this._chatService.getSalasActivas()
-    // .subscribe( (respu: any ) => {
-    //   this.salas = respu;
-    //   console.log('salasNGONINIT', this.salas);
-    // } );
+    // this.salas = this._chatService.getSalasActivas();
+    // console.log('salas ng on init', this.salas);
     this.nombre = this._usuarioService.usuario.nombre;
     this.sala = this._usuarioService.usuario.sala;
     this.img = this._usuarioService.usuario.img;
     this.usuariosala = this._usuarioService.usuario;
 
-    console.log('mens.comp.', this.nombre, this.sala, this.img );
-
     this._wsService.entrarChat(this.nombre, this.sala, this.img);
-
 
     this.elemento = document.getElementById('divUsuarios');
 
@@ -71,19 +62,18 @@ export class MensajesComponent implements OnInit, OnDestroy {
             console.log('usuarios en mens.comp', this.usuarios);
           } );
 
-    this._chatService.emitirSalasActivas();
-    this.salasSubscription = this._chatService.getSalasActivas()
-          .subscribe((respu: []) => {
-          this.salas = respu;
-          });
-    // let cliente = this._chatService.getCliente();
-// console.log('cliente..', cliente );
+    // this._chatService.emitirSalasActivas();
+    // this.salasSubscription = this._chatService.getSalasActivas()
+    //       .subscribe((respu: []) => {
+    //       this.salas = respu;
+    //       });
+
 
   }
 
   ngOnDestroy() {
    this.usuariosSubscription.unsubscribe();
-   this.salasSubscription.unsubscribe();
+   // this.salasSubscription.unsubscribe();
    }
 
 
@@ -102,20 +92,20 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
   }
 
-  seleccionSala(f: NgForm) {
-    console.log( 'fvalue', f.value );
+    seleccionSala(f: NgForm) {
+      console.log( f.value );
 
-    if ( !f.value ) {
-      return;
-    }
-    console.log('this.usuariosala', this.usuariosala);
-    this._usuarioService.seleccionSala( this.usuariosala, f.value)
-          .subscribe( (sala: any) => {
-            this.sala = sala;
-            console.log('sañla:', this.sala);
-          });
+      if ( !f.value ) {
+        return;
+      }
+      console.log('this.usuariosala', this.usuariosala);
+      this._usuarioService.seleccionSala({ usuario: this.usuariosala, sala: f.value.sala })
+            .subscribe( (sala: any) => {
+              this.sala = sala;
+              console.log('sañla:', this.sala);
+            });
 
-}
+  }
   cambioSala( sala: string ) {
     console.log('Usuarios de sala:', sala );
     this._chatService.emitirUsuariosActivos(sala);
