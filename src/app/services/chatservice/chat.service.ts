@@ -16,8 +16,8 @@ img: string;
     ) { }
 
     sendMessage( mensaje: string, callback: any ) {
-      this.name = this.wsService.getUsuario().nombre;
-      this.img = this.wsService.getUsuario().img;
+      this.name = 'jorge'; // this.wsService.getUsuario().nombre;
+      this.img = ''; // this.wsService.getUsuario().img;
       const payload = {
         de: this.name,
         cuerpo: mensaje,
