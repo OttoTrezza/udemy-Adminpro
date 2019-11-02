@@ -242,5 +242,7 @@ usuario.sala = sala;
     return this.http.get( url )
           .map((resp: any) => resp.usuario );
   }
-
+  getUsuario() {
+    return this.usuario;
+  }
 }

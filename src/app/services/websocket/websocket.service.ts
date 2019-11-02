@@ -23,7 +23,7 @@ export class WebsocketService {
     private socket: Socket
   ) {
      this.checkStatus();
-     // this.cargarStorage();
+     this.cargarStorage();
     //  const paylo = {
     //   nombre: this._usuarioService.usuario.nombre,
     //   sala: this._usuarioService.usuario.sala,

@@ -5,19 +5,22 @@ import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs-compat/operator/map';
+import { UsuarioService } from '../usuario/usuario.service';
 
 @Injectable()
 export class ChatService {
 name: string;
 img: string;
+
   constructor(
     public wsService: WebsocketService,
-    public http: HttpClient,
+    public http: HttpClient
     ) { }
 
-    sendMessage( mensaje: string, callback: any ) {
-      this.name = 'jorge'; // this.wsService.getUsuario().nombre;
-      this.img = ''; // this.wsService.getUsuario().img;
+      sendMessage( mensaje: string, callback: any ) {
+      this.name = this.wsService.getUsuario().nombre;
+      this.img = this.wsService.getUsuario().img;
+      console.log('name imgt', this.name, this.img);
       const payload = {
         de: this.name,
         cuerpo: mensaje,
