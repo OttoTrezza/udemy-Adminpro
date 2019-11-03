@@ -14,12 +14,15 @@ img: string;
 
   constructor(
     public wsService: WebsocketService,
-    public http: HttpClient
+    public http: HttpClient,
+    public usuarioService: UsuarioService
     ) { }
 
       sendMessage( mensaje: string, callback: any ) {
-      this.name = this.wsService.getUsuario().nombre;
-      this.img = this.wsService.getUsuario().img;
+        this.name = this.usuarioService.usuario.nombre;
+      this.img = this.usuarioService.usuario.img;
+      // this.name = this.wsService.getUsuario().nombre;
+      // this.img = this.wsService.getUsuario().img;
       console.log('name imgt', this.name, this.img);
       const payload = {
         de: this.name,

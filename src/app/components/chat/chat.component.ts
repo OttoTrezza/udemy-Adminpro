@@ -41,8 +41,10 @@ export class ChatComponent implements OnInit, OnDestroy {
        console.log('En Subscribe');
        let de: string = msg.de;
        let cuerpo: string = msg.cuerpo;
-       let fecha = new Date(msg.fecha);
-       let img: string = msg.img;
+       // let fecha = new Date(msg.fecha);
+       let img: string = '';
+       if ( msg.img ) { img = msg.img;
+       }
        if ( msg.de === this._usuarioService.usuario.nombre) {
         de = 'yo';
        }
@@ -50,13 +52,13 @@ export class ChatComponent implements OnInit, OnDestroy {
       //   this.adminClass = 'box bg-light-danger';
       //  }
 
-       let hora = fecha.getHours() + ':' + fecha.getMinutes();
-       this.msg = {
-         de,
-         cuerpo,
-         hora,
-         img
-       };
+      //  let hora = fecha.getHours() + ':' + fecha.getMinutes();
+        this.msg = {
+          de,
+          cuerpo,
+      //    hora,
+          img
+        };
 
     this.mensajes.push( this.msg );
     console.log('mensaje1', this.msg);
