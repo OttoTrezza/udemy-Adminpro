@@ -39,6 +39,8 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.mensajesSubscription = this._chatService.getMessages()
      .subscribe( (msg: any) => {
        console.log('En Subscribe', msg);
+       let sala: string = msg.sala;
+       if (sala === this._usuarioService.usuario.sala) {
        let de: string = msg.de;
        let cuerpo: string = msg.cuerpo;
        // let fecha = new Date(msg.fecha);
@@ -62,6 +64,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     this.mensajes.push( this.msg );
     console.log('mensaje1', this.msg);
+      }
     // this.scrollBottom();
     // setTimeout(() => {
     //   this.elemento.scrollTop = this.elemento.scrollHeight;
