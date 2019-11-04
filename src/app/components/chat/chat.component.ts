@@ -45,8 +45,7 @@ export class ChatComponent implements OnInit, OnDestroy {
        let cuerpo: string = msg.cuerpo;
        // let fecha = new Date(msg.fecha);
        let img: string = '';
-       if ( msg.img ) { img = msg.img;
-       }
+       img = msg.img;
        if ( msg.de === this._usuarioService.usuario.nombre ) {
         de = 'yo';
        }
