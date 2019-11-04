@@ -39,15 +39,15 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.mensajesSubscription = this._chatService.getMessages()
      .subscribe( (msg: any) => {
        console.log('En Subscribe', msg);
-       let sala: string = msg.sala;
-       if (sala === this._usuarioService.usuario.sala) {
+      //  let sala: string = msg.sala;
+      //  if (sala === this._usuarioService.usuario.sala) {
        let de: string = msg.de;
        let cuerpo: string = msg.cuerpo;
        // let fecha = new Date(msg.fecha);
        let img: string = '';
        if ( msg.img ) { img = msg.img;
        }
-       if ( msg.de === this._usuarioService.usuario.nombre) {
+       if ( msg.de === 'Juegos') { // this._usuarioService.usuario.nombre
         de = 'yo';
        }
       //  if ( msg.de === 'Administrador') {
@@ -64,7 +64,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     this.mensajes.push( this.msg );
     console.log('mensaje1', this.msg);
-      }
+      // }
     // this.scrollBottom();
     // setTimeout(() => {
     //   this.elemento.scrollTop = this.elemento.scrollHeight;
