@@ -103,7 +103,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       return;
     }
 
-     this._chatService.sendMessage( this.texto, 'Juegos', (resp: any) => {
+     this._chatService.sendMessage( this.texto, this._usuarioService.usuario.sala, (resp: any) => {
        this.msg = resp;
        console.log('this.msg = ', this.msg);
    //    this.scrollBottom();
