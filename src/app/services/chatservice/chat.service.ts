@@ -18,7 +18,7 @@ img: string;
     public usuarioService: UsuarioService
     ) { }
 
-      sendMessage( mensaje: string, callback: any ) {
+      sendMessage( mensaje: string, sala: string, callback: any ) {
         this.name = this.usuarioService.usuario.nombre;
       this.img = this.usuarioService.usuario.img;
       // this.name = this.wsService.getUsuario().nombre;
@@ -27,7 +27,8 @@ img: string;
       const payload = {
         de: this.name,
         cuerpo: mensaje,
-        img: this.img
+        img: this.img,
+        sala: sala
         };
       this.wsService.emit( 'mensaje' , payload, (resp: any) => {
         callback(resp);

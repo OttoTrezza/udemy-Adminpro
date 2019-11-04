@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChatService, ModalUploadService} from '../../services/service.index';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { Usuario } from '../../models/usuario.model';
 // import * as $ from 'jquery';
@@ -38,7 +38,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     this.mensajesSubscription = this._chatService.getMessages()
      .subscribe( (msg: any) => {
-       console.log('En Subscribe');
+       console.log('En Subscribe', msg);
        let de: string = msg.de;
        let cuerpo: string = msg.cuerpo;
        // let fecha = new Date(msg.fecha);
@@ -103,7 +103,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       return;
     }
 
-     this._chatService.sendMessage( this.texto , (resp: any) => {
+     this._chatService.sendMessage( this.texto, this.usuario.sala, (resp: any) => {
        this.msg = resp;
        console.log('this.msg = ', this.msg);
    //    this.scrollBottom();
