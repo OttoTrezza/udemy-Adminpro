@@ -83,7 +83,7 @@ export class WebsocketService {
       localStorage.removeItem('usuario');
 
       this.checkStatus();
-      this.router.navigate(['/#/*/login']);
+      this.router.navigate(['/*/login']);
 
     }
 

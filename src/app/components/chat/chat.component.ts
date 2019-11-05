@@ -40,10 +40,10 @@ export class ChatComponent implements OnInit, OnDestroy {
      .subscribe( (msg: any) => {
        console.log('En Subscribe', msg);
        let sala: string = msg.sala;
-      //  if (sala === this._usuarioService.usuario.sala) {
+       if (sala === this._usuarioService.usuario.sala) {
        let de: string = msg.de;
        let cuerpo: string = msg.cuerpo;
-       // let fecha = new Date(msg.fecha);
+       let fecha = new Date(msg.fecha);
        let img: string = '';
        img = msg.img;
        if ( msg.de === this._usuarioService.usuario.nombre ) {
@@ -53,21 +53,22 @@ export class ChatComponent implements OnInit, OnDestroy {
       //   this.adminClass = 'box bg-light-danger';
       //  }
 
-      //  let hora = fecha.getHours() + ':' + fecha.getMinutes();
+        let hora = fecha.getHours() + ':' + fecha.getMinutes();
         this.msg = {
           de,
           cuerpo,
-      //    hora,
+          sala,
+          hora,
           img
         };
 
     this.mensajes.push( this.msg );
     console.log('mensaje1', this.msg);
-      // }
+       }
     // this.scrollBottom();
-    // setTimeout(() => {
-    //   this.elemento.scrollTop = this.elemento.scrollHeight;
-    //   }, 50);
+    setTimeout(() => {
+      this.elemento.scrollTop = this.elemento.scrollHeight;
+      }, 50);
      });
 
      this._modalUploadService.notificacion
