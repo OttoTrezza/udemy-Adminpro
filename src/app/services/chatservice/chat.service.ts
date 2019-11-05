@@ -6,7 +6,7 @@ import swal from 'sweetalert';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs-compat/operator/map';
 import { UsuarioService } from '../usuario/usuario.service';
-
+import { Router } from '@angular/router';
 @Injectable()
 export class ChatService {
 name: string;
@@ -15,7 +15,8 @@ img: string;
   constructor(
     public wsService: WebsocketService,
     public http: HttpClient,
-    public usuarioService: UsuarioService
+    public usuarioService: UsuarioService,
+    public router: Router
     ) { }
 
       sendMessage( mensaje: string, sala: string, callback: any ) {
@@ -79,6 +80,7 @@ img: string;
       this.wsService.entrarChat(nombre, sala, img);
     }
     logoutChatS() {
+      this.router.navigate(['login']);
       this.wsService.logoutWS();
     }
 
