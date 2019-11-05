@@ -104,7 +104,7 @@ export class UsuarioService {
     localStorage.removeItem('menu');
     localStorage.removeItem('sala');
 
-    this.router.navigate(['/#/*/login']);
+    this.router.navigate(['*/login']);
   }
 
   loginGoogle( token: string ) {
