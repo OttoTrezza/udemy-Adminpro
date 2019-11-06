@@ -31,18 +31,18 @@ import { FooterComponent } from './components/footer/footer.component';
 // import { ProfileComponent } from './pages/profile/profile.component'
 
 // AGREGADO INICIO **
-
-// sockets
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
- const config: SocketIoConfig = {
-  url: environment.wsUrl , options: {}
-  };
+// import { environment } from '../environments/environment';
+// // sockets
+// import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+//  const config: SocketIoConfig = {
+//   url: environment.wsUrl , options: {}
+//   };
 // console.log('URL', this.url);
-// export const environment = {
-//   production: true,
-//   wsUrl: 'https://mighty-depths-88183.herokuapp.com/public/'
-// };
-import { environment } from '../environments/environment';
+export const environment = {
+  production: true,
+  wsUrl: 'http://localhost:3000/'
+};
+
 
 @NgModule({
   declarations: [
