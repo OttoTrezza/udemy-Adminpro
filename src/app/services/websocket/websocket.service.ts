@@ -22,8 +22,8 @@ export class WebsocketService {
   constructor(
     private socket: Socket
   ) {
-     this.checkStatus();
-     this.cargarStorage();
+     // this.checkStatus();
+     // this.cargarStorage();
     //  const paylo = {
     //   nombre: this._usuarioService.usuario.nombre,
     //   sala: this._usuarioService.usuario.sala,

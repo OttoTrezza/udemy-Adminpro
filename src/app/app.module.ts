@@ -33,10 +33,10 @@ import { FooterComponent } from './components/footer/footer.component';
 // AGREGADO INICIO **
  import { environment } from '../environments/environment';
 // // sockets
- import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
- const config: SocketIoConfig = {
-  url: environment.wsUrl
-  };
+//  import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+//  const config: SocketIoConfig = {
+//   url: environment.wsUrl, options();
+//   };
 // console.log('URL', this.url);
 // export const environment = {
 //   production: true,
