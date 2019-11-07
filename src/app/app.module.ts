@@ -31,17 +31,17 @@ import { FooterComponent } from './components/footer/footer.component';
 // import { ProfileComponent } from './pages/profile/profile.component'
 
 // AGREGADO INICIO **
-// import { environment } from '../environments/environment';
+ import { environment } from '../environments/environment';
 // // sockets
-// import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-//  const config: SocketIoConfig = {
-//   url: environment.wsUrl , options: {}
-//   };
+ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+ const config: SocketIoConfig = {
+  url: environment.wsUrl
+  };
 // console.log('URL', this.url);
-export const environment = {
-  production: true,
-  wsUrl: 'http://localhost:3000/'
-};
+// export const environment = {
+//   production: true,
+//   wsUrl: 'http://localhost:3000/'
+// };
 
 
 @NgModule({
@@ -68,7 +68,7 @@ export const environment = {
     ReactiveFormsModule,
     ServiceModule,
     SharedModule,
-    SocketIoModule.forRoot(config),
+    // SocketIoModule.forRoot(config),
     // PagesModule
   ],
   providers: [],
