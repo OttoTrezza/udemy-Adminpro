@@ -19,7 +19,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
   usuariosSubscription: Subscription;
   salasSubscription: Subscription;
   elemento: HTMLElement;
-  usuarios: any[] = [];
+  usuarios: Usuario[] = [];
   usuario: Usuario ;
   usuariosala: Usuario ;
   nombre: string;
@@ -50,7 +50,11 @@ export class MensajesComponent implements OnInit, OnDestroy {
     this.sala = this._usuarioService.usuario.sala;
     this.img = this._usuarioService.usuario.img;
     this.usuariosala = this._usuarioService.usuario;
-
+    this.usuariosSubscription = this._chatService.getSalas()
+          .subscribe( (respu: any) => {
+          this.salas = respu;
+          console.log('salas en mens.comp', this.salas);
+    } );
     this._wsService.entrarChat(this.nombre, this.sala, this.img);
 
     this.elemento = document.getElementById('divUsuarios');
