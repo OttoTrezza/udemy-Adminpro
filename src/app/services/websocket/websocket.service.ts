@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Socket } from 'ngx-socket-io';
+// import { Socket } from 'ngx-socket-io';
 import { Usuario } from '../../models/usuario.model';
 
 // import { Router } from '@angular/router';
 import { UsuarioService } from '../usuario/usuario.service';
 import { Router } from '@angular/router';
-import { stringify } from 'querystring';
+// import { stringify } from 'querystring';
+import { Socket } from 'ngx-socket-io';
+
 
 
 
@@ -19,11 +21,12 @@ export class WebsocketService {
   public _usuarioService: UsuarioService;
   // router: any;
 
+
   constructor(
-    private socket: Socket
+    public socket: Socket
   ) {
-     // this.checkStatus();
-     // this.cargarStorage();
+     this.checkStatus();
+     this.cargarStorage();
     //  const paylo = {
     //   nombre: this._usuarioService.usuario.nombre,
     //   sala: this._usuarioService.usuario.sala,
@@ -35,7 +38,7 @@ export class WebsocketService {
     checkStatus() {
 
       this.socket.on('connect', () => {
-        console.log('Conectado al servidor');
+        console.log('Conectado al servidor111');
         this.socketStatus = true;
         this.cargarStorage();
 //         this.socket.emit('connect', this.usuario, () => {
@@ -89,10 +92,6 @@ export class WebsocketService {
 
     getUsuario() {
       return this.usuario;
-    }
-
-    guardarStorage() {
-      localStorage.setItem( 'usuario', JSON.stringify( this.usuario ) );
     }
 
     cargarStorage() {

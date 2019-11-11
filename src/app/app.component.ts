@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { SettingsService } from './services/service.index';
+// import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,6 @@ import { SettingsService } from './services/service.index';
 })
 export class AppComponent {
 
-  constructor( public _ajustes: SettingsService ) {}
+  constructor( public _ajustes: SettingsService ) {} // dentro del parentesis: ,private socket: Socket
 
 }
