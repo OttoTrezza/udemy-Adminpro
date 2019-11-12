@@ -152,7 +152,10 @@ export class UsuarioService {
     let url = URL_SERVICIOS + 'usuario?';
     return this.http.get( url );
   }
-
+  cargarSalasTodas() {
+    let url = URL_SERVICIOS + 'usuario/salas?';
+    return this.http.get( url );
+  }
 
   crearUsuario( usuario: Usuario ) {
 

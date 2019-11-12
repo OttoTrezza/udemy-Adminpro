@@ -15,6 +15,7 @@ export class UsuariosComponent implements OnInit {
   usuarios: Usuario[] = [];
   desde: number = 0;
 
+  salas: any;
   totalRegistros: number = 0;
   cargando: boolean = true;
 
@@ -25,7 +26,7 @@ export class UsuariosComponent implements OnInit {
 
   ngOnInit() {
     this.cargarUsuarios();
-
+    this.cargarSalasTodas();
     this._modalUploadService.notificacion
           .subscribe( resp => this.cargarUsuarios() );
 
@@ -40,7 +41,14 @@ export class UsuariosComponent implements OnInit {
           this.cargando = false;
     });
   }
-
+  cargarSalasTodas() {
+    this._usuarioService.cargarSalasTodas()
+    .subscribe( (resp: any) => {
+    this.salas = resp.sala;
+    this.cargando = false;
+});
+console.log('salas Usuario.comp', this.salas);
+  }
 
   buscarUsuario( termino: string) {
     if ( termino.length <= 0 ) {

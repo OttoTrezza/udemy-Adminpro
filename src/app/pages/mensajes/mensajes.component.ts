@@ -24,7 +24,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
   usuariosala: Usuario ;
   nombre: string;
   sala: string;
-  salas: any;
+  salas: {};
   img: string;
   cargando: boolean = true;
   totalRegistros: number = 0;
@@ -50,9 +50,11 @@ export class MensajesComponent implements OnInit, OnDestroy {
     this.sala = this._usuarioService.usuario.sala;
     this.img = this._usuarioService.usuario.img;
     this.usuariosala = this._usuarioService.usuario;
+
     this.usuariosSubscription = this._chatService.getSalas()
           .subscribe( (respu: any) => {
           this.salas = respu;
+
           console.log('salas en mens.comp', this.salas);
     } );
     this._wsService.entrarChat(this.nombre, this.sala, this.img);
