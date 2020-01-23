@@ -56,6 +56,9 @@ img: string;
     getSalas() {
       return this.wsService.listen( 'salas' );
   }
+  getRGB() {
+    return this.wsService.listen( 'rgb-servidor-esp' );
+}
 
     focusBuscar(nombre: string) {
     // focus en la lista de usuarios del mensajesComponent.html

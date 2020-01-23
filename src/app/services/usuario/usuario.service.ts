@@ -207,7 +207,7 @@ usuario.sala = sala;
                 if ( usuario._id === this.usuario._id) {
                    let usuarioDB: Usuario = resp.usuario;
                    usuarioDB.sala = sala;
-                   this.guardarStorage( usuarioDB._id, this.token, usuarioDB, this.menu, this.sala );
+                   this.guardarStorage( usuarioDB._id, this.token, usuarioDB, this.menu, sala );
                 }
                 console.log('Usuario actualizado(sala)', this.usuario.sala);
                 return sala;

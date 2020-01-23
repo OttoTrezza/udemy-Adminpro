@@ -6,6 +6,7 @@ import { WebsocketService } from '../../services/service.index';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Component({
   selector: 'app-mensajes',
@@ -28,7 +29,8 @@ export class MensajesComponent implements OnInit, OnDestroy {
   img: string;
   cargando: boolean = true;
   totalRegistros: number = 0;
-
+  progreso1: number = 20;
+  progreso2: number = 30;
 
   constructor(
     public _chatService: ChatService,
@@ -49,15 +51,18 @@ export class MensajesComponent implements OnInit, OnDestroy {
     this.nombre = this._usuarioService.usuario.nombre;
     this.sala = this._usuarioService.usuario.sala;
     this.img = this._usuarioService.usuario.img;
-    this.usuariosala = this._usuarioService.usuario;
 
-    this.usuariosSubscription = this._chatService.getSalas()
+    this._wsService.entrarChat(this.nombre, this.sala, this.img);
+
+    this.usuariosala = this._usuarioService.usuario;
+    this._chatService.emitirSalasActivas();
+    this.usuariosSubscription = this._chatService.getSalasActivas()
           .subscribe( (respu: any) => {
           this.salas = respu;
 
           console.log('salas en mens.comp', this.salas);
+          console.log(this.salas[0], this.salas[1]);
     } );
-    this._wsService.entrarChat(this.nombre, this.sala, this.img);
 
     this.elemento = document.getElementById('divUsuarios');
 
@@ -108,7 +113,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
       this._usuarioService.seleccionSala({ usuario: this.usuariosala, sala: f.value.sala })
             .subscribe( (sala: any) => {
               this.sala = sala;
-              console.log('sañla:', this.sala);
+              console.log('sañla:', this.sala, f.value.sala);
             });
 
   }
