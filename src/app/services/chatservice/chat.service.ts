@@ -24,7 +24,7 @@ img: string;
       this.img = this.usuarioService.usuario.img;
       // this.name = this.wsService.getUsuario().nombre;
       // this.img = this.wsService.getUsuario().img;
-      console.log('name imgt', this.name, this.img);
+      console.log('name img', this.name, this.img);
       const payload = {
         de: this.name,
         cuerpo: mensaje,

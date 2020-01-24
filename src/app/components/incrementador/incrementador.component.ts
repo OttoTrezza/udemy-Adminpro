@@ -6,7 +6,7 @@ import { UsuarioService } from '../../services/usuario/usuario.service';
 @Component({
   selector: 'app-incrementador',
   templateUrl: './incrementador.component.html',
-  styles: []
+  styles: ['./incrementador.component.css']
 })
 export class IncrementadorComponent implements OnInit {
   [x: string]: any;
@@ -51,12 +51,12 @@ export class IncrementadorComponent implements OnInit {
     this.txtProgress.nativeElement.value = this.progreso;
 
     this.cambioValor.emit( this.progreso );
- this.hexString = '#' +  this.progreso.toString(16) + '00ff';
- this.ChatS.sendMessage( this.hexString, this._usuarioService.usuario.sala, (resp: any) => {
-  this.msg = resp;
-  console.log('this.msg = ', this.msg);
-//    this.scrollBottom();
- });
+//  this.hexString = '#' +  this.progreso.toString(16) + '00ff';
+//  this.ChatS.sendMessage( this.hexString, this._usuarioService.usuario.sala, (resp: any) => {
+//   this.msg = resp;
+//   console.log('this.msg = ', this.msg);
+// //    this.scrollBottom();
+//  });
 
   }
 
@@ -77,6 +77,12 @@ export class IncrementadorComponent implements OnInit {
     this.cambioValor.emit( this.progreso );
 
     this.txtProgress.nativeElement.focus();
+//     this.hexString = '#' +  this.progreso.toString(16) + '00ff';
+//  this.ChatS.sendMessage( this.hexString, this._usuarioService.usuario.sala, (resp: any) => {
+//   this.msg = resp;
+//   console.log('this.msg1 = ', this.msg);
+// //    this.scrollBottom();
+//  });
 
   }
 

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-progress',
   templateUrl: './progress.component.html',
-  styles: []
+  styles: ['./progress.component.css']
 })
 export class ProgressComponent implements OnInit {
 

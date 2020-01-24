@@ -31,7 +31,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
   totalRegistros: number = 0;
   progreso1: number = 20;
   progreso2: number = 30;
-
+hexString: string;
   constructor(
     public _chatService: ChatService,
     public _usuarioService: UsuarioService,
@@ -78,8 +78,11 @@ export class MensajesComponent implements OnInit, OnDestroy {
     //       .subscribe((respu: []) => {
     //       this.salas = respu;
     //       });
-
-
+    this.hexString = '#' +  this.progreso1.toString(16) + '00' + this.progreso2.toString(16);
+    this._chatService.sendMessage( this.hexString, this._usuarioService.usuario.sala, (resp: any) => {
+     console.log('this.msg = ', this.hexString, resp);
+   //    this.scrollBottom();
+    });
   }
 
   ngOnDestroy() {
