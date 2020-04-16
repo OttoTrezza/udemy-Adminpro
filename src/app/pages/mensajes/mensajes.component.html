@@ -86,17 +86,13 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">Barra de progreso {{ progreso1 }} </h4>
+                    <h4 class="card-title">Barra de progreso {{ progreso }} </h4>
 
                     <div class="progress">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" [attr.ariaValuenow]="progreso1" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" [style.width]="progreso1 + '%'"></div>
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" [attr.ariaValuenow]="progreso" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" [style.width]="progreso + '%'"></div>
                     </div>
 
                     <br>
-                    <h4 class="card-title">Barra de progreso {{ progreso2 }} </h4>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" [attr.ariaValuenow]="progreso2" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" [style.width]="progreso2 + '%'"></div>
-                    </div>
 
                 </div>
             </div>
@@ -108,28 +104,25 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
-
-                    <app-incrementador (actualizaValor)="progreso1 = $event" nombre="Progress Rojo" [progreso]="progreso1"></app-incrementador>
-
+                    <app-incrementador (actualizaValor)="progreso = $event" nombre="progreso" [progreso]="progreso"></app-incrementador>
+                    {{progreso}}
                 </div>
             </div>
         </div>
-
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
-
-                    <app-incrementador (actualizaValor)="progreso2 = $event" nombre="Progress Verde" [progreso]="progreso2"></app-incrementador>
-
+                    <app-incrementador (actualizaValor)="progreso1 = $event" nombre="progreso" [progreso]="progreso1"></app-incrementador>
+                    {{progreso1}}
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
 
 <script>
+    var hexString = '#' + this.progreso.toString(16) + this.progreso1.toString(16) + 'ff';
     var slider = document.getElementById("myRange");
     var output = document.getElementById("demo");
     output.innerHTML = slider.value;
@@ -137,5 +130,17 @@
     slider.oninput = function() {
         output.innerHTML = this.value;
         this.progreso = this.value;
+
     }
 </script>
+<!-- <script>
+    var slider = document.getElementById("myRange1");
+    var output = document.getElementById("demo1");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+        output.innerHTML = this.value;
+        this.progreso1 = this.value;
+
+    }
+</script> -->

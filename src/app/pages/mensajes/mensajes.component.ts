@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { ChatService } from '../../services/service.index';
 import { UsuarioService, ModalUploadService } from '../../services/service.index';
 import { Usuario } from '../../models/usuario.model';
@@ -6,7 +6,6 @@ import { WebsocketService } from '../../services/service.index';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Component({
   selector: 'app-mensajes',
@@ -15,10 +14,10 @@ import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 })
 
 export class MensajesComponent implements OnInit, OnDestroy {
+  [x: string]: any;
 
   textoUser = '';
   usuariosSubscription: Subscription;
-  salasSubscription: Subscription;
   elemento: HTMLElement;
   usuarios: Usuario[] = [];
   usuario: Usuario ;
@@ -29,9 +28,10 @@ export class MensajesComponent implements OnInit, OnDestroy {
   img: string;
   cargando: boolean = true;
   totalRegistros: number = 0;
+  progreso: number = 20;
   progreso1: number = 20;
-  progreso2: number = 30;
-hexString: string;
+  hexString: string;
+
   constructor(
     public _chatService: ChatService,
     public _usuarioService: UsuarioService,
@@ -46,8 +46,6 @@ hexString: string;
    }
 
   ngOnInit() {
-    // this.salas = this._chatService.getSalasActivas();
-    // console.log('salas ng on init', this.salas);
     this.nombre = this._usuarioService.usuario.nombre;
     this.sala = this._usuarioService.usuario.sala;
     this.img = this._usuarioService.usuario.img;
@@ -64,6 +62,7 @@ hexString: string;
           console.log(this.salas[0], this.salas[1]);
     } );
 
+
     this.elemento = document.getElementById('divUsuarios');
 
     this._chatService.emitirUsuariosActivos(this.sala);
@@ -78,16 +77,18 @@ hexString: string;
     //       .subscribe((respu: []) => {
     //       this.salas = respu;
     //       });
-
-
-    this.hexString = '#' +  this.progreso1.toString(16) + '00' + this.progreso2.toString(16);
-    this._chatService.sendMessage( this.hexString, this._usuarioService.usuario.sala, (resp: any) => {
-     console.log('this.msg = ', this.hexString, resp);
-   //    this.scrollBottom();
-    });
-
+    // this.output = document.getElementById('demo1');
+    // console.log('innerHTML', this.output.innerHTML);
   }
 
+//  onChange(newValue: number) {
+//    // console.log('thisoutpuit', this.output.innerHTML);
+//    // this.progreso1 = this.output.innerHTML;
+//    this.hexString = '#' +  this.progreso1.toString(16) + this.progreso1.toString(16) + this.progreso1.toString(16) ;
+//    this._chatService.sendMessage( this.hexString, this._usuarioService.usuario.sala, (resp: any) => {
+//     console.log('this.msg = ', this.hexString, resp);
+//    });
+//  }
   ngOnDestroy() {
    this.usuariosSubscription.unsubscribe();
    // this.salasSubscription.unsubscribe();
