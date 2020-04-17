@@ -3,7 +3,9 @@ import { ChatService, ModalUploadService} from '../../services/service.index';
 import { Subscription } from 'rxjs/Subscription';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { Usuario } from '../../models/usuario.model';
+
 // import * as $ from 'jquery';
+
 // var params = new URLSearchParams(window.location.search);
 
 // var nombre = params.get('nombre');
@@ -14,10 +16,14 @@ import { Usuario } from '../../models/usuario.model';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit, OnDestroy {
+  [x: string]: any;
 
+  progreso1: number = 0;
+  progreso2: number = 0;
   textoUser = '';
   texto = '';
   mensajesSubscription: Subscription;
+  mensajespSubscription: Subscription;
   elemento: HTMLElement;
   usuario: Usuario;
   mensajes: any[] = [];
@@ -45,13 +51,13 @@ export class ChatComponent implements OnInit, OnDestroy {
        let cuerpo: string = msg.cuerpo;
        let fecha = new Date(msg.fecha);
        let img: string = msg.img;
-console.log('clg de usuaSrevice.nombre', this._usuarioService.usuario.nombre);
+        console.log('clg de usuaSrevice.nombre', this._usuarioService.usuario.nombre);
        if ( msg.de === this._usuarioService.usuario.nombre ) {
         de = 'yo';
        }
-      //  if ( msg.de === 'Administrador') {
-      //   this.adminClass = 'box bg-light-danger';
-      //  }
+        //  if ( msg.de === 'Administrador') {
+        //   this.adminClass = 'box bg-light-danger';
+        //  }
 
         let hora = fecha.getHours() + ':' + fecha.getMinutes();
         this.msg = {
@@ -62,14 +68,34 @@ console.log('clg de usuaSrevice.nombre', this._usuarioService.usuario.nombre);
           img
         };
 
-    this.mensajes.push( this.msg );
-    console.log('mensaje1', this.msg);
+        this.mensajes.push( this.msg );
+        console.log('mensaje1', this.msg);
 
-    // this.scrollBottom();
-    setTimeout(() => {
-     // this.elemento.scrollTop = this.elemento.scrollHeight;
-      }, 50);
-     });
+        // this.scrollBottom();
+        setTimeout(() => {
+       // this.elemento.scrollTop = this.elemento.scrollHeight;
+        }, 50);
+      });
+
+
+      this.mensajespSubscription = this._chatService.getMessagesp()
+      .subscribe( (msg: any) => {
+        console.log('ESPmsg', msg);
+        let sala: string = msg.sala;
+       // if (sala === this._usuarioService.usuario.sala) {
+        let de: string = msg.de;
+        let cuerpo: string = msg.cuerpo;
+        if ( msg.de === 'ignacio1' ) {
+          console.log('ignacio1');
+          this.progreso1 = msg.cuerpo;
+        }
+        if ( msg.de === 'ignacio2' ) {
+          console.log('ignacio2');
+          this.progreso2 = msg.cuerpo;
+        }
+       });
+
+
 
      this._modalUploadService.notificacion
           .subscribe( resp => this._usuarioService.cargarUsuarios() );
@@ -114,6 +140,22 @@ console.log('clg de usuaSrevice.nombre', this._usuarioService.usuario.nombre);
      this.texto = '';
 
   }
+
+  cambiarValor1( valor: number ) {
+
+    if ( this.progreso >= 600 && valor > 0 ) {
+      this.progreso = 600;
+      return;
+    }
+
+    if ( this.progreso <= 0 && valor < 0 ) {
+      this.progreso = 0;
+      return;
+    }
+
+    this.progreso = this.progreso + valor;
+    this.cambioValor1.emit( this.progreso );
+}
 
 }
 // socket.emit('crearMensaje', {

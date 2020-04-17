@@ -14,13 +14,13 @@ import { ChartsModule } from 'ng2-charts';
 import { PagesComponent } from './pages.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProgressComponent } from './progress/progress.component';
+// import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
 
 // pipes
 import { PipesModule } from '../pipes/pipes.module';
 
-import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
+// import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.component';
 import { AccoutSettingsComponent } from './accout-settings/accout-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
@@ -40,9 +40,9 @@ import { ChatComponent } from '../components/chat/chat.component';
     declarations: [
         // PagesComponent,
         DashboardComponent,
-        ProgressComponent,
+      //  ProgressComponent,
         Graficas1Component,
-        IncrementadorComponent,
+      //  IncrementadorComponent,
         GraficoDonaComponent,
         AccoutSettingsComponent,
         PromesasComponent,
@@ -60,7 +60,7 @@ import { ChatComponent } from '../components/chat/chat.component';
     ],
     exports: [
         DashboardComponent,
-        ProgressComponent,
+        // ProgressComponent,
         Graficas1Component,
         ChatComponent,
        // BusquedaComponent // Esto fue insterado recien,,,,

@@ -45,6 +45,9 @@ img: string;
     getMessages() {
         return this.wsService.listen( 'mensaje-nuevo' );
     }
+    getMessagesp() {
+      return this.wsService.listen( 'mensajesp-nuevo' );
+  }
 
     getUsuariosActivos() {
         return this.wsService.listen( 'usuarios-activos' );

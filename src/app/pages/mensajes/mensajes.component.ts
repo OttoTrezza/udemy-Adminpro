@@ -59,7 +59,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
           this.salas = respu;
 
           console.log('salas en mens.comp', this.salas);
-          console.log(this.salas[0], this.salas[1]);
+         // console.log(this.salas[0]);
     } );
 
 
