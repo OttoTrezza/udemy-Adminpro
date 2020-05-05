@@ -37,7 +37,32 @@ img: string;
       });
       console.log('Mensaje', payload );
       }
-
+      sendFrecuencia( frecuencia: number, sala: string, callback: any ) {
+        this.name = this.usuarioService.usuario.nombre;
+      // this.name = this.wsService.getUsuario().nombre;
+      const payload = {
+        de: this.name,
+        frec: frecuencia,
+        sala: sala
+        };
+      this.wsService.emit( 'frecuencia' , payload, (resp: any) => {
+        callback(resp);
+       // console.log(resp);
+      });
+      }
+      sendLongPulse( LongPulse: number, sala: string, callback: any ) {
+        this.name = this.usuarioService.usuario.nombre;
+      // this.name = this.wsService.getUsuario().nombre;
+      const payload = {
+        de: this.name,
+        LongP: LongPulse,
+        sala: sala
+        };
+      this.wsService.emit( 'LongPulse' , payload, (resp: any) => {
+        callback(resp);
+       // console.log(resp);
+      });
+      }
     getMessages1() {
        return this.wsService.listen( 'mensajeDeServidor' );
       }

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef , ViewChild } from '@angular/core';
 import { ChatService, ModalUploadService} from '../../services/service.index';
 import { Subscription } from 'rxjs/Subscription';
 import { UsuarioService } from '../../services/usuario/usuario.service';
@@ -16,10 +16,16 @@ import { Usuario } from '../../models/usuario.model';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit, OnDestroy {
-  [x: string]: any;
 
+  @ViewChild('txtFrecuencia', {static: false}) txtFrecuencia: ElementRef;
+  @ViewChild('txtLongPulse', {static: false}) txtLongPulse: ElementRef;
+  [x: string]: any;
+  frecuencia: number;
+  LongPulse: number;
   progreso1: number = 0;
   progreso2: number = 0;
+  progreso1r: number = 0;
+  progreso2r: number = 0;
   textoUser = '';
   texto = '';
   mensajesSubscription: Subscription;
@@ -88,10 +94,12 @@ export class ChatComponent implements OnInit, OnDestroy {
         if ( msg.de === 'ignacio1' ) {
           console.log('ignacio1');
           this.progreso1 = msg.cuerpo;
+          this.progreso1r = msg.cuerpo1;
         }
         if ( msg.de === 'ignacio2' ) {
           console.log('ignacio2');
           this.progreso2 = msg.cuerpo;
+          this.progreso2r = msg.cuerpo1;
         }
        });
 
@@ -143,6 +151,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   cambiarValor1( valor: number ) {
 
+    this.txtProgress.nativeElement.value = this.progreso;
     if ( this.progreso >= 600 && valor > 0 ) {
       this.progreso = 600;
       return;
@@ -155,14 +164,55 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     this.progreso = this.progreso + valor;
     this.cambioValor1.emit( this.progreso );
+  }
+
+onChanges( newValue: number ) {
+
+  // let elemHTML: any = document.getElementsByName('progreso')[0];
+
+  // console.log( this.txtProgress );
+
+  if ( newValue >= 600 ) {
+    this.progreso = 600;
+  } else if ( newValue <= 0 ) {
+    this.frecuencia = 0;
+  } else {
+    this.frecuencia = newValue;
+  }
+
+  // elemHTML.value = this.progreso;
+  this.txtFrecuencia.nativeElement.value = this.frecuencia;
+
+  console.log('frecuencia en chatComp', this.frecuencia);
+  this._chatService.sendFrecuencia( this.frecuencia,  this._usuarioService.usuario.sala, (resp: any) => {
+    this.msg = resp;
+    console.log('this.msg = ', this.msg);
+//    this.scrollBottom();
+   });
+}
+onChanges1( newValue: number ) {
+
+  // let elemHTML: any = document.getElementsByName('progreso')[0];
+
+  // console.log( this.txtProgress );
+
+  if ( newValue >= 100 ) {
+    this.progreso = 100;
+  } else if ( newValue <= 0 ) {
+    this.LongPulse = 0;
+  } else {
+    this.LongPulse = newValue;
+  }
+
+  // elemHTML.value = this.progreso;
+  this.txtLongPulse.nativeElement.value = this.LongPulse;
+
+  console.log('LongPulse en chatComp', this.LongPulse);
+  this._chatService.sendLongPulse( this.LongPulse,  this._usuarioService.usuario.sala, (resp: any) => {
+    this.msg = resp;
+    console.log('this.msg = ', this.msg);
+//    this.scrollBottom();
+   });
 }
 
 }
-// socket.emit('crearMensaje', {
-  //       nombre: nombre,
-  //       mensaje: txtMensaje.val()
-  //   }, function(mensaje) {
-  //       txtMensaje.val('').focus();
-  //       renderizarMensajes(mensaje, true);
-  //       scrollBottom();
-  //   });
