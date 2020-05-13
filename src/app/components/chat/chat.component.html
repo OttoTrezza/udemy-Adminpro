@@ -96,6 +96,9 @@
                 <h4 class="card-title">LongPulse 2 = {{ progreso2r }} </h4>
                 <br>
                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" [attr.ariaValuenow]="progreso2r - 90" aria-valuenow="50" aria-valuemin="0" aria-valuemax="99" [style.width]="progreso2r + '%'"></div>
+                <br>
+                <label form="customRange3">marcha</label>
+                <input #txtDir type="range" class="striped" min="-10" max="+10" value="dir" step="1" name="dir" [(ngModel)]="dir" (ngModelChange)="onChanges($event)" id="customRange3">
 
 
             </div>
