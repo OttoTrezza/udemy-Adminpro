@@ -63,6 +63,32 @@ img: string;
        // console.log(resp);
       });
       }
+      sendDir( dir: number, sala: string, callback: any ) {
+        this.name = this.usuarioService.usuario.nombre;
+      // this.name = this.wsService.getUsuario().nombre;
+      const payload = {
+        de: this.name,
+        dir: dir,
+        sala: sala
+        };
+      this.wsService.emit( 'dir' , payload, (resp: any) => {
+        callback(resp);
+       // console.log(resp);
+      });
+      }
+      sendSen( sen: number, sala: string, callback: any ) {
+        this.name = this.usuarioService.usuario.nombre;
+      // this.name = this.wsService.getUsuario().nombre;
+      const payload = {
+        de: this.name,
+        sen: sen,
+        sala: sala
+        };
+      this.wsService.emit( 'sen' , payload, (resp: any) => {
+        callback(resp);
+       // console.log(resp);
+      });
+      }
     getMessages1() {
        return this.wsService.listen( 'mensajeDeServidor' );
       }

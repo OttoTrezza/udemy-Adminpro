@@ -6,7 +6,7 @@ import { Usuario } from '../../models/usuario.model';
 
 // import * as $ from 'jquery';
 
-// var params = new URLSearchParams(window.location.search);
+// var params = new URLSearchParams(window.location.search);ng serve-o
 
 // var nombre = params.get('nombre');
 // var sala = params.get('sala');
@@ -18,9 +18,13 @@ import { Usuario } from '../../models/usuario.model';
 export class ChatComponent implements OnInit, OnDestroy {
 
   @ViewChild('txtFrecuencia', {static: false}) txtFrecuencia: ElementRef;
+  @ViewChild('txtDir', {static: false}) txtDir: ElementRef;
+  @ViewChild('txtSen', {static: false}) txtSen: ElementRef;
   @ViewChild('txtLongPulse', {static: false}) txtLongPulse: ElementRef;
   [x: string]: any;
   frecuencia: number;
+  dir: number;
+  sen: number;
   LongPulse: number;
   progreso1: number = 0;
   progreso2: number = 0;
@@ -215,4 +219,52 @@ onChanges1( newValue: number ) {
    });
 }
 
+onChanges2( newValue: number ) {
+
+  // let elemHTML: any = document.getElementsByName('progreso')[0];
+
+  // console.log( this.txtProgress );
+
+  if ( newValue >= 90 ) {
+    this.dir = 90;
+  } else if ( newValue <= -90 ) {
+    this.dir = -90;
+  } else {
+    this.dir = newValue;
+  }
+
+  // elemHTML.value = this.progreso;
+  this.txtDir.nativeElement.value = this.dir;
+
+  console.log('dir en chatComp', this.dir);
+  this._chatService.sendDir( this.dir,  this._usuarioService.usuario.sala, (resp: any) => {
+    this.msg = resp;
+    console.log('this.msg = ', this.msg);
+//    this.scrollBottom();
+   });
+}
+onChanges3( newValue: number ) {
+
+  // let elemHTML: any = document.getElementsByName('progreso')[0];
+
+  // console.log( this.txtProgress );
+
+  if ( newValue >= 90 ) {
+    this.sen = 90;
+  } else if ( newValue <= -90 ) {
+    this.sen = -90;
+  } else {
+    this.sen = newValue;
+  }
+
+  // elemHTML.value = this.progreso;
+  this.txtSen.nativeElement.value = this.sen;
+
+  console.log('sen en chatComp', this.sen);
+  this._chatService.sendSen( this.sen,  this._usuarioService.usuario.sala, (resp: any) => {
+    this.msg = resp;
+    console.log('this.msg = ', this.msg);
+//    this.scrollBottom();
+   });
+}
 }

@@ -98,13 +98,50 @@
                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" [attr.ariaValuenow]="progreso2r - 90" aria-valuenow="50" aria-valuemin="0" aria-valuemax="99" [style.width]="progreso2r + '%'"></div>
                 <br>
                 <label form="customRange3">marcha</label>
-                <input #txtDir type="range" class="striped" min="-10" max="+10" value="dir" step="1" name="dir" [(ngModel)]="dir" (ngModelChange)="onChanges($event)" id="customRange3">
+                <input #txtDir type="range" class="striped" min="-90" max="90" value="dir" step="1" name="dir" [(ngModel)]="dir" (ngModelChange)="onChanges2($event)" id="customRange3">
+                <label form="customRange4">sentido</label>
+                <input #txtSen type="range" class="striped" min="-90" max="90" value="sen" step="1" name="sen" [(ngModel)]="sen" (ngModelChange)="onChanges3($event)" id="customRange4">
+                <div id="wrapper">
+                    <h1>devicemotion test</h1>
 
+                    <p><label for="aX">aX</label><span id="aX"></span></p>
+                    <p><label for="aY">aY</label><span id="aY"></span></p>
+                    <p><label for="aZ">aZ</label><span id="aZ"></span></p>
+                </div>
 
             </div>
         </div>
     </div>
 </div>
+<script>
+    var s$ = function(e) {
+        return document.getElementById(e);
+    };
+
+
+    if (window.DeviceMotionEvent) {
+        alert('devicemotion supported');
+        window.addEventListener('devicemotion', function(ev) {
+            var acc = ev.accelerationIncludingGravity;
+            dmHdlr(acc.x, acc.y, acc.z);
+        }, false);
+    } else {
+        alert("devicemotion not supported on your device or browser.");
+    }
+
+
+    var lastDM = new Date().getTime();
+
+    function dmHdlr(aX, aY, aZ) {
+        var currDM = new Date().getTime();
+        //if (currDM < lastDM + 1000) {return;}
+        lastDM = currDM;
+
+        s$('aX').innerHTML = aX ? aX.toFixed(3) : '?';
+        s$('aY').innerHTML = aY ? aY.toFixed(3) : '?';
+        s$('aZ').innerHTML = aZ ? aZ.toFixed(3) : '?';
+    }
+</script>
 <!-- <h3>
     {{ progreso1 }}
 </h3>
@@ -134,73 +171,7 @@
   <body>
 <h1> You can see my mouse!! ZOMG - <a href="http://www.youtube.com/watch?v=aFLcbBvTGns">Video explaining why I'm doign this</a></h1>    
  
-    <script>
- 
-// some random color 
-function randc(){
-colors = new Array('#FF0000','#00FF00','#0000FF','#00FFFF','#FF00FF','#C0C0C0');
-var color = colors[Math.floor(Math.random()*colors.length)]
-return color;
-}
- 
-// When a new message arrives..
-      function message(obj){
-    var data = obj.message[1].split(':');
-    var x = data[0];
-    var y = data[1];
-        var userid = obj.message[0];
- 
-  if($('#mouse_'+userid).length == 0 && userid != 'you') {
-    var randcolor = randc();
-    $('body').append('<div class="dot" style="background-color:'+randcolor+'" id="mouse_'+userid+'"/>'
-    );
-  }
- 
-// stops a dot being drawn for local user
-if (userid != 'you'){
-   $('#mouse_'+userid).css({
-    'left' : x + 'px',
-    'top' : y + 'px'
-  })
-}
-        var el = document.createElement('p');
-        if ('announcement' in obj) el.innerHTML = '<em>' + esc(obj.announcement) + '</em>';
-        else if ('message' in obj) el.innerHTML = '<b>' + esc(obj.message[0]) + ':</b> ' + esc(obj.message[1]);
-        document.getElementById('chat').appendChild(el);
-        document.getElementById('chat').scrollTop = 1000000;
-      }
-       
-// A function to define how we send data
-      function send(){
-        var val = document.getElementById('text').value;
-        socket.send(val);
-        message({ message: ['you', val] });
-        document.getElementById('text').value = '';
-      }
-       
-// When a mouse is moved
-      window.onmousemove = function(event){
-     message({ message: ['you', event.clientX+':'+event.clientY] });
-         socket.send(event.clientX+':'+event.clientY);
-      };
- 
-// replace <&> w/ &lt&&gt
-      function esc(msg){
-        return msg.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-      };
- 
-// establish the socket connection      
-      var socket = new io.Socket(null, {port: 8080, rememberTransport: false});
-      socket.connect();
-      socket.on('message', function(obj){
-        if ('buffer' in obj){
-          document.getElementById('form').style.display='none';
-          document.getElementById('chat').innerHTML = '';
-           
-          for (var i in obj.buffer) message(obj.buffer[i]);
-        } else message(obj);
-      });
-    </script>
+   
      
     <div id="chat"><p>Connecting...</p></div>
     <form id="form" onsubmit="send(); return false">
